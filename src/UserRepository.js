@@ -19,7 +19,3 @@ class UserRepository {
 }
 
 export default UserRepository;
-
-// It should have methods to determine:
-
-// The average step goal amongst all users

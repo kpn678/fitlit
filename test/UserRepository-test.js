@@ -3,7 +3,6 @@ import UserRepository from "../src/UserRepository";
 
 describe("User Repository", () => {
   let userData, userRepository;
-  // console.log("1", userData);
   beforeEach(() => {
     userData = [
       {
