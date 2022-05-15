@@ -30,7 +30,7 @@ describe("User Repository", () => {
         address: "60013 Golden Overpass, Lake Dejon WI 77309-0820",
         email: "Trinity_Rowe@hotmail..com",
         strideLength: 3.5,
-        dailyStepGoal: 0,
+        dailyStepGoal: 5000,
         friends: [],
       },
     ];
@@ -62,5 +62,7 @@ describe("User Repository", () => {
     });
   });
 
-  // it("should")
+  it("should return average step goal amongst all users", () => {
+    expect(userRepository.calculateAverageStepGoals()).to.equal(5000);
+  });
 });
