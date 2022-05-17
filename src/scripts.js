@@ -1,17 +1,21 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-console.log(userData,"<>>>>userData")
-// An example of how you tell webpack to use a CSS file
 import './css/styles.css';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
-
-console.log('This is the JavaScript entry file - your code begins here.');
-
-// An example of how you tell webpack to use a JS file
-
 import userData from './data/users';
 
 import UserRepository from './UserRepository';
+import User from './User';
+
+const userRepository = new UserRepository(userData);
+
+const welcomeMessage = document.querySelector('h2');
+const user = new User(userRepository.userData[22]);
+
+const generateWelcomeMessage = () => {
+  console.log(userRepository);
+  console.log(user);
+  welcomeMessage.innerText = `Welcome, ${user.returnUserFirstName()}`;
+};
+
+window.addEventListener('load', (event) => {
+  generateWelcomeMessage();
+});
