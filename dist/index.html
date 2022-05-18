@@ -12,7 +12,17 @@
       </section>
       <section class="welcome" >
         <h2>Welcome back, Lina Quitt</h2>
-        <img src="./images/turing-logo.png" alt="turing logo" height="30px" width="30px"></imgsrc>
+
+        <button class="profile-button">
+          <img src="./images/turing-logo.png" alt="turing logo" height="30px" width="30px"></imgsrc>
+        </button>
+        <div id="overlay">
+          <div id="modal">
+            <button class="close-profile-button">X
+            </button>
+            <p id="accountInfo">Your Account Info</p>
+          </div>
+        <div>
       </section>
     </header>
     <nav>
@@ -30,7 +40,12 @@
           <section class="daily-sleep-display">Sleep</section>
         </section>
       </section>
-      <section class="bottom">Average steps in comparison to all the other users will go here</section>
+      <section class="bottom">
+        <h3>How Do You Compare?</h3>
+          <p id="stepGoals">
+            The average of all our users' daily step goals is: x. <br> Your daily step goal is: x. <br> Your stride length is: x.
+          </p>
+      </section>
     </main>
 <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
     <script src="bundle.js"></script>

@@ -7,19 +7,43 @@ body, html {
 }
 
 header, .welcome, .title {
-  display: flex; 
+  display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 2px;
   height: 10%;
 }
 
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#modal {
+  max-width: 600px;
+  height: 300px;
+  margin: auto;
+  background-color: green;
+  position: intial;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin-top: 70px;
+  margin-left: 700px;
+}
+
 nav {
   width: 10%;
   height: 90%;
   float:left;
-  display: flex; 
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
@@ -28,14 +52,14 @@ main {
   width: 90%;
   height: 90%;
   float:right;
-  display: flex; 
-  flex-direction: column; 
+  display: flex;
+  flex-direction: column;
 }
 
 .top {
   border: 1px solid black;
   height: 75%;
-  display: flex; 
+  display: flex;
   align-content: center;
   justify-content: space-between;
 }
