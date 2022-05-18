@@ -1,22 +1,57 @@
 import "./css/styles.css";
 import "./images/turing-logo.png";
-import userData from "./data/users";
+// import userData from "./data/users";
+import {
+  apiCalls,
+  fetchData,
+  fetchAll,
+  apiUserData,
+  apiSleepData,
+  apiActivityData,
+  apiHydrationData,
+} from "./apiCalls.js";
 
 import UserRepository from "./UserRepository";
 import User from "./User";
 
-const userRepository = new UserRepository(userData);
-const user = new User(userRepository.getUserData(33));
-const randomUser = new User(
-  userData[Math.floor(Math.random() * userData.length)]
-);
-console.log(randomUser);
+//Gloabal variables//
+let userData, sleepData, activityData, hydrationData;
+
+// const userRepository = new UserRepository(userData);
+// const user = new User(userRepository.getUserData(33));
+// **** //
+// console.log("before");
+// const randomUser = new User(
+//   userData[Math.floor(Math.random() * userData.length)]
+// );
+// console.log(randomUser);
 
 const welcomeMessage = document.querySelector("h2");
 const openProfileButton = document.querySelector(".profile-button");
 const closeProfileButton = document.querySelector(".close-profile-button");
 const stepGoalDisplay = document.querySelector("#stepGoals");
 const accountInfo = document.querySelector("#accountInfo");
+
+window.addEventListener("load", (event) => {
+  console.log("window");
+  loadData();
+});
+
+const loadData = () => {
+  fetchAll().then((data) => {
+    console.log(data);
+    userData = apiUserData.userData;
+    sleepData = apiSleepData.sleepData;
+    activityData = apiActivityData.activityData;
+    hydrationData = apiHydrationData.hydration;
+    beginApplication();
+  });
+};
+
+const beginApplication = () => {
+  generateWelcomeMessage();
+  displayStepGoal();
+};
 
 const generateWelcomeMessage = () => {
   welcomeMessage.innerText = `Welcome back, ${randomUser.returnUserFirstName()}!`;
@@ -37,11 +72,6 @@ const displayAccountInfo = () => {
     userRepository.userData
   )}`;
 };
-
-window.addEventListener("load", (event) => {
-  generateWelcomeMessage();
-  displayStepGoal();
-});
 
 openProfileButton.addEventListener("click", (event) => {
   overlay.style.display = "block";
