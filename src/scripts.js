@@ -1,15 +1,7 @@
 import "./css/styles.css";
 import "./images/turing-logo.png";
 // import userData from "./data/users";
-import {
-  apiCalls,
-  fetchData,
-  fetchAll,
-  apiUserData,
-  apiSleepData,
-  apiActivityData,
-  apiHydrationData,
-} from "./apiCalls.js";
+import { fetchAll } from "./apiCalls.js";
 
 import UserRepository from "./UserRepository";
 import User from "./User";
@@ -19,12 +11,11 @@ let userData, sleepData, activityData, hydrationData;
 
 // const userRepository = new UserRepository(userData);
 // const user = new User(userRepository.getUserData(33));
-// **** //
+//**** //
 // console.log("before");
 // const randomUser = new User(
 //   userData[Math.floor(Math.random() * userData.length)]
 // );
-// console.log(randomUser);
 
 const welcomeMessage = document.querySelector("h2");
 const openProfileButton = document.querySelector(".profile-button");
@@ -39,28 +30,36 @@ window.addEventListener("load", (event) => {
 
 const loadData = () => {
   fetchAll().then((data) => {
-    console.log(data);
-    userData = apiUserData.userData;
-    sleepData = apiSleepData.sleepData;
-    activityData = apiActivityData.activityData;
-    hydrationData = apiHydrationData.hydration;
-    beginApplication();
+    console.log(data[0]);
+    userData = data[0];
+    sleepData = data[1];
+    activityData = data[2];
+    hydrationData = data[3];
+    const userRepository = new UserRepository(userData.userData);
+    console.log(userRepository);
+    const randomUser = new User(
+      userRepository.userData[
+        Math.floor(Math.random() * userRepository.userData.length)
+      ]
+    );
+    // console.log(randomUser);
+    beginApplication(randomUser, userRepository);
   });
 };
 
-const beginApplication = () => {
-  generateWelcomeMessage();
-  displayStepGoal();
+const beginApplication = (user, repository) => {
+  generateWelcomeMessage(user);
+  displayStepGoal(user, repository);
 };
 
-const generateWelcomeMessage = () => {
-  welcomeMessage.innerText = `Welcome back, ${randomUser.returnUserFirstName()}!`;
+const generateWelcomeMessage = (user) => {
+  welcomeMessage.innerText = `Welcome back, ${user.returnUserFirstName()}!`;
 };
 
-const displayStepGoal = () => {
-  stepGoalDisplay.innerHTML = `The average of all our users' daily step goals is: ${userRepository.calculateAverageStepGoals()} steps. <br> Your daily step goal is: ${
-    randomUser.dailyStepGoal
-  } steps. <br> Your stride length is: ${randomUser.strideLength} feet.`;
+const displayStepGoal = (user, repository) => {
+  stepGoalDisplay.innerHTML = `The average of all our users' daily step goals is: ${repository.calculateAverageStepGoals()} steps. <br> Your daily step goal is: ${
+    user.dailyStepGoal
+  } steps. <br> Your stride length is: ${user.strideLength} feet.`;
 };
 
 const displayAccountInfo = () => {

@@ -22,13 +22,6 @@ const fetchAll = () => {
 };
 // console.log("I will be a fetch request!");
 
-export {
-  fetchData,
-  fetchAll,
-  apiUserData,
-  apiSleepData,
-  apiActivityData,
-  apiHydrationData,
-};
+export { fetchAll };
 
 console.log("I will be a fetch request!");
