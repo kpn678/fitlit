@@ -11,7 +11,9 @@ const randomUser = new User(userData[Math.floor(Math.random() * userData.length)
 console.log(randomUser);
 
 const welcomeMessage = document.querySelector('h2');
-const stepGoalDisplay = document.querySelector('p');
+const openProfileButton = document.querySelector('.profile-button');
+const closeProfileButton = document.querySelector('.close-profile-button');
+const stepGoalDisplay = document.querySelector('#step-goals');
 
 const generateWelcomeMessage = () => {
   welcomeMessage.innerText = `Welcome back, ${randomUser.returnUserFirstName()}!`;
@@ -24,6 +26,14 @@ const displayStepGoal = () => {
 window.addEventListener('load', (event) => {
   generateWelcomeMessage();
   displayStepGoal();
+});
+
+openProfileButton.addEventListener('click', (event) => {
+  overlay.style.display = 'block';
+});
+
+closeProfileButton.addEventListener('click', (event) => {
+  overlay.style.display = 'none';
 });
 
 // userData is an array of objects
