@@ -7,7 +7,9 @@ class User {
     this.strideLength = singleUserData.strideLength;
     this.dailyStepGoal = singleUserData.dailyStepGoal;
     this.friends = singleUserData.friends;
-    //this.hydration = hydrationData & add to param
+    //this.averageHydration = hydrationData & add to param
+    //this.dailyHydration
+    //this.weeklyHydration
   };
   returnUserFirstName() {
     const splitName = this.name.split(" ");

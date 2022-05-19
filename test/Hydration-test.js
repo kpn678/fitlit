@@ -5,7 +5,7 @@ import Hydration from "../src/Hydration";
 
 describe("Hydration", () => {
     
-    let hydration, hydrationData, singleUserData32, singleUserData33, user32, user33;
+    let hydration32, hydration33, hydrationData, singleUserData32, singleUserData33, user32, user33;
 
     beforeEach(() => {
         hydrationData = [
@@ -64,7 +64,8 @@ describe("Hydration", () => {
 
         user32 = new User(singleUserData32);
         user33 = new User(singleUserData33);
-        hydration = new Hydration(hydrationData, 32);
+        hydration32 = new Hydration(hydrationData, 32);
+        hydration33 = new Hydration(hydrationData, 33);
     });
 
     it("should be a function", () => {
@@ -72,15 +73,15 @@ describe("Hydration", () => {
     });
 
     it("should be an instance of Hydration", () => {
-      expect(hydration).to.be.an.instanceof(Hydration);
+      expect(hydration32).to.be.an.instanceof(Hydration);
     });
 
     it("should gather information based on the user's id", () => {
-        expect(hydration.userID).to.equal(32)
+        expect(hydration32.userID).to.equal(32)
     });
 
     it("should only store this specific user's information based on the user's id", () => {
-        expect(hydration.hydrationData).to.deep.equal( [{
+        expect(hydration32.hydrationData).to.deep.equal( [{
             userID: 32,
             date: "2019/06/15",
             numOunces: 56
@@ -90,6 +91,10 @@ describe("Hydration", () => {
                 date: "2019/06/16",
                 numOunces: 36
                 }])
+     });
+
+     it("should be able to calculate the average fluid ounces consumed per day for all time", () => {
+         expect(hydration33.calculateAverageDailyOunces()).to.equal("54.3 oz.")
      });
 
     
