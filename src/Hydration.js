@@ -10,18 +10,17 @@ class Hydration{
     })
     return `${(sum /this.hydrationData.length).toFixed(1)} oz.`
     }
+
+    returnDailyOunces(date) {
+          const dailyOz = this.hydrationData.find((datum) => {
+           return  datum.date === date;
+        });
+        return `${dailyOz.numOunces} oz.`
+    };
 }
 
 
 
-
-// For a user (identified by their userID - 
-//     this is the same for all methods requiring a specific user’s data), 
-//     the average fluid ounces consumed per day for all time
-//calculateAverageDailyOunces
-
-// For a user, how many fluid ocalculateAverageDailyOuncesunces they consumed for a specific day (identified by a date)
-//returnDailyOunces
 
 // For a user, how many fluid ounces of water consumed each day over the course of a week (7 days) - 
 // return the amount for each day

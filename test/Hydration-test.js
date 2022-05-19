@@ -97,5 +97,11 @@ describe("Hydration", () => {
          expect(hydration33.calculateAverageDailyOunces()).to.equal("54.3 oz.")
      });
 
+     it("should be able to return how many fluid ounces they consumed for a specific day", () => {
+         expect(hydration33.returnDailyOunces("2019/06/17")).to.equal("23 oz.")
+         expect(hydration33.returnDailyOunces("2019/06/15")).to.equal("51 oz.")
+         expect(hydration32.returnDailyOunces("2019/06/16")).to.equal("36 oz.")
+     });
+
     
 })
