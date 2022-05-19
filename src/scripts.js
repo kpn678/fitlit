@@ -1,43 +1,70 @@
-import './css/styles.css';
-import './images/turing-logo.png'
-import userData from './data/users';
+import "./css/styles.css";
+import "./images/turing-logo.png";
+import { fetchAll } from "./apiCalls.js";
 
-import UserRepository from './UserRepository';
-import User from './User';
+import UserRepository from "./UserRepository";
+import User from "./User";
 
-const userRepository = new UserRepository(userData);
-const user = new User(userRepository.getUserData(33));
-const randomUser = new User(userData[Math.floor(Math.random() * userData.length)]);
-console.log(randomUser);
+//Gloabal variables//
+let userData, sleepData, activityData, hydrationData;
 
-const welcomeMessage = document.querySelector('h2');
-const openProfileButton = document.querySelector('.profile-button');
-const closeProfileButton = document.querySelector('.close-profile-button');
-const stepGoalDisplay = document.querySelector('#stepGoals');
-const accountInfo = document.querySelector('#accountInfo');
+//QuerySelector//
+const welcomeMessage = document.querySelector("h2");
+const openProfileButton = document.querySelector(".profile-button");
+const closeProfileButton = document.querySelector(".close-profile-button");
+const stepGoalDisplay = document.querySelector("#stepGoals");
+const accountInfo = document.querySelector("#accountInfo");
 
-const generateWelcomeMessage = () => {
-  welcomeMessage.innerText = `Welcome back, ${randomUser.returnUserFirstName()}!`;
-};
-
-const displayStepGoal = () => {
-  stepGoalDisplay.innerHTML = `The average of all our users' daily step goals is: ${userRepository.calculateAverageStepGoals()} steps. <br> Your daily step goal is: ${randomUser.dailyStepGoal} steps. <br> Your stride length is: ${randomUser.strideLength} feet.`
-};
-
-const displayAccountInfo = () => {
-  accountInfo.innerHTML = `Your Account Info <br><br> ${randomUser.name} <br><br> ${randomUser.email} <br><br> ${randomUser.address} <br><br> Your Friends Are: ${randomUser.returnFriendName(userData)}`
-};
-
-window.addEventListener('load', (event) => {
-  generateWelcomeMessage();
-  displayStepGoal();
+//Event listeners//
+window.addEventListener("load", (event) => {
+  loadData();
 });
 
-openProfileButton.addEventListener('click', (event) => {
-  overlay.style.display = 'block';
-  displayAccountInfo();
+openProfileButton.addEventListener("click", (event) => {
+  overlay.style.display = "block";
 });
 
-closeProfileButton.addEventListener('click', (event) => {
-  overlay.style.display = 'none';
+closeProfileButton.addEventListener("click", (event) => {
+  overlay.style.display = "none";
 });
+
+//Functions//
+const loadData = () => {
+  fetchAll().then((data) => {
+    userData = data[0];
+    sleepData = data[1];
+    activityData = data[2];
+    hydrationData = data[3];
+    const userRepository = new UserRepository(userData.userData);
+    const randomUser = new User(
+      userRepository.userData[
+        Math.floor(Math.random() * userRepository.userData.length)
+      ]
+    );
+    beginApplication(randomUser, userRepository);
+  });
+};
+
+const beginApplication = (user, repository) => {
+  displayAccountInfo(user, repository);
+  generateWelcomeMessage(user);
+  displayStepGoal(user, repository);
+};
+
+const generateWelcomeMessage = (user) => {
+  welcomeMessage.innerText = `Welcome back, ${user.returnUserFirstName()}!`;
+};
+
+const displayStepGoal = (user, repository) => {
+  stepGoalDisplay.innerHTML = `The average of all our users' daily step goals is: ${repository.calculateAverageStepGoals()} steps. <br> Your daily step goal is: ${
+    user.dailyStepGoal
+  } steps. <br> Your stride length is: ${user.strideLength} feet.`;
+};
+
+const displayAccountInfo = (user, repository) => {
+  accountInfo.innerHTML = `Your Account Info <br><br> ${user.name} <br><br> ${
+    user.email
+  } <br><br> ${user.address} <br><br> Your Friends Are: ${user.returnFriendName(
+    repository.userData
+  )}`;
+};
