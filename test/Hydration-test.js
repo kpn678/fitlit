@@ -5,7 +5,7 @@ import Hydration from "../src/Hydration";
 
 describe("Hydration", () => {
     
-    let hydration32, hydration33, hydrationData, singleUserData32, singleUserData33, user32, user33;
+    let hydration31, hydration32, hydration33, hydrationData, singleUserData31, singleUserData32, singleUserData33, user31, user32, user33;
 
     beforeEach(() => {
         hydrationData = [
@@ -25,6 +25,32 @@ describe("Hydration", () => {
                     numOunces: 23
                     },
                     {
+                        userID: 33,
+                        date: "2019/06/18",
+                        numOunces: 26
+                        },
+                        {
+                            userID: 33,
+                            date: "2019/06/19",
+                            numOunces: 47
+                            },
+                            {
+                                userID: 33,
+                                date: "2019/06/20",
+                                numOunces: 54
+                                },
+                                {
+                                    userID: 33,
+                                    date: "2019/06/21",
+                                    numOunces: 84
+                                    },
+
+                    {
+                        userID: 33,
+                        date: "2019/07/18",
+                        numOunces: 41
+                        },
+                    {
                         userID: 32,
                         date: "2019/06/15",
                         numOunces: 56
@@ -33,7 +59,12 @@ describe("Hydration", () => {
                             userID: 32,
                             date: "2019/06/16",
                             numOunces: 36
-                            }];
+                            },
+                            {
+                                userID: 31,
+                                date: "2019/06/16",
+                                numOunces: 0
+                                },];
                    
         singleUserData33 = { 
             "id": 33,
@@ -62,8 +93,24 @@ describe("Hydration", () => {
             ]
           };
 
+          singleUserData31 ={
+            "id": 31,
+            "name": "Bertrand Yundt",
+            "address": "0032 Claudia Plain, Delfinaland RI 22298-3685",
+            "email": "Sibyl.Schmidt39@yahoo.com",
+            "strideLength": 3.4,
+            "dailyStepGoal": 7000,
+            "friends": [
+              16,
+              41,
+              9
+            ]
+          },
+
+        user31 =  new User(singleUserData31); 
         user32 = new User(singleUserData32);
         user33 = new User(singleUserData33);
+        hydration31 = new Hydration(hydrationData, 31);
         hydration32 = new Hydration(hydrationData, 32);
         hydration33 = new Hydration(hydrationData, 33);
     });
@@ -94,7 +141,7 @@ describe("Hydration", () => {
      });
 
      it("should be able to calculate the average fluid ounces consumed per day for all time", () => {
-         expect(hydration33.calculateAverageDailyOunces()).to.equal("54.3 oz.")
+         expect(hydration33.calculateAverageDailyOunces()).to.equal("51.9 oz.")
      });
 
      it("should be able to return how many fluid ounces they consumed for a specific day", () => {
@@ -103,5 +150,8 @@ describe("Hydration", () => {
          expect(hydration32.returnDailyOunces("2019/06/16")).to.equal("36 oz.")
      });
 
+     it ("should be able to return the fluid ounces of water for a user consumed each day over the course of the last 7 days", () => {
+        expect(hydration33.getPastWeekDailyOunces("2019/06/15" - "2019/06/21")).to.equal([{"2019/06/15": "51 oz."}, {"2019/06/16": "89 oz."}, {"2019/06/17": "23 oz."}, {"2019/06/18": "26 oz."} ,{"2019/06/19": "47 oz."}, {"2019/06/20": "54 oz."}, {"2019/06/21": "84 oz."}])
+     });
     
 })
