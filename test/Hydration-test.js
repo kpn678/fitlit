@@ -5,7 +5,7 @@ import Hydration from "../src/Hydration";
 
 describe("Hydration", () => {
     
-    let hydrationData, singleUserData, user33, hydration;
+    let hydration, hydrationData, singleUserData32, singleUserData33, user32, user33;
 
     beforeEach(() => {
         hydrationData = [
@@ -23,9 +23,19 @@ describe("Hydration", () => {
                     userID: 33,
                     date: "2019/06/17",
                     numOunces: 23
-                    }];
+                    },
+                    {
+                        userID: 32,
+                        date: "2019/06/15",
+                        numOunces: 56
+                        },
+                        {
+                            userID: 32,
+                            date: "2019/06/16",
+                            numOunces: 36
+                            }];
                    
-        singleUserData = { 
+        singleUserData33 = { 
             "id": 33,
             "name": "Leilani Quitzon",
             "address": "60013 Golden Overpass, Lake Dejon WI 77309-0820",
@@ -36,12 +46,25 @@ describe("Hydration", () => {
               4,
               18,
               36,
-              30
+              30]
+          };
+
+          singleUserData32 = { 
+            "id": 32,
+            "name": "Carrie Smith",
+            "address": "408 Windler Camp, Eddietown MA 11960",
+            "email": "Nikolas.Brakus31@yahoo.com",
+            "strideLength": 4.3,
+            "dailyStepGoal": 3000,
+            "friends": [
+              47,
+              33
             ]
           };
 
-        user33 = new User(singleUserData);
-        hydration = new Hydration()
+        user32 = new User(singleUserData32);
+        user33 = new User(singleUserData33);
+        hydration = new Hydration(hydrationData, 32);
     });
 
     it("should be a function", () => {
@@ -51,6 +74,23 @@ describe("Hydration", () => {
     it("should be an instance of Hydration", () => {
       expect(hydration).to.be.an.instanceof(Hydration);
     });
+
+    it("should gather information based on the user's id", () => {
+        expect(hydration.userID).to.equal(32)
+    });
+
+    it("should only store this specific user's information based on the user's id", () => {
+        expect(hydration.hydrationData).to.deep.equal( [{
+            userID: 32,
+            date: "2019/06/15",
+            numOunces: 56
+            },
+            {
+                userID: 32,
+                date: "2019/06/16",
+                numOunces: 36
+                }])
+     });
 
     
 })
