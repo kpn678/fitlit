@@ -3,6 +3,20 @@ class Sleep {
     this.sleepData = sleepData.filter((data) => data.userID === userID);
     this.userID = userID;
   }
+  calculateAverageHoursSlept() {
+    let sum = 0;
+    this.sleepData.forEach((datum) => {
+      sum += datum.hoursSlept;
+    });
+    return `${(sum / this.sleepData.length).toFixed(1)} hours`;
+  }
+  calculateAverageSleepQuality() {
+    let sum = 0;
+    this.sleepData.forEach((datum) => {
+      sum += datum.sleepQuality;
+    });
+    return (sum / this.sleepData.length).toFixed(1);
+  }
 }
 
 export default Sleep;

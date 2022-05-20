@@ -190,4 +190,12 @@ describe("Sleep", () => {
       },
     ]);
   });
+
+  it("should be able to calculate the average number of hours slept per night for all time", () => {
+    expect(sleep32.calculateAverageHoursSlept()).to.equal("7.6 hours");
+  });
+
+  it("should be able to calculate the average sleep quality per night for all time", () => {
+    expect(sleep32.calculateAverageSleepQuality()).to.equal("3.5");
+  });
 });
