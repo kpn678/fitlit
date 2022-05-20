@@ -1,5 +1,5 @@
 class User {
-  constructor(singleUserData) {
+  constructor(singleUserData, hydrationData) {
     this.id = singleUserData.id;
     this.name = singleUserData.name;
     this.address = singleUserData.address;
@@ -7,6 +7,8 @@ class User {
     this.strideLength = singleUserData.strideLength;
     this.dailyStepGoal = singleUserData.dailyStepGoal;
     this.friends = singleUserData.friends;
+    this.hydrationData = hydrationData;
+   
   };
   returnUserFirstName() {
     const splitName = this.name.split(" ");

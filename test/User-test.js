@@ -1,9 +1,10 @@
 import { expect } from "chai";
 import UserRepository from "../src/UserRepository";
 import User from "../src/User";
+import Hydration from "../src/Hydration";
 
 describe("User", () => {
-    let user, userData, userRepository, user31, user32, user33
+    let user, userData, userRepository, user31, user32, user33, hydration, hydrationData;
 
     beforeEach(() => {
       user31 =
@@ -39,10 +40,28 @@ describe("User", () => {
           friends: [],
         };
 
-        user33 = new User(user33);
+        hydrationData = [
+          {
+              userID: 32,
+              date: "2019/06/15",
+              numOunces: 51
+              },
+              {
+                  userID: 33,
+                  date: "2019/06/16",
+                  numOunces: 89
+                  },
+                  {
+                      userID: 33,
+                      date: "2019/06/17",
+                      numOunces: 23
+                      }]
+
+        user33 = new User(user33, hydration);
         user31 = new User(user31);
         userData = [user31, user32, user33];
         userRepository = new UserRepository(userData);
+        hydration = new Hydration(hydrationData, 33)
     });
 
     it("should be a function", () => {
@@ -62,7 +81,25 @@ describe("User", () => {
         strideLength: 3.5,
         dailyStepGoal: 5000,
         friends: [],
+        hydrationData: {
+          hydrationData: [ 
+            {
+            userID: 33,
+            date: "2019/06/16",
+            numOunces: 89
+            },
+            {
+                userID: 33,
+                date: "2019/06/17",
+                numOunces: 23
+                }],
+          userID: 33,
+        }
       },);
+    });
+
+    it("should be able to store a user's hydration data", () => {
+      expect(user33.hydrationData).to.deep.equal(hydration)
     });
 
     it("should be able to return a user's first name", () => {
