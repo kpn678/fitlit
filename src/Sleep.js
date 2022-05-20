@@ -29,12 +29,25 @@ class Sleep {
     });
     return nightlyQuality.sleepQuality;
   }
+  getPastWeekNightlyHours(date) {
+    const startDate = this.sleepData.findIndex((night) => night.date === date);
+    const weeklyRange = this.sleepData.slice(startDate, 7);
+    const weeklyHours = weeklyRange.map((date) => ({
+      [date.date]: `${date.hoursSlept} hours`,
+    }));
+    return weeklyHours;
+  }
+  getPastWeekNightlyQuality(date) {
+    const startDate = this.sleepData.findIndex((night) => night.date === date);
+    const weeklyRange = this.sleepData.slice(startDate, 7);
+    const weeklyQuality = weeklyRange.map((date) => ({
+      [date.date]: date.sleepQuality,
+    }));
+    return weeklyQuality;
+  }
 }
 
 export default Sleep;
 
-// - For a user, how many hours they slept for a specific day (identified by a date)
-// - For a user, their sleep quality for a specific day (identified by a date)
-// - For a user, how many hours slept each day over the course of a given week (7 days) - you should be able to calculate this for any week, not just the latest week
 // - For a user, their sleep quality each day over the course of a given week (7 days) - you should be able to calculate this for any week, not just the latest week
 // - For all users, the average sleep quality
