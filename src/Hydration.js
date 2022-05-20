@@ -3,6 +3,7 @@ class Hydration{
         this.hydrationData = hydrationData.filter(data => data.userID === userID)
         this.userID = userID;
     }
+    
     calculateAverageDailyOunces() {
         let sum = 0
         this.hydrationData.forEach((datum) => {
@@ -18,7 +19,6 @@ class Hydration{
         return `${dailyOz.numOunces} oz.` 
     }
 
-   
     getPastWeekDailyOunces(date) {
         const startDate = this.hydrationData.findIndex(day => day.date === date);
         const weeklyRange = this.hydrationData.slice(startDate, 7)
@@ -28,11 +28,5 @@ class Hydration{
     }
 }
 
-// For a user, how many fluid ounces of water consumed each day over the course of a week (7 days) - 
-// return the amount for each day
-//
-
-// You have to decide which classes should contain each method. 
-// Think about whose responsibility it is to own the method.
 
 export default Hydration;
