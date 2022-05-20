@@ -157,4 +157,37 @@ describe("Sleep", () => {
   it("should be an instance of Sleep", () => {
     expect(sleep32).to.be.an.instanceof(Sleep);
   });
+
+  it("should gather information based on the user's id", () => {
+    expect(sleep32.userID).to.equal(32);
+  });
+
+  it("should only store this specific user's information based on the user's id", () => {
+    expect(sleep32.sleepData).to.deep.equal([
+      {
+        userID: 32,
+        date: "2019/06/15",
+        hoursSlept: 6.6,
+        sleepQuality: 4.4,
+      },
+      {
+        userID: 32,
+        date: "2019/06/16",
+        hoursSlept: 7,
+        sleepQuality: 4.8,
+      },
+      {
+        userID: 32,
+        date: "2019/06/17",
+        hoursSlept: 9.1,
+        sleepQuality: 1.9,
+      },
+      {
+        userID: 32,
+        date: "2019/06/18",
+        hoursSlept: 7.7,
+        sleepQuality: 2.7,
+      },
+    ]);
+  });
 });
