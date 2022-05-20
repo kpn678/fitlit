@@ -17,23 +17,16 @@ class Hydration{
         })
         return `${dailyOz.numOunces} oz.` 
     }
-    getPastWeekDailyOunces(date, week) {
-        this.hydrationData.filter((datum) => {
-            (datum.date === a) && (< b)
 
-            //reduce?
-            //DO WE WANT A FOR LOOP? to break after 7 days??? FORbidden?
-            //dates are in this range, put em in the array and then map that to make the KVPs
-        })
+   
+    getPastWeekDailyOunces(date) {
+        const startDate = this.hydrationData.findIndex(day => day.date === date);
+        const weeklyRange = this.hydrationData.slice(startDate, 7)
+        const weeklyIntake = weeklyRange.map(date => ({[date.date]: `${date.numOunces} oz.`})
+        )
+        return weeklyIntake
     }
-    //hydrationData array: 
-    //I: array of user's Dates datum.
-    //O: array of objects of 7 dates where key is date and value is oz consumed
-    //top= oldest date
 }
-
-
-
 
 // For a user, how many fluid ounces of water consumed each day over the course of a week (7 days) - 
 // return the amount for each day

@@ -151,7 +151,7 @@ describe("Hydration", () => {
      });
 
      it ("should be able to return the fluid ounces of water for a user consumed each day over the course of the last 7 days", () => {
-        expect(hydration33.getPastWeekDailyOunces("2019/06/15" - "2019/06/21")).to.equal([{"2019/06/15": "51 oz."}, {"2019/06/16": "89 oz."}, {"2019/06/17": "23 oz."}, {"2019/06/18": "26 oz."} ,{"2019/06/19": "47 oz."}, {"2019/06/20": "54 oz."}, {"2019/06/21": "84 oz."}])
+        expect(hydration33.getPastWeekDailyOunces("2019/06/15")).to.deep.equal([{"2019/06/15": "51 oz."}, {"2019/06/16": "89 oz."}, {"2019/06/17": "23 oz."}, {"2019/06/18": "26 oz."} ,{"2019/06/19": "47 oz."}, {"2019/06/20": "54 oz."}, {"2019/06/21": "84 oz."}])
      });
     
 })
