@@ -236,4 +236,8 @@ describe("Sleep", () => {
       { "2019/06/21": 4.6 },
     ]);
   });
+
+  it("should return average sleep quality amongst all users", () => {
+    expect(sleep31.calculateAverageSleepQualityAll()).to.equal("2.9");
+  });
 });

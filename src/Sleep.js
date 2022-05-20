@@ -45,9 +45,13 @@ class Sleep {
     }));
     return weeklyQuality;
   }
+  calculateAverageSleepQualityAll() {
+    const averageQuality = this.sleepData.reduce((avg, user) => {
+      avg += user.sleepQuality / this.sleepData.length;
+      return avg;
+    }, 0);
+    return averageQuality.toFixed(1);
+  }
 }
 
 export default Sleep;
-
-// - For a user, their sleep quality each day over the course of a given week (7 days) - you should be able to calculate this for any week, not just the latest week
-// - For all users, the average sleep quality
