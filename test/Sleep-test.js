@@ -198,4 +198,18 @@ describe("Sleep", () => {
   it("should be able to calculate the average sleep quality per night for all time", () => {
     expect(sleep32.calculateAverageSleepQuality()).to.equal("3.5");
   });
+
+  it("should be able to return how many hours they slept for a specific night", () => {
+    expect(sleep33.returnNightlyHoursSlept("2019/06/16")).to.equal(
+      "10.1 hours"
+    );
+    expect(sleep33.returnNightlyHoursSlept("2019/06/15")).to.equal("9.5 hours");
+    expect(sleep32.returnNightlyHoursSlept("2019/06/18")).to.equal("7.7 hours");
+  });
+
+  it("should be able to return the sleep quality for a specific night", () => {
+    expect(sleep33.returnNightlySleepQuality("2019/06/16")).to.equal(3.8);
+    expect(sleep33.returnNightlySleepQuality("2019/06/15")).to.equal(4.2);
+    expect(sleep32.returnNightlySleepQuality("2019/06/18")).to.equal(2.7);
+  });
 });
