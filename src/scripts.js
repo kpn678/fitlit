@@ -20,13 +20,14 @@ let userData, sleepData, activityData, hydrationData;
 
 //Query selectors//
 const welcomeMessage = document.querySelector("h2");
-const openProfileButton = document.querySelector(".profile-button");
-const closeProfileButton = document.querySelector(".close-profile-button");
-const stepGoalDisplay = document.querySelector("#stepGoals");
-const accountInfo = document.querySelector("#accountInfo");
-const dailyHydrationDisplay = document.querySelector('.daily-hydration-display');
 const todaysDateCalendarDisplay = document.querySelector('.calendar');
 const todaysDateDisplay = document.querySelector('.todays-date');
+const accountInfo = document.querySelector("#accountInfo");
+const openProfileButton = document.querySelector(".profile-button");
+const closeProfileButton = document.querySelector(".close-profile-button");
+const dailyHydrationDisplay = document.querySelector('.daily-hydration-display');
+const dailySleepDisplay = document.querySelector('.daily-sleep-display');
+const stepGoalDisplay = document.querySelector("#stepGoals");
 
 //Event listeners//
 window.addEventListener("load", (event) => {
@@ -62,8 +63,9 @@ const beginApplication = (user, repository) => {
   displayTodaysDate();
   generateWelcomeMessage(user);
   displayAccountInfo(user, repository);
-  displayStepGoal(user, repository);
   displayDailyHydration(user);
+  displayDailySleep(user);
+  displayStepGoal(user, repository);
 };
 
 const displayTodaysDate = () => {
@@ -79,13 +81,18 @@ const displayAccountInfo = (user, repository) => {
   ${user.address} <br><br> Your Friends Are: <br> ${user.returnFriendName(repository.userData)}`;
 };
 
+const displayDailyHydration = (user) => {
+  let recentDate = '2020/01/22';
+  dailyHydrationDisplay.innerText = `You consumed ${user.hydrationData.returnDailyOunces(recentDate)} of water today.`
+};
+
+const displayDailySleep = (user) => {
+  let recentDate = '2020/01/22';
+  dailySleepDisplay.innerHTML = `You slept ${user.sleepData.returnNightlyHoursSlept(recentDate)}. <br><br> Your sleep quality was ${user.sleepData.returnNightlySleepQuality(recentDate)}.`
+};
+
 const displayStepGoal = (user, repository) => {
   stepGoalDisplay.innerHTML = `The average of all our users' daily step goals is: ${repository.calculateAverageStepGoals()} steps. <br>
   Your daily step goal is: ${user.dailyStepGoal} steps. <br>
   Your stride length is: ${user.strideLength} feet.`;
 };
-
-const displayDailyHydration = (user) => {
-  let recentDate = '2020/01/22';
-  dailyHydrationDisplay.innerHTML = `You consumed ${user.hydrationData.returnDailyOunces(recentDate)} of water today.`
-}
