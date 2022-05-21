@@ -50,7 +50,8 @@ const loadData = () => {
     const userRepository = new UserRepository(userData.userData);
     const randomUserData = userRepository.userData[Math.floor(Math.random() * userRepository.userData.length)];
     const singleHydration = new Hydration(hydrationData.hydrationData, randomUserData.id);
-    const randomUser = new User(randomUserData, singleHydration, sleepData);
+    const singleSleep = new Sleep(sleepData.sleepData, randomUserData.id);
+    const randomUser = new User(randomUserData, singleHydration, singleSleep);
     console.log(randomUser);
     beginApplication(randomUser, userRepository);
   });
