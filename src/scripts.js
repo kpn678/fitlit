@@ -1,5 +1,13 @@
 import "./css/styles.css";
 import "./images/turing-logo.png";
+import "./images/water-bottle.png";
+import "./images/sleep.png";
+import "./images/walk.png";
+import "./images/friends.png";
+import "./images/fitlit-logo.png";
+import "./images/user.png"
+import "./images/post.png"
+
 import { fetchAll } from "./apiCalls.js";
 
 import UserRepository from "./UserRepository";
