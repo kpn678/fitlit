@@ -7,19 +7,22 @@
   <body>
     <header>
       <section class="title">
-        <img src="./images/fitlit-logo.png" alt="fitlit logo" height="120px" width="80px">
+        <img src="./images/fitlit-logo.png" alt="fitlit logo" height="75px" width="60px">
         <h1>Activity Tracker</h1>
       </section>
-      <section class="welcome" >
+      <div class="calendar" data-date="2020/01/22">
+        <p class="todays-date">
+          Today's Date:
+        </p>
+        <label for="calendar"></label>
+          <input type="date" id="calendar" min='' value=''>
+      </div>
+      <section class="welcome">
         <h2>Welcome back, Lina Quitt</h2>
-
-        <!-- <button class="profile-button"> -->
           <img class="profile-button" src="./images/user.png" alt="user icon" role ="button" height="30px" width="30px"></imgsrc>
-        <!-- </button> -->
         <div id="overlay">
           <div id="modal">
-            <button class="close-profile-button">X
-            </button>
+            <button class="close-profile-button">X</button>
             <p id="accountInfo">Your Account Info</p>
           </div>
         <div>
@@ -34,10 +37,10 @@
     </nav>
     <main>
       <section class="top">
-        <section class="broadcast">TV</section>
+        <section class="broadcast">Water Consumption over Last Week, Sleep Data over Last Week, All-Time Sleep Data</section>
         <section class ="widgets">
-          <section class="daily-hydration-display">Hydration</section>
-          <section class="daily-sleep-display">Sleep</section>
+          <section class="daily-hydration-display">Your Water Consumption Today</section>
+          <section class="daily-sleep-display">Your Sleep Info for Last Night</section>
         </section>
       </section>
       <section class="bottom">
@@ -48,6 +51,7 @@
       </section>
     </main>
 <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+    <script src="https://unpkg.com/dayjs"></script>
     <script src="bundle.js"></script>
   </body>
 </html>
