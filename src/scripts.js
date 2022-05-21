@@ -12,6 +12,8 @@ import { fetchAll } from "./apiCalls.js";
 
 import UserRepository from "./UserRepository";
 import User from "./User";
+import Hydration from "./Hydration";
+import Sleep from "./Sleep";
 
 //Gloabal variables//
 let userData, sleepData, activityData, hydrationData;
@@ -22,6 +24,7 @@ const openProfileButton = document.querySelector(".profile-button");
 const closeProfileButton = document.querySelector(".close-profile-button");
 const stepGoalDisplay = document.querySelector("#stepGoals");
 const accountInfo = document.querySelector("#accountInfo");
+const dailyHydrationDisplay = document.querySelector('.daily-hydration-display');
 
 //Event listeners//
 window.addEventListener("load", (event) => {
@@ -43,12 +46,12 @@ const loadData = () => {
     sleepData = data[1];
     activityData = data[2];
     hydrationData = data[3];
+    console.log(hydrationData);
     const userRepository = new UserRepository(userData.userData);
-    const randomUser = new User(
-      userRepository.userData[
-        Math.floor(Math.random() * userRepository.userData.length)
-      ]
-    );
+    const randomUserData = userRepository.userData[Math.floor(Math.random() * userRepository.userData.length)];
+    const singleHydration = new Hydration(hydrationData.hydrationData, randomUserData.id);
+    const randomUser = new User(randomUserData, singleHydration, sleepData);
+    console.log(randomUser);
     beginApplication(randomUser, userRepository);
   });
 };
@@ -76,3 +79,7 @@ const displayAccountInfo = (user, repository) => {
     repository.userData
   )}`;
 };
+
+const displayDailyHydration = (user) => {
+
+}
