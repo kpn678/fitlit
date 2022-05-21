@@ -1,13 +1,14 @@
 
 body, html {
-  background-image: linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-  background-repeat: no-repeat;
   height: 100vh;
   margin: 0px;
+  background-color: #41A9F4
 }
 
 header, .welcome, .title {
+  border-radius: 7%;
   display: flex;
+  background-color: #41A9F4;
   justify-content: space-between;
   align-items: center;
   margin: 2px;
@@ -22,34 +23,42 @@ header, .welcome, .title {
   right: 0;
   left: 0;
   z-index: 1;
+  border-radius: 7%;
 }
 
 #modal {
+  border-radius: 7% ;
   max-width: 600px;
   height: 300px;
   margin: auto;
-  background-color: green;
-  position: intial;
+  background-color: #41A9F4;
+  position:static;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
   margin-top: 70px;
-  margin-left: 700px;
+  margin-left: 1250px;
 }
 
 nav {
-  width: 10%;
-  height: 90%;
+  width: 8%;
+  height: 85%;
   float:left;
+  background-color: #34C759;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  border-radius: 7%;
+  margin:2%;
 }
 
 main {
-  width: 90%;
+  background-color: #41A9F4;
+  /* background-image: linear-gradient(to bottom, #ffffff 10%, #fffefc 80%, #41A9f4 90%); */
+  /* background-repeat: no-repeat; */
+  width: 88%;
   height: 90%;
   float:right;
   display: flex;
@@ -57,21 +66,47 @@ main {
 }
 
 .top {
-  border: 1px solid black;
   height: 75%;
   display: flex;
   align-content: center;
   justify-content: space-between;
+  background-color: #41A9F4
 }
 
+.broadcast {
+  border-radius: 7%;
+  margin: 20px;
+  height: 95%;
+  width:100%;
+  background-color: #34C759;
+}
 .widgets {
   width:35%;
   display:flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  background-color: #41A9F4;
+  margin: 10px;
+}
+
+.daily-hydration-display ,
+.daily-sleep-display {
+margin: 10px;
+background-color: #FFFEFC;
+height: 50%;
+width: 85%;
+
 }
 
 .bottom {
-  height: 25%;
+  height: 22%;
+  width: 98%;
+  margin:20px;
+  border-radius: 7%;
+  background-color: #34C759
 }
+
+/* .hidden {
+  display: none;
+} */
