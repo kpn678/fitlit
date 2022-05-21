@@ -8,11 +8,16 @@ body, html {
 
 header, .welcome, .title {
   display: flex;
-  background-color: #34C759;
   justify-content: space-between;
   align-items: center;
+  background-color: #34C759;
   margin: 2px;
   height: 10%;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
 }
 
 #overlay {
