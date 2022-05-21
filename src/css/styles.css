@@ -31,7 +31,7 @@ header, .welcome, .title {
   max-width: 600px;
   height: 300px;
   margin: auto;
-  background-color: #41A9F4;
+  background-color: #72D8FF;
   position:static;
   top: 0;
   bottom: 0;
@@ -39,6 +39,7 @@ header, .welcome, .title {
   left: 0;
   margin-top: 70px;
   margin-left: 1250px;
+  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
 }
 
 nav {
@@ -52,12 +53,47 @@ nav {
   align-items: center;
   border-radius: 7%;
   margin:2%;
+  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
+}
+
+.profile-button:hover {
+  box-shadow: 0 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.close-profile-button:hover {
+  box-shadow: 0 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.water-button:hover {
+  box-shadow: 0 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.bed-button:hover {
+  box-shadow: 0 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.walk-button:hover {
+  box-shadow: 0 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.friends-button:hover{
+  box-shadow: 0 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.post-button:hover {
+  box-shadow: 0 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 main {
   background-color: #41A9F4;
-  /* background-image: linear-gradient(to bottom, #ffffff 10%, #fffefc 80%, #41A9f4 90%); */
-  /* background-repeat: no-repeat; */
   width: 88%;
   height: 90%;
   float:right;
@@ -79,6 +115,7 @@ main {
   height: 95%;
   width:100%;
   background-color: #34C759;
+  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
 }
 .widgets {
   width:35%;
@@ -93,10 +130,11 @@ main {
 .daily-hydration-display ,
 .daily-sleep-display {
 margin: 10px;
-background-color: #FFFEFC;
+background-color: #34C759;
 height: 50%;
 width: 85%;
-
+border-radius: 7%;
+box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
 }
 
 .bottom {
@@ -104,9 +142,6 @@ width: 85%;
   width: 98%;
   margin:20px;
   border-radius: 7%;
-  background-color: #34C759
+  background-color: #34C759;
+  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
 }
-
-/* .hidden {
-  display: none;
-} */
