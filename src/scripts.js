@@ -60,7 +60,7 @@ const loadData = () => {
 };
 
 const beginApplication = (user, repository) => {
-  displayTodaysDate();
+  displayTodaysDate(user);
   generateWelcomeMessage(user);
   displayAccountInfo(user, repository);
   displayDailyHydration(user);
@@ -68,8 +68,10 @@ const beginApplication = (user, repository) => {
   displayStepGoal(user, repository);
 };
 
-const displayTodaysDate = () => {
-  todaysDateDisplay.innerText = `Today's Date: ${dayjs(new Date()).format('dddd, MMMM D, YYYY')}`;
+const displayTodaysDate = (user) => {
+  const datesArray = user.hydrationData.hydrationData.reverse();
+  const recentDate = datesArray.find(recentDate => datesArray[0]);
+  todaysDateDisplay.innerText = `Today's Date: ${dayjs(new Date(recentDate.date)).format('dddd, MMMM D, YYYY')}`;
 }
 
 const generateWelcomeMessage = (user) => {
@@ -82,13 +84,15 @@ const displayAccountInfo = (user, repository) => {
 };
 
 const displayDailyHydration = (user) => {
-  let recentDate = '2020/01/22';
-  dailyHydrationDisplay.innerText = `You consumed ${user.hydrationData.returnDailyOunces(recentDate)} of water today.`
+  const datesArray = user.hydrationData.hydrationData.reverse();
+  const recentDate = datesArray.find(recentDate => datesArray[0]);
+  dailyHydrationDisplay.innerText = `You consumed ${user.hydrationData.returnDailyOunces(recentDate.date)} of water today.`
 };
 
 const displayDailySleep = (user) => {
-  let recentDate = '2020/01/22';
-  dailySleepDisplay.innerHTML = `You slept ${user.sleepData.returnNightlyHoursSlept(recentDate)}. <br><br> Your sleep quality was ${user.sleepData.returnNightlySleepQuality(recentDate)}.`
+  const datesArray = user.sleepData.sleepData.reverse();
+  const recentDate = datesArray.find(recentDate => datesArray[0]);
+  dailySleepDisplay.innerHTML = `You slept ${user.sleepData.returnNightlyHoursSlept(recentDate.date)}. <br><br> Your sleep quality was ${user.sleepData.returnNightlySleepQuality(recentDate.date)}.`
 };
 
 const displayStepGoal = (user, repository) => {
