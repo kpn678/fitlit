@@ -5,23 +5,29 @@ import "./images/sleep.png";
 import "./images/walk.png";
 import "./images/friends.png";
 import "./images/fitlit-logo.png";
-import "./images/user.png"
-import "./images/post.png"
+import "./images/user.png";
+import "./images/post.png";
 
 import { fetchAll } from "./apiCalls.js";
 
 import UserRepository from "./UserRepository";
 import User from "./User";
+import Hydration from "./Hydration";
+import Sleep from "./Sleep";
 
 //Gloabal variables//
 let userData, sleepData, activityData, hydrationData;
 
-//QuerySelector//
+//Query selectors//
 const welcomeMessage = document.querySelector("h2");
+const todaysDateCalendarDisplay = document.querySelector('.calendar');
+const todaysDateDisplay = document.querySelector('.todays-date');
+const accountInfo = document.querySelector("#accountInfo");
 const openProfileButton = document.querySelector(".profile-button");
 const closeProfileButton = document.querySelector(".close-profile-button");
+const dailyHydrationDisplay = document.querySelector('.daily-hydration-display');
+const dailySleepDisplay = document.querySelector('.daily-sleep-display');
 const stepGoalDisplay = document.querySelector("#stepGoals");
-const accountInfo = document.querySelector("#accountInfo");
 
 //Event listeners//
 window.addEventListener("load", (event) => {
@@ -44,35 +50,53 @@ const loadData = () => {
     activityData = data[2];
     hydrationData = data[3];
     const userRepository = new UserRepository(userData.userData);
-    const randomUser = new User(
-      userRepository.userData[
-        Math.floor(Math.random() * userRepository.userData.length)
-      ]
-    );
+    const randomUserData = userRepository.userData[Math.floor(Math.random() * userRepository.userData.length)];
+    const singleHydration = new Hydration(hydrationData.hydrationData, randomUserData.id);
+    const singleSleep = new Sleep(sleepData.sleepData, randomUserData.id);
+    const randomUser = new User(randomUserData, singleHydration, singleSleep);
+    console.log(randomUser);
     beginApplication(randomUser, userRepository);
   });
 };
 
 const beginApplication = (user, repository) => {
-  displayAccountInfo(user, repository);
+  displayTodaysDate(user);
   generateWelcomeMessage(user);
+  displayAccountInfo(user, repository);
+  displayDailyHydration(user);
+  displayDailySleep(user);
   displayStepGoal(user, repository);
 };
+
+const displayTodaysDate = (user) => {
+  const datesArray = user.hydrationData.hydrationData.reverse();
+  const recentDate = datesArray.find(recentDate => datesArray[0]);
+  todaysDateDisplay.innerText = `Today's Date: ${dayjs(new Date(recentDate.date)).format('dddd, MMMM D, YYYY')}`;
+}
 
 const generateWelcomeMessage = (user) => {
   welcomeMessage.innerText = `Welcome back, ${user.returnUserFirstName()}!`;
 };
 
-const displayStepGoal = (user, repository) => {
-  stepGoalDisplay.innerHTML = `The average of all our users' daily step goals is: ${repository.calculateAverageStepGoals()} steps. <br> Your daily step goal is: ${
-    user.dailyStepGoal
-  } steps. <br> Your stride length is: ${user.strideLength} feet.`;
+const displayAccountInfo = (user, repository) => {
+  accountInfo.innerHTML = `Your Account Info <br><br> ${user.name} <br><br> ${user.email} <br><br>
+  ${user.address} <br><br> Your Friends Are: <br> ${user.returnFriendName(repository.userData)}`;
 };
 
-const displayAccountInfo = (user, repository) => {
-  accountInfo.innerHTML = `Your Account Info <br><br> ${user.name} <br><br> ${
-    user.email
-  } <br><br> ${user.address} <br><br> Your Friends Are: ${user.returnFriendName(
-    repository.userData
-  )}`;
+const displayDailyHydration = (user) => {
+  const datesArray = user.hydrationData.hydrationData.reverse();
+  const recentDate = datesArray.find(recentDate => datesArray[0]);
+  dailyHydrationDisplay.innerText = `You consumed ${user.hydrationData.returnDailyOunces(recentDate.date)} of water today.`
+};
+
+const displayDailySleep = (user) => {
+  const datesArray = user.sleepData.sleepData.reverse();
+  const recentDate = datesArray.find(recentDate => datesArray[0]);
+  dailySleepDisplay.innerHTML = `You slept ${user.sleepData.returnNightlyHoursSlept(recentDate.date)}. <br><br> Your sleep quality was ${user.sleepData.returnNightlySleepQuality(recentDate.date)}.`
+};
+
+const displayStepGoal = (user, repository) => {
+  stepGoalDisplay.innerHTML = `The average of all our users' daily step goals is: ${repository.calculateAverageStepGoals()} steps. <br>
+  Your daily step goal is: ${user.dailyStepGoal} steps. <br>
+  Your stride length is: ${user.strideLength} feet.`;
 };
