@@ -31,13 +31,13 @@ class Sleep {
   }
   getPastWeekNightlyHours(date) {
     const startDate = this.sleepData.findIndex((night) => night.date === date);
-    const weeklyRange = this.sleepData.splice(startDate, 7);
+    const weeklyRange = this.sleepData.slice(startDate, startDate + 7);
     const weeklyHours = weeklyRange.map((date) => date.hoursSlept);
     return weeklyHours;
   }
   getPastWeekNightlyQuality(date) {
     const startDate = this.sleepData.findIndex((night) => night.date === date);
-    const weeklyRange = this.sleepData.slice(startDate, 7);
+    const weeklyRange = this.sleepData.slice(startDate, startDate + 7);
     const weeklyQuality = weeklyRange.map((date) => date.sleepQuality);
     return weeklyQuality;
   }

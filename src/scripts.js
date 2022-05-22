@@ -78,6 +78,7 @@ const beginApplication = (user, repository) => {
   displayDailyHydration(user);
   displayWeeklyHydration(user);
   displayDailySleep(user);
+  displayWeeklySleep(user);
   displayStepGoal(user, repository);
 };
 
@@ -111,7 +112,6 @@ const displayDailyHydration = (user) => {
 const displayWeeklyHydration = (user) => {
   const firstDate = user.hydrationData.hydrationData.at(-7);
   const weeklyData = user.hydrationData.getPastWeekDailyOunces(firstDate.date);
-  console.log(weeklyData);
   weeklyHydrationDisplay.innerText = `Heres your data from the last week ${weeklyData}`;
 };
 
@@ -122,6 +122,17 @@ const displayDailySleep = (user) => {
   )}. <br><br> Your sleep quality was ${user.sleepData.returnNightlySleepQuality(
     recentDate.date
   )}.`;
+};
+
+const displayWeeklySleep = (user) => {
+  const firstDate = user.sleepData.sleepData.at(-7);
+  const weeklyQualityData = user.sleepData.getPastWeekNightlyQuality(
+    firstDate.date
+  );
+  const weeklyHourlyData = user.sleepData.getPastWeekNightlyHours(
+    firstDate.date
+  );
+  weeklySleepDisplay.innerText = `Hours:${weeklyHourlyData}, Quality:${weeklyQualityData}`;
 };
 
 const displayStepGoal = (user, repository) => {
