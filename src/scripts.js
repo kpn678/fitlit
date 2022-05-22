@@ -25,7 +25,10 @@ const todaysDateDisplay = document.querySelector(".todays-date");
 const accountInfo = document.querySelector("#accountInfo");
 const openProfileButton = document.querySelector(".profile-button");
 const closeProfileButton = document.querySelector(".close-profile-button");
-// const broacast
+const weeklyHydrationDisplay = document.querySelector(
+  ".weekly-hydration-display"
+);
+const weeklySleepDisplay = document.querySelector(".weekly-sleep-display");
 const dailyHydrationDisplay = document.querySelector(
   ".daily-hydration-display"
 );
@@ -73,6 +76,7 @@ const beginApplication = (user, repository) => {
   generateWelcomeMessage(user);
   displayAccountInfo(user, repository);
   displayDailyHydration(user);
+  displayWeeklyHydration(user);
   displayDailySleep(user);
   displayStepGoal(user, repository);
 };
@@ -102,6 +106,13 @@ const displayDailyHydration = (user) => {
   dailyHydrationDisplay.innerText = `You consumed ${user.hydrationData.returnDailyOunces(
     recentDate.date
   )} of water today.`;
+};
+
+const displayWeeklyHydration = (user) => {
+  const firstDate = user.hydrationData.hydrationData.at(-7);
+  const weeklyData = user.hydrationData.getPastWeekDailyOunces(firstDate.date);
+  console.log(weeklyData);
+  weeklyHydrationDisplay.innerText = `Heres your data from the last week ${weeklyData}`;
 };
 
 const displayDailySleep = (user) => {

@@ -22,9 +22,7 @@ class Hydration {
   getPastWeekDailyOunces(date) {
     const startDate = this.hydrationData.findIndex((day) => day.date === date);
     const weeklyRange = this.hydrationData.splice(startDate, 7);
-    const weeklyIntake = weeklyRange.map((date) => ({
-      [date.date]: `${date.numOunces} oz.`,
-    }));
+    const weeklyIntake = weeklyRange.map((date) => date.numOunces);
     return weeklyIntake;
   }
 }
