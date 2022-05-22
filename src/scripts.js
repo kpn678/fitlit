@@ -132,7 +132,9 @@ const displayWeeklySleep = (user) => {
   const weeklyHourlyData = user.sleepData.getPastWeekNightlyHours(
     firstDate.date
   );
-  weeklySleepDisplay.innerText = `Hours:${weeklyHourlyData}, Quality:${weeklyQualityData}`;
+  const allTimeSleepHours = user.sleepData.calculateAverageHoursSlept();
+  const allTimeSleepQuality = user.sleepData.calculateAverageSleepQuality()
+  weeklySleepDisplay.innerText = `Hours:${weeklyHourlyData}, Quality:${weeklyQualityData}, Average Hours: ${allTimeSleepHours}. Average Sleep Quality: ${allTimeSleepQuality}.`;
 };
 
 const displayStepGoal = (user, repository) => {
