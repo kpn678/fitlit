@@ -1,5 +1,6 @@
 class Sleep {
   constructor(sleepData, userID) {
+    this.allUserSleepData = sleepData;
     this.sleepData = sleepData.filter((data) => data.userID === userID);
     this.userID = userID;
   }
@@ -42,11 +43,12 @@ class Sleep {
     return weeklyQuality;
   }
   calculateAverageSleepQualityAll() {
-    const averageQuality = this.sleepData.reduce((avg, user) => {
-      avg += user.sleepQuality / this.sleepData.length;
-      return avg;
+    const totalQuality = this.allUserSleepData.reduce((sum, night) => {
+      sum += night.sleepQuality ;
+      return sum;
     }, 0);
-    return averageQuality.toFixed(1);
+    const averageQuality = totalQuality / this.allUserSleepData.length;
+    return Math.round(averageQuality *10) / 10 ;
   }
 }
 

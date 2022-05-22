@@ -238,6 +238,6 @@ describe("Sleep", () => {
   });
 
   it("should return average sleep quality amongst all users", () => {
-    expect(sleep31.calculateAverageSleepQualityAll()).to.equal("2.9");
+    expect(sleep31.calculateAverageSleepQualityAll()).to.equal(3.2);
   });
 });

@@ -131,6 +131,33 @@ describe("User", () => {
         userID: 33,
       },
       sleepData: {
+        allUserSleepData:[
+            {
+              userID: 33,
+              date: "2019/06/15",
+              hoursSlept: 9.5,
+              sleepQuality: 4.2,
+            },
+            {
+              userID: 33,
+              date: "2019/06/16",
+              hoursSlept: 10.1,
+              sleepQuality: 3.8,
+            },
+            {
+              userID: 32,
+              date: "2019/06/16",
+              hoursSlept: 7,
+              sleepQuality: 4.8,
+            },
+            {
+              userID: 32,
+              date: "2019/06/17",
+              hoursSlept: 9.1,
+              sleepQuality: 1.9,
+            },
+          ],
+
         sleepData: [
           {
             userID: 33,
