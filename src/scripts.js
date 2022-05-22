@@ -20,13 +20,15 @@ let userData, sleepData, activityData, hydrationData;
 
 //Query selectors//
 const welcomeMessage = document.querySelector("h2");
-const todaysDateCalendarDisplay = document.querySelector('.calendar');
-const todaysDateDisplay = document.querySelector('.todays-date');
+const todaysDateCalendarDisplay = document.querySelector(".calendar");
+const todaysDateDisplay = document.querySelector(".todays-date");
 const accountInfo = document.querySelector("#accountInfo");
 const openProfileButton = document.querySelector(".profile-button");
 const closeProfileButton = document.querySelector(".close-profile-button");
-const dailyHydrationDisplay = document.querySelector('.daily-hydration-display');
-const dailySleepDisplay = document.querySelector('.daily-sleep-display');
+const dailyHydrationDisplay = document.querySelector(
+  ".daily-hydration-display"
+);
+const dailySleepDisplay = document.querySelector(".daily-sleep-display");
 const stepGoalDisplay = document.querySelector("#stepGoals");
 
 //Event listeners//
@@ -50,8 +52,14 @@ const loadData = () => {
     activityData = data[2];
     hydrationData = data[3];
     const userRepository = new UserRepository(userData.userData);
-    const randomUserData = userRepository.userData[Math.floor(Math.random() * userRepository.userData.length)];
-    const singleHydration = new Hydration(hydrationData.hydrationData, randomUserData.id);
+    const randomUserData =
+      userRepository.userData[
+        Math.floor(Math.random() * userRepository.userData.length)
+      ];
+    const singleHydration = new Hydration(
+      hydrationData.hydrationData,
+      randomUserData.id
+    );
     const singleSleep = new Sleep(sleepData.sleepData, randomUserData.id);
     const randomUser = new User(randomUserData, singleHydration, singleSleep);
     console.log(randomUser);
@@ -69,30 +77,39 @@ const beginApplication = (user, repository) => {
 };
 
 const displayTodaysDate = (user) => {
-  const datesArray = user.hydrationData.hydrationData.reverse();
-  const recentDate = datesArray.find(recentDate => datesArray[0]);
-  todaysDateDisplay.innerText = `Today's Date: ${dayjs(new Date(recentDate.date)).format('dddd, MMMM D, YYYY')}`;
-}
+  const recentDate = user.hydrationData.hydrationData.at(-1);
+  todaysDateDisplay.innerText = `Today's Date: ${dayjs(
+    new Date(recentDate.date)
+  ).format("dddd, MMMM D, YYYY")}`;
+};
 
 const generateWelcomeMessage = (user) => {
   welcomeMessage.innerText = `Welcome back, ${user.returnUserFirstName()}!`;
 };
 
 const displayAccountInfo = (user, repository) => {
-  accountInfo.innerHTML = `Your Account Info <br><br> ${user.name} <br><br> ${user.email} <br><br>
-  ${user.address} <br><br> Your Friends Are: <br> ${user.returnFriendName(repository.userData)}`;
+  accountInfo.innerHTML = `Your Account Info <br><br> ${user.name} <br><br> ${
+    user.email
+  } <br><br>
+  ${user.address} <br><br> Your Friends Are: <br> ${user.returnFriendName(
+    repository.userData
+  )}`;
 };
 
 const displayDailyHydration = (user) => {
-  const datesArray = user.hydrationData.hydrationData.reverse();
-  const recentDate = datesArray.find(recentDate => datesArray[0]);
-  dailyHydrationDisplay.innerText = `You consumed ${user.hydrationData.returnDailyOunces(recentDate.date)} of water today.`
+  const recentDate = user.hydrationData.hydrationData.at(-1);
+  dailyHydrationDisplay.innerText = `You consumed ${user.hydrationData.returnDailyOunces(
+    recentDate.date
+  )} of water today.`;
 };
 
 const displayDailySleep = (user) => {
-  const datesArray = user.sleepData.sleepData.reverse();
-  const recentDate = datesArray.find(recentDate => datesArray[0]);
-  dailySleepDisplay.innerHTML = `You slept ${user.sleepData.returnNightlyHoursSlept(recentDate.date)}. <br><br> Your sleep quality was ${user.sleepData.returnNightlySleepQuality(recentDate.date)}.`
+  const recentDate = user.sleepData.sleepData.at(-1);
+  dailySleepDisplay.innerHTML = `You slept ${user.sleepData.returnNightlyHoursSlept(
+    recentDate.date
+  )}. <br><br> Your sleep quality was ${user.sleepData.returnNightlySleepQuality(
+    recentDate.date
+  )}.`;
 };
 
 const displayStepGoal = (user, repository) => {
