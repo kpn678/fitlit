@@ -215,25 +215,25 @@ describe("Sleep", () => {
 
   it("should be able to return the hours slept each night over the course of any given week", () => {
     expect(sleep33.getPastWeekNightlyHours("2019/06/15")).to.deep.equal([
-      { "2019/06/15": "9.5 hours" },
-      { "2019/06/16": "10.1 hours" },
-      { "2019/06/17": "4.5 hours" },
-      { "2019/06/18": "5.4 hours" },
-      { "2019/06/19": "4.2 hours" },
-      { "2019/06/20": "4 hours" },
-      { "2019/06/21": "10.1 hours" },
+      9.5,
+      10.1,
+      4.5,
+      5.4,
+      4.2,
+      4,
+      10.1,
     ]);
   });
 
   it("should be able to return the quality of sleep for each night over the course of any given week", () => {
     expect(sleep33.getPastWeekNightlyQuality("2019/06/15")).to.deep.equal([
-      { "2019/06/15": 4.2 },
-      { "2019/06/16": 3.8 },
-      { "2019/06/17": 3.7 },
-      { "2019/06/18": 3.2 },
-      { "2019/06/19": 2.6 },
-      { "2019/06/20": 1.8 },
-      { "2019/06/21": 4.6 },
+      4.2,
+      3.8,
+      3.7,
+      3.2,
+      2.6,
+      1.8,
+      4.6,
     ]);
   });
 
