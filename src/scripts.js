@@ -25,6 +25,7 @@ const todaysDateDisplay = document.querySelector(".todays-date");
 const accountInfo = document.querySelector("#accountInfo");
 const openProfileButton = document.querySelector(".profile-button");
 const closeProfileButton = document.querySelector(".close-profile-button");
+// const broacast
 const dailyHydrationDisplay = document.querySelector(
   ".daily-hydration-display"
 );

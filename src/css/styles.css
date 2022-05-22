@@ -1,16 +1,18 @@
-
-body, html {
+body,
+html {
   height: 100vh;
   margin: 0px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   font-family: "Gill Sans", sans-serif;
 }
 
-header, .welcome, .title {
+header,
+.welcome,
+.title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #34C759;
+  background-color: #34c759;
   margin: 2px;
   height: 10%;
 }
@@ -36,7 +38,7 @@ header, .welcome, .title {
   max-width: 600px;
   height: 300px;
   margin: auto;
-  background-color: #72D8FF;
+  background-color: #72d8ff;
   position: static;
   top: 0;
   bottom: 0;
@@ -51,7 +53,7 @@ nav {
   width: 8%;
   height: 85%;
   float: left;
-  background-color: #34C759;
+  background-color: #34c759;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -61,17 +63,23 @@ nav {
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
 }
 
-.profile-button:hover, .close-profile-button:hover, .water-button:hover, .bed-button:hover, .walk-button:hover, .friends-button:hover, .post-button:hover {
+.profile-button:hover,
+.close-profile-button:hover,
+.water-button:hover,
+.bed-button:hover,
+.walk-button:hover,
+.friends-button:hover,
+.post-button:hover {
   box-shadow: 0 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
   border-radius: 50%;
   cursor: pointer;
 }
 
 main {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 88%;
   height: 90%;
-  float:right;
+  float: right;
   display: flex;
   flex-direction: column;
 }
@@ -81,31 +89,33 @@ main {
   display: flex;
   align-content: center;
   justify-content: space-between;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
-.broadcast {
+.weekly-hydration-display,
+.weekly-sleep-display {
   border-radius: 25px;
   margin: 20px;
   height: 95%;
   width: 100%;
-  background-color: #41A9F4;
+  background-color: #41a9f4;
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
 }
 
 .widgets {
   width: 35%;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   margin: 10px;
 }
 
-.daily-hydration-display, .daily-sleep-display {
+.daily-hydration-display,
+.daily-sleep-display {
   margin: 10px;
-  background-color: #34C759;
+  background-color: #34c759;
   height: 50%;
   width: 85%;
   border-radius: 7%;
@@ -117,6 +127,10 @@ main {
   width: 98%;
   margin: 20px;
   border-radius: 25px;
-  background-color: #41A9F4;
+  background-color: #41a9f4;
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
+}
+
+.hidden {
+  display: none;
 }

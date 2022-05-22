@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Fitlit</title>
   </head>
   <body>
     <header>
       <section class="title">
-        <img src="./images/fitlit-logo.png" alt="fitlit logo" height="75px" width="60px">
+        <img
+          src="./images/fitlit-logo.png"
+          alt="fitlit logo"
+          height="75px"
+          width="60px"
+        />
         <h1>Activity Tracker</h1>
       </section>
       <div class="calendar" data-date="2020/01/22">
@@ -15,42 +20,95 @@
           Today's Date:
         </p>
         <label for="calendar"></label>
-          <input type="date" id="calendar" min='' value=''>
+        <input type="date" id="calendar" min="" value="" />
       </div>
       <section class="welcome">
         <h2>Welcome back, Lina Quitt</h2>
-          <img class="profile-button" src="./images/user.png" alt="user icon" role ="button" height="30px" width="30px"></imgsrc>
+        <img
+          class="profile-button"
+          src="./images/user.png"
+          alt="user icon"
+          role="button"
+          height="30px"
+          width="30px"
+        />
         <div id="overlay">
           <div id="modal">
             <button class="close-profile-button">X</button>
             <p id="accountInfo">Your Account Info</p>
           </div>
-        <div>
+        </div>
       </section>
     </header>
     <nav>
-      <img class="water-button" src="./images/water-bottle.png" alt="waterbottle icon" role="button" height="50px" width="50px"></imgsrc/>
-      <img class="bed-button" src="./images/sleep.png" alt="bed icon" role="button" height="50px" width="50px"></imgsrc>
-      <img class="walk-button" src="./images/walk.png" alt="walking icon" role="button" height="50px" width="50px"></imgsrc>
-      <img class="friends-button" src="./images/friends.png" alt="friends icon" role="button" height="50px" width="50px"></imgsrc>
-      <img class="post-button" src="./images/post.png" alt="post icon" role="button" height="50px" width="50px"></imgsrc>
+      <img
+        class="water-button"
+        src="./images/water-bottle.png"
+        alt="waterbottle icon"
+        role="button"
+        height="50px"
+        width="50px"
+      />
+      <img
+        class="bed-button"
+        src="./images/sleep.png"
+        alt="bed icon"
+        role="button"
+        height="50px"
+        width="50px"
+      />
+      <img
+        class="walk-button"
+        src="./images/walk.png"
+        alt="walking icon"
+        role="button"
+        height="50px"
+        width="50px"
+      />
+      <img
+        class="friends-button"
+        src="./images/friends.png"
+        alt="friends icon"
+        role="button"
+        height="50px"
+        width="50px"
+      />
+      <img
+        class="post-button"
+        src="./images/post.png"
+        alt="post icon"
+        role="button"
+        height="50px"
+        width="50px"
+      />
     </nav>
     <main>
       <section class="top">
-        <section class="broadcast">Water Consumption over Last Week, Sleep Data over Last Week, All-Time Sleep Data</section>
-        <section class ="widgets">
-          <section class="daily-hydration-display">Your Water Consumption Today</section>
-          <section class="daily-sleep-display">Your Sleep Info for Last Night</section>
+        <section class="weekly-hydration-display">
+          Water Consumption over Last Week
+        </section>
+        <section class="weekly-sleep-display hidden">
+          Weekly sleep data
+        </section>
+        <section class="widgets">
+          <section class="daily-hydration-display">
+            Your Water Consumption Today
+          </section>
+          <section class="daily-sleep-display">
+            Your Sleep Info for Last Night
+          </section>
         </section>
       </section>
       <section class="bottom">
         <h3>How Do You Compare?</h3>
-          <p id="stepGoals">
-            The average of all our users' daily step goals is: x. <br> Your daily step goal is: x. <br> Your stride length is: x.
-          </p>
+        <p id="stepGoals">
+          The average of all our users' daily step goals is: x. <br />
+          Your daily step goal is: x. <br />
+          Your stride length is: x.
+        </p>
       </section>
     </main>
-<!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
+    <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
     <script src="https://unpkg.com/dayjs"></script>
     <script src="bundle.js"></script>
   </body>
