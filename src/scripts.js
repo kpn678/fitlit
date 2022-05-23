@@ -84,7 +84,7 @@ const beginApplication = (user, repository) => {
 
 const displayTodaysDate = (user) => {
   const recentDate = user.hydrationData.hydrationData.at(-1);
-  todaysDateDisplay.innerText = `Today's Date: ${dayjs(
+  todaysDateDisplay.innerText = `Today Is: ${dayjs(
     new Date(recentDate.date)
   ).format("dddd, MMMM D, YYYY")}`;
 };
