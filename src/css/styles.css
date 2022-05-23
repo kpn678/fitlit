@@ -41,13 +41,14 @@ header, .title, .welcome {
 
 .modal {
   background-color: #72d8ff;
-  border-radius: 7%;
+  /* border-radius: 25%; */
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
   height: 300px;
   margin: auto;
   margin-top: 70px;
   margin-left: 1000px;
   max-width: 600px;
+  padding: 20px;
   position: static;
   top: 0;
   bottom: 0;
@@ -93,12 +94,36 @@ main {
 }
 
 .weekly-hydration-display, .weekly-sleep-display {
-  background-color: #fefefe;
+  background-color: #f2f3f4;
   border-radius: 25px;
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
   height: 95%;
   margin: 20px;
+  padding: 10px;
   width: 65%;
+}
+
+.all-time-sleep-display {
+  display: flex;
+  justify-content: space-around;
+}
+
+.all-time-hours, .all-time-quality {
+  border-radius: 25px;
+  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
+  height: 95%;
+  margin: 20px;
+  padding: 5px;
+  text-align: center;
+  width: 65%;
+}
+
+.all-time-hours {
+  background-color: #97EBF4;
+}
+
+.all-time-quality {
+  background-color: #ABE098;
 }
 
 .widgets {
