@@ -1,6 +1,7 @@
 # FitLit
 
-Reach your fitness and health goals with this wellness tracker.
+With families living a sedentary lifestyle through the pandemic, it's time to get your loved ones up and moving again.
+Reach your fitness and health goals with this wellness tracker designed with children in mind. Users can toggle through their weekly sleep and hydration statistics and view their daily data all in one handy location.
 
 ## Project Specs
 
@@ -29,13 +30,17 @@ npm test
 
 The test results will output to the terminal.
 
+## Illustrations
+
+![FitLit gif](https://media.giphy.com/media/kiAPxM21iJUPXojx50/giphy.gif)
+
 ## Project Management
 
 - We used a [Github Project Board](https://github.com/kpn678/fitlit/projects/1) stay on task and meet the deadline.
 
 ## Future Features
 
-- We plan to implement the Chart.js library to better display a user's daily and weekly data.
+- We plan to implement Activity data and dashboard in pt. 2
 
 ## Contributors
 
@@ -52,3 +57,11 @@ The test results will output to the terminal.
 - Fetch API
 - Mocha
 - Chai
+- Chart.js
+- Day.js
+
+## Image Credit
+
+- specialty icons created by [Freepik-Flaticon](https://www.flaticon.com/authors/freepik)
+- water-bottle / sleep / walk / friends / post / user / water-drop
+- FitLit logo from [Fitlit](https://www.fitlitters.com/)
