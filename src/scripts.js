@@ -103,7 +103,35 @@ const displayAccountInfo = (user, repository) => {
 const displayWeeklyHydration = (user) => {
   const firstDate = user.hydrationData.hydrationData.at(-7);
   const weeklyData = user.hydrationData.getPastWeekDailyOunces(firstDate.date);
-  weeklyHydrationDisplay.innerText = `Heres your data from the last week ${weeklyData}`;
+  //weeklyHydrationDisplay.innerText = `Heres your data from the last week ${weeklyData}`;
+  
+  const chart = document.querySelector("#myChart").getContext("2d")
+  let gradient = chart.createLinearGradient(0, 0, 0, 400);
+  gradient.addColorStop(0, "rgba(58,123,213,1");
+  gradient.addColorStop(1, "rgba(0,210,255,0.3");
+  const labels = ['Day 1','Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', "Day 7",];
+  const data = {
+    labels: labels,
+    datasets: [{
+    label: 'Ounces of Water Consumed in Past 7 Days',
+    data: weeklyData,
+    fill: true,
+    backgroundColor: gradient,
+    borderColor: "#fff",
+    pointBackgroundColor: "rgb(189, 195, 199)",
+   }]
+};
+const config = {
+  type: 'line',
+  data: data,
+  options: {
+    radius: 5,
+    hitRadius: 30,
+    hoverRadius: 12,
+    responsive: true,
+  },
+};
+const myChart = new Chart(chart, config)
 };
 
 const displayWeeklySleep = (user) => {
