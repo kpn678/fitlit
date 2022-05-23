@@ -9,6 +9,7 @@ import "./images/user.png";
 import "./images/post.png";
 import "./images/water-drop.png";
 import "./images/moon.png";
+import "./images/parade.png"
 
 import { fetchAll } from "./apiCalls.js";
 
@@ -116,12 +117,12 @@ const displayWeeklySleep = (user) => {
 
 const displayDailyHydration = (user) => {
   const recentDate = user.hydrationData.hydrationData.at(-1);
-  dailyHydrationDisplay.innerText = `You consumed ${user.hydrationData.returnDailyOunces(recentDate.date)} of water today.`;
+  dailyHydrationDisplay.innerHTML = `You consumed <b>${user.hydrationData.returnDailyOunces(recentDate.date)}</b> of water today.`;
 };
 
 const displayDailySleep = (user) => {
   const recentDate = user.sleepData.sleepData.at(-1);
-  dailySleepDisplay.innerHTML = `You slept ${user.sleepData.returnNightlyHoursSlept(recentDate.date)}. <br><br> Your sleep quality was ${user.sleepData.returnNightlySleepQuality(recentDate.date)}.`;
+  dailySleepDisplay.innerHTML = `You slept <b>${user.sleepData.returnNightlyHoursSlept(recentDate.date)}</b>. <br><br> Your sleep quality was <b>${user.sleepData.returnNightlySleepQuality(recentDate.date)}</b>.`;
 };
 
 const showWeeklyHydrationDataPanel = () => {
@@ -135,7 +136,7 @@ const showWeeklySleepDataPanel = () => {
 };
 
 const displayStepGoal = (user, repository) => {
-  stepGoalDisplay.innerHTML = `The average of all our users' daily step goals is: ${repository.calculateAverageStepGoals()} steps. <br>
-  Your daily step goal is: ${user.dailyStepGoal} steps. <br>
-  Your stride length is: ${user.strideLength} feet.`;
+  stepGoalDisplay.innerHTML = `The average of all our users' daily step goals is: <b>${repository.calculateAverageStepGoals()} steps</b>. <br>
+  Your daily step goal is: <b>${user.dailyStepGoal} steps</b>. <br>
+  Your stride length is: <b>${user.strideLength} feet.</b>`;
 };

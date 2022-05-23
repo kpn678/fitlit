@@ -125,10 +125,13 @@ main {
 }
 
 .bottom {
+  align-items: center;
   background-color: #41a9f4;
   border-radius: 25px;
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
+  display: flex;
   height: 22%;
+  justify-content: space-evenly;
   margin: 20px;
   width: 96%;
 }
