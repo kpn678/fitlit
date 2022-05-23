@@ -24,7 +24,7 @@ header, .title, .welcome {
   padding: 10px;
 }
 
-#overlay {
+.overlay {
   border-radius: 7%;
   display: none;
   position: fixed;
@@ -35,7 +35,7 @@ header, .title, .welcome {
   z-index: 1;
 }
 
-#modal {
+.modal {
   background-color: #72d8ff;
   border-radius: 7%;
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
@@ -59,7 +59,7 @@ nav {
   display: flex;
   flex-direction: column;
   float: left;
-  height: 85%;
+  height: 84%;
   justify-content: space-evenly;
   margin: 2%;
   width: 8%;
@@ -94,7 +94,7 @@ main {
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
   height: 95%;
   margin: 20px;
-  width: 100%;
+  width: 60%;
 }
 
 .widgets {
@@ -102,9 +102,10 @@ main {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
+  height: 99%;
   justify-content: space-evenly;
   margin: 10px;
-  width: 35%;
+  width: 40%;
 }
 
 .daily-hydration-display, .daily-sleep-display {
@@ -122,7 +123,7 @@ main {
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
   height: 22%;
   margin: 20px;
-  width: 98%;
+  width: 96%;
 }
 
 .hidden {
