@@ -33,11 +33,15 @@
     </nav>
     <main>
       <section class="top">
-        <section class="weekly-hydration-display hidden">
-          Water Consumption over Last Week
+        <section class="weekly-hydration-display">
+          <div>
+            <canvas id="myHChart"></canvas>
+          </div>
         </section>
-        <section class="weekly-sleep-display">
-          Weekly Sleep Data
+        <section class="weekly-sleep-display hidden">
+          <div>
+            <canvas id="mySChart"></canvas>
+          </div>
         </section>
         <section class="widgets">
           <section class="daily-hydration-display">
@@ -60,6 +64,7 @@
         <img class="walking" src="./images/parade.png" alt="walking icon" height="125px" width="150px"/>
       </section>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script src="https://unpkg.com/dayjs"></script>
     <script src="bundle.js"></script>
   </body>
