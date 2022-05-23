@@ -70,7 +70,6 @@ const loadData = () => {
     const singleHydration = new Hydration(hydrationData.hydrationData,randomUserData.id);
     const singleSleep = new Sleep(sleepData.sleepData, randomUserData.id);
     const randomUser = new User(randomUserData, singleHydration, singleSleep);
-    console.log(randomUser);
     beginApplication(randomUser, userRepository);
   });
 };
@@ -90,8 +89,7 @@ const beginApplication = (user, repository) => {
 const displayTodaysDate = (user) => {
   const recentDate = user.hydrationData.hydrationData.at(-1);
   todaysDateDisplay.innerText = `Today Is: ${dayjs(
-    new Date(recentDate.date)
-  ).format("dddd, MMMM D, YYYY")}`;
+    new Date(recentDate.date)).format("dddd, MMMM D, YYYY")}`;
 };
 
 const generateWelcomeMessage = (user) => {
@@ -100,9 +98,9 @@ const generateWelcomeMessage = (user) => {
 
 const formatFriendNames = (user, repository) => {
   const friendNames = user.returnFriendName(repository.userData);
-  const formattedFriends = friendNames.join(", ")
+  const formattedFriends = friendNames.join(", ");
   return formattedFriends;
-}
+};
 
 const displayAccountInfo = (user, repository) => {
   accountInfo.innerHTML = `<b>Your Account Info</b> <br><br> ${user.name} <br><br> ${user.email} <br><br>
@@ -112,8 +110,7 @@ const displayAccountInfo = (user, repository) => {
 const displayWeeklyHydration = (user) => {
   const firstDate = user.hydrationData.hydrationData.at(-7);
   const weeklyData = user.hydrationData.getPastWeekDailyOunces(firstDate.date);
-
-  const chart = document.querySelector("#myHChart").getContext("2d")
+  const chart = document.querySelector("#myHChart").getContext("2d");
   let gradient = chart.createLinearGradient(0, 0, 0, 400);
   gradient.addColorStop(0, "rgba(58,123,213,1");
   gradient.addColorStop(1, "rgba(0,210,255,0.3");
@@ -121,31 +118,31 @@ const displayWeeklyHydration = (user) => {
   const data = {
     labels: labels,
     datasets: [{
-        label: 'Water in oz.',
-       data: weeklyData,
-        fill: true,
-        backgroundColor: gradient,
-        borderColor: "#fff",
-        pointBackgroundColor: "rgb(189, 195, 199)",
+      label: 'Water in oz.',
+      data: weeklyData,
+      fill: true,
+      backgroundColor: gradient,
+      borderColor: "#fff",
+      pointBackgroundColor: "rgb(189, 195, 199)",
    }]
 };
-const config = {
-  type: 'line',
-  data: data,
-  options: {
-    radius: 5,
-    hitRadius: 30,
-    hoverRadius: 12,
-    responsive: true,
-    plugins: {
-      title: {
-        display: true,
-        text: "Ounces of Water Consumed in Past 7 Days",
+  const config = {
+    type: 'line',
+    data: data,
+    options: {
+      radius: 5,
+      hitRadius: 30,
+      hoverRadius: 12,
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: "Ounces of Water Consumed in Past 7 Days",
+        },
       },
     },
-  },
-};
-const myHChart = new Chart(chart, config)
+  };
+  const myHChart = new Chart(chart, config);
 };
 
 const displayWeeklySleep = (user) => {
@@ -153,54 +150,51 @@ const displayWeeklySleep = (user) => {
   const weeklyQualityData = user.sleepData.getPastWeekNightlyQuality(firstDate.date);
   const weeklyHourlyData = user.sleepData.getPastWeekNightlyHours(firstDate.date);
   const allTimeSleepHours = user.sleepData.calculateAverageHoursSlept();
-  const allTimeSleepQuality = user.sleepData.calculateAverageSleepQuality()
-
-  const chart = document.querySelector("#mySChart").getContext("2d")
+  const allTimeSleepQuality = user.sleepData.calculateAverageSleepQuality();
+  const chart = document.querySelector("#mySChart").getContext("2d");
   const labels = ['Day 1','Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', "Day 7",];
   const data = {
     labels: labels,
-    datasets: [
-      {
+    datasets: [{
       label: 'Hours Slept',
       data: weeklyHourlyData,
       fill: true,
       backgroundColor: "#97EBF4",
       borderColor: "#fff",
       pointBackgroundColor: "rgb(189, 195, 199)",
-  },
-  {
+    },
+    {
       label: 'Quality of Sleep',
       data: weeklyQualityData,
       fill: true,
       backgroundColor: "#ABE098",
       borderColor: "#000",
       pointBackgroundColor: "rgba(119, 198, 110)",
-  },
-  ]
-};
-const config = {
-  type: 'bar',
-  data: data,
-  options: {
-    radius: 5,
-    hitRadius: 30,
-    hoverRadius: 12,
-    responsive: true,
-    plugins: {
-      title: {
-        display: true,
-        text: "Sleep Data for Past 7 Days",
+    }]
+  };
+  const config = {
+    type: 'bar',
+    data: data,
+    options: {
+      radius: 5,
+      hitRadius: 30,
+      hoverRadius: 12,
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: "Sleep Data for Past 7 Days",
+        },
       },
     },
-  },
-};
-const mySChart = new Chart(chart, config)
+  };
+  const mySChart = new Chart(chart, config)
 };
 
 const displayAllTimeSleepData = (user) => {
-  allTimeSleepHoursDisplay.innerHTML = `Your all time average number of hours slept is<br><br> <b>${user.sleepData.calculateAverageHoursSlept()}</b>`
-  allTimeSleepQualityDisplay.innerHTML = `Your all time average sleep quility is<br><br> <b>${user.sleepData.calculateAverageSleepQuality()}/5</b>`;
-}
+  allTimeSleepHoursDisplay.innerHTML = `Your all-time average number of hours slept is<br><br> <b>${user.sleepData.calculateAverageHoursSlept()}</b>`
+  allTimeSleepQualityDisplay.innerHTML = `Your all-time average sleep quality is<br><br> <b>${user.sleepData.calculateAverageSleepQuality()}/5</b>`;
+};
 
 const displayDailyHydration = (user) => {
   const recentDate = user.hydrationData.hydrationData.at(-1);

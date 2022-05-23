@@ -3,16 +3,8 @@ import User from "../src/User";
 import Sleep from "../src/Sleep";
 
 describe("Sleep", () => {
-  let sleep31,
-    sleep32,
-    sleep33,
-    sleepData,
-    singleUserData33,
-    singleUserData32,
-    singleUserData31,
-    user31,
-    user32,
-    user33;
+  let sleepData, singleUserData31, singleUserData32, singleUserData33, user31, user32, user33, sleep31, sleep32, sleep33;
+
   beforeEach(() => {
     sleepData = [
       {
@@ -113,14 +105,14 @@ describe("Sleep", () => {
       },
     ];
 
-    singleUserData33 = {
-      id: 33,
-      name: "Leilani Quitzon",
-      address: "60013 Golden Overpass, Lake Dejon WI 77309-0820",
-      email: "Trinity_Rowe@hotmail.com",
-      strideLength: 3.5,
-      dailyStepGoal: 8000,
-      friends: [4, 18, 36, 30],
+    singleUserData31 = {
+      id: 31,
+      name: "Bertrand Yundt",
+      address: "0032 Claudia Plain, Delfinaland RI 22298-3685",
+      email: "Sibyl.Schmidt39@yahoo.com",
+      strideLength: 3.4,
+      dailyStepGoal: 7000,
+      friends: [16, 41, 9],
     };
 
     singleUserData32 = {
@@ -133,18 +125,20 @@ describe("Sleep", () => {
       friends: [47, 33],
     };
 
-    singleUserData31 = {
-      id: 31,
-      name: "Bertrand Yundt",
-      address: "0032 Claudia Plain, Delfinaland RI 22298-3685",
-      email: "Sibyl.Schmidt39@yahoo.com",
-      strideLength: 3.4,
-      dailyStepGoal: 7000,
-      friends: [16, 41, 9],
+    singleUserData33 = {
+      id: 33,
+      name: "Leilani Quitzon",
+      address: "60013 Golden Overpass, Lake Dejon WI 77309-0820",
+      email: "Trinity_Rowe@hotmail.com",
+      strideLength: 3.5,
+      dailyStepGoal: 8000,
+      friends: [4, 18, 36, 30],
     };
+
     user31 = new User(singleUserData31);
     user32 = new User(singleUserData32);
     user33 = new User(singleUserData33);
+
     sleep31 = new Sleep(sleepData, 31);
     sleep32 = new Sleep(sleepData, 32);
     sleep33 = new Sleep(sleepData, 33);
@@ -200,9 +194,7 @@ describe("Sleep", () => {
   });
 
   it("should be able to return how many hours they slept for a specific night", () => {
-    expect(sleep33.returnNightlyHoursSlept("2019/06/16")).to.equal(
-      "10.1 hours"
-    );
+    expect(sleep33.returnNightlyHoursSlept("2019/06/16")).to.equal("10.1 hours");
     expect(sleep33.returnNightlyHoursSlept("2019/06/15")).to.equal("9.5 hours");
     expect(sleep32.returnNightlyHoursSlept("2019/06/18")).to.equal("7.7 hours");
   });
