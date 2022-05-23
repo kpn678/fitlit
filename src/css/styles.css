@@ -1,31 +1,23 @@
-body,
-html {
-  height: 100vh;
-  width: 100vw;
-  margin: 0px;
+body, html {
   background-color: #ffffff;
   font-family: "Gill Sans", sans-serif;
+  height: 100vh;
+  margin: 0px;
   overflow: hidden;
+  width: 100vw;
 }
 
-header,
-.welcome,
-.title {
-  display: flex;
-  justify-content: space-between;
+header, .title, .welcome {
   align-items: center;
+  display: flex;
   background-color: #34c759;
-  margin: 2px;
   height: 10%;
+  justify-content: space-between;
+  margin: 2px;
 }
 
 .logo {
   padding-right: 10px;
-}
-
-.calendar {
-  display: flex;
-  flex-direction: column;
 }
 
 .profile-button {
@@ -33,6 +25,7 @@ header,
 }
 
 #overlay {
+  border-radius: 7%;
   display: none;
   position: fixed;
   top: 0;
@@ -40,37 +33,36 @@ header,
   right: 0;
   left: 0;
   z-index: 1;
-  border-radius: 7%;
 }
 
 #modal {
+  background-color: #72d8ff;
   border-radius: 7%;
-  max-width: 600px;
+  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
   height: 300px;
   margin: auto;
-  background-color: #72d8ff;
+  margin-top: 70px;
+  margin-left: 1000px;
+  max-width: 600px;
   position: static;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  margin-top: 70px;
-  margin-left: 1000px;
-  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
 }
 
 nav {
-  width: 8%;
-  height: 85%;
-  float: left;
+  align-items: center;
   background-color: #34c759;
+  border-radius: 25px;
+  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
   display: flex;
   flex-direction: column;
+  float: left;
+  height: 85%;
   justify-content: space-evenly;
-  align-items: center;
-  border-radius: 25px;
   margin: 2%;
-  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
+  width: 8%;
 }
 
 .profile-button:hover, .close-profile-button:hover, .water-button:hover, .bed-button:hover {
@@ -81,58 +73,56 @@ nav {
 
 main {
   background-color: #ffffff;
-  width: 88%;
-  height: 90%;
-  float: right;
   display: flex;
   flex-direction: column;
+  float: right;
+  height: 90%;
+  width: 88%;
 }
 
 .top {
-  height: 75%;
-  display: flex;
   align-content: center;
-  justify-content: space-between;
   background-color: #ffffff;
+  display: flex;
+  height: 75%;
+  justify-content: space-between;
 }
 
-.weekly-hydration-display,
-.weekly-sleep-display {
-  border-radius: 25px;
-  margin: 20px;
-  height: 95%;
-  width: 100%;
+.weekly-hydration-display, .weekly-sleep-display {
   background-color: #41a9f4;
+  border-radius: 25px;
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
+  height: 95%;
+  margin: 20px;
+  width: 100%;
 }
 
 .widgets {
-  width: 35%;
+  align-items: center;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-items: center;
-  background-color: #ffffff;
   margin: 10px;
+  width: 35%;
 }
 
-.daily-hydration-display,
-.daily-sleep-display {
-  margin: 10px;
+.daily-hydration-display, .daily-sleep-display {
   background-color: #34c759;
-  height: 50%;
-  width: 85%;
   border-radius: 7%;
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
+  height: 50%;
+  margin: 10px;
+  width: 85%;
 }
 
 .bottom {
-  height: 22%;
-  width: 98%;
-  margin: 20px;
-  border-radius: 25px;
   background-color: #41a9f4;
+  border-radius: 25px;
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
+  height: 22%;
+  margin: 20px;
+  width: 98%;
 }
 
 .hidden {
