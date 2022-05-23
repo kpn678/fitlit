@@ -101,6 +101,11 @@ main {
   width: 65%;
 }
 
+.all-time-sleep-display {
+  display: flex;
+  justify-content: space-around;
+}
+
 .widgets {
   align-items: center;
   background-color: #ffffff;
