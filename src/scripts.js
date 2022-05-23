@@ -98,9 +98,15 @@ const generateWelcomeMessage = (user) => {
   welcomeMessage.innerText = `Welcome back, ${user.returnUserFirstName()}!`;
 };
 
+const formatFriendNames = (user, repository) => {
+  const friendNames = user.returnFriendName(repository.userData);
+  const formattedFriends = friendNames.join(", ")
+  return formattedFriends;
+}
+
 const displayAccountInfo = (user, repository) => {
-  accountInfo.innerHTML = `Your Account Info <br><br> ${user.name} <br><br> ${user.email} <br><br>
-  ${user.address} <br><br> Your Friends Are: <br> ${user.returnFriendName(repository.userData)}`;
+  accountInfo.innerHTML = `<b>Your Account Info</b> <br><br> ${user.name} <br><br> ${user.email} <br><br>
+  ${user.address} <br><br> Your Friends Are: <br> ${formatFriendNames(user,repository)}`;
 };
 
 const displayWeeklyHydration = (user) => {
