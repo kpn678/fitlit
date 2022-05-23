@@ -1,9 +1,11 @@
 body,
 html {
   height: 100vh;
+  width: 100vw;
   margin: 0px;
   background-color: #ffffff;
   font-family: "Gill Sans", sans-serif;
+  overflow: hidden;
 }
 
 header,
@@ -17,9 +19,17 @@ header,
   height: 10%;
 }
 
+.logo {
+  padding-right: 10px;
+}
+
 .calendar {
   display: flex;
   flex-direction: column;
+}
+
+.profile-button {
+  padding: 10px;
 }
 
 #overlay {
@@ -45,7 +55,7 @@ header,
   right: 0;
   left: 0;
   margin-top: 70px;
-  margin-left: 1250px;
+  margin-left: 1000px;
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
 }
 
@@ -63,13 +73,7 @@ nav {
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
 }
 
-.profile-button:hover,
-.close-profile-button:hover,
-.water-button:hover,
-.bed-button:hover,
-.walk-button:hover,
-.friends-button:hover,
-.post-button:hover {
+.profile-button:hover, .close-profile-button:hover, .water-button:hover, .bed-button:hover {
   box-shadow: 0 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
   border-radius: 50%;
   cursor: pointer;
