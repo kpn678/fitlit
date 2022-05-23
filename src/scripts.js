@@ -31,6 +31,8 @@ const waterButton = document.querySelector(".water-button");
 const bedButton = document.querySelector(".bed-button");
 const weeklyHydrationDisplay = document.querySelector(".weekly-hydration-display");
 const weeklySleepDisplay = document.querySelector(".weekly-sleep-display");
+const allTimeSleepHoursDisplay = document.querySelector(".all-time-hours")
+const allTimeSleepQualityDisplay = document.querySelector(".all-time-quality")
 const dailyHydrationDisplay = document.querySelector(".daily-hydration-text");
 const dailySleepDisplay = document.querySelector(".daily-sleep-text");
 const stepGoalDisplay = document.querySelector("#stepGoals");
@@ -82,6 +84,7 @@ const beginApplication = (user, repository) => {
   displayDailyHydration(user);
   displayDailySleep(user);
   displayStepGoal(user, repository);
+  displayAllTimeSleepData(user);
 };
 
 const displayTodaysDate = (user) => {
@@ -103,7 +106,7 @@ const displayAccountInfo = (user, repository) => {
 const displayWeeklyHydration = (user) => {
   const firstDate = user.hydrationData.hydrationData.at(-7);
   const weeklyData = user.hydrationData.getPastWeekDailyOunces(firstDate.date);
-  
+
   const chart = document.querySelector("#myHChart").getContext("2d")
   let gradient = chart.createLinearGradient(0, 0, 0, 400);
   gradient.addColorStop(0, "rgba(58,123,213,1");
@@ -150,7 +153,7 @@ const displayWeeklySleep = (user) => {
   const labels = ['Day 1','Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', "Day 7",];
   const data = {
     labels: labels,
-    datasets: [  
+    datasets: [
       {
       label: 'Hours Slept',
       data: weeklyHourlyData,
@@ -188,6 +191,10 @@ const config = {
 const mySChart = new Chart(chart, config)
 };
 
+const displayAllTimeSleepData = (user) => {
+  allTimeSleepHoursDisplay.innerHTML = `Your all time average number of hours slept is<br><br> <b>${user.sleepData.calculateAverageHoursSlept()}</b>`
+  allTimeSleepQualityDisplay.innerHTML = `Your all time average sleep quility is<br><br> <b>${user.sleepData.calculateAverageSleepQuality()}/5</b>`;
+}
 
 const displayDailyHydration = (user) => {
   const recentDate = user.hydrationData.hydrationData.at(-1);
@@ -196,7 +203,7 @@ const displayDailyHydration = (user) => {
 
 const displayDailySleep = (user) => {
   const recentDate = user.sleepData.sleepData.at(-1);
-  dailySleepDisplay.innerHTML = `You slept <b>${user.sleepData.returnNightlyHoursSlept(recentDate.date)}</b>. <br><br> Your sleep quality was <b>${user.sleepData.returnNightlySleepQuality(recentDate.date)}</b>.`;
+  dailySleepDisplay.innerHTML = `You slept <b>${user.sleepData.returnNightlyHoursSlept(recentDate.date)}</b>. <br><br> Your sleep quality was <b>${user.sleepData.returnNightlySleepQuality(recentDate.date)}/5</b>.`;
 };
 
 const showWeeklyHydrationDataPanel = () => {

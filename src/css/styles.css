@@ -93,7 +93,7 @@ main {
 }
 
 .weekly-hydration-display, .weekly-sleep-display {
-  background-color: #fefefe;
+  background-color: #f2f3f4;
   border-radius: 25px;
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
   height: 95%;
