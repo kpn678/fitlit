@@ -25,13 +25,11 @@ const todaysDateDisplay = document.querySelector(".todays-date");
 const accountInfo = document.querySelector("#accountInfo");
 const openProfileButton = document.querySelector(".profile-button");
 const closeProfileButton = document.querySelector(".close-profile-button");
-const weeklyHydrationDisplay = document.querySelector(
-  ".weekly-hydration-display"
-);
+const weeklyHydrationDisplay = document.querySelector(".weekly-hydration-display");
+const waterButton = document.querySelector(".water-button");
+const bedButton = document.querySelector(".bed-button");
 const weeklySleepDisplay = document.querySelector(".weekly-sleep-display");
-const dailyHydrationDisplay = document.querySelector(
-  ".daily-hydration-display"
-);
+const dailyHydrationDisplay = document.querySelector(".daily-hydration-display");
 const dailySleepDisplay = document.querySelector(".daily-sleep-display");
 const stepGoalDisplay = document.querySelector("#stepGoals");
 
@@ -46,6 +44,14 @@ openProfileButton.addEventListener("click", (event) => {
 
 closeProfileButton.addEventListener("click", (event) => {
   overlay.style.display = "none";
+});
+
+waterButton.addEventListener("click", (event) => {
+  showWeeklyHydrationDataTV();
+});
+
+bedButton.addEventListener("click", (event) => {
+  showWeeklySleepDataTV();
 });
 
 //Functions//
@@ -135,6 +141,16 @@ const displayWeeklySleep = (user) => {
   const allTimeSleepHours = user.sleepData.calculateAverageHoursSlept();
   const allTimeSleepQuality = user.sleepData.calculateAverageSleepQuality()
   weeklySleepDisplay.innerText = `Hours:${weeklyHourlyData}, Quality:${weeklyQualityData}, Average Hours: ${allTimeSleepHours}. Average Sleep Quality: ${allTimeSleepQuality}.`;
+};
+
+const showWeeklyHydrationDataTV = () => {
+  weeklyHydrationDisplay.classList.remove("hidden");
+  weeklySleepDisplay.classList.add("hidden");
+};
+
+const showWeeklySleepDataTV = () => {
+  weeklyHydrationDisplay.classList.add("hidden");
+  weeklySleepDisplay.classList.remove("hidden");
 };
 
 const displayStepGoal = (user, repository) => {
