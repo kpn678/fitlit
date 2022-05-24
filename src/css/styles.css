@@ -9,8 +9,8 @@ body, html {
 
 header, .title, .welcome {
   align-items: center;
-  display: flex;
   background-color: #34c759;
+  display: flex;
   height: 10%;
   justify-content: space-between;
   margin: 2px;
@@ -41,7 +41,6 @@ header, .title, .welcome {
 
 .modal {
   background-color: #72d8ff;
-  /* border-radius: 25%; */
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
   height: 300px;
   margin: auto;
@@ -111,11 +110,10 @@ main {
 .all-time-hours, .all-time-quality {
   border-radius: 25px;
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
-  height: 95%;
   margin: 20px;
   padding: 5px;
   text-align: center;
-  width: 65%;
+  width: 50%;
 }
 
 .all-time-hours {
