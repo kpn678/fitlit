@@ -2,8 +2,7 @@ let apiUserData, apiSleepData, apiActivityData, apiHydrationData;
 
 const fetchData = (dataSet) => {
   return fetch(`https://fitlit-api.herokuapp.com/api/v1/${dataSet}`)
-    .then((response) => response.json())
-    .catch((err) => console.log("There has been an error!"));
+    .then((response) => response.json());
 };
 
 const fetchAll = () => {

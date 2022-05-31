@@ -18,7 +18,7 @@ import User from "./User";
 import Hydration from "./Hydration";
 import Sleep from "./Sleep";
 
-//Gloabal variables//
+//Global variables//
 let userData, sleepData, activityData, hydrationData;
 
 //Query selectors//
@@ -71,7 +71,7 @@ const loadData = () => {
     const singleSleep = new Sleep(sleepData.sleepData, randomUserData.id);
     const randomUser = new User(randomUserData, singleHydration, singleSleep);
     beginApplication(randomUser, userRepository);
-  });
+  }).catch((error) => console.log(`There has been an error! ${error}`));
 };
 
 const beginApplication = (user, repository) => {
