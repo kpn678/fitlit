@@ -30,7 +30,7 @@ class Activity {
     }
 
     calculateWeeklyActiveMins(date) {
-        const startDate = this.activityData.findIndex((day) => day.date === date);
+        const startDate = this.activityData.findIndex(day => day.date === date);
         const weeklyRange = this.activityData.slice(startDate, startDate + 7);
         const weeklyTotalActiveMins = weeklyRange.reduce((sum, date) => {
         sum += date.minutesActive
@@ -56,6 +56,27 @@ class Activity {
             }
         })
         return allDaysStepsMet
+    }
+
+    findAllTimeStairRecord(){
+        let stairArray = []
+        this.activityData.forEach(datum => stairArray.push(datum.flightsOfStairs))
+        const bestStairDay = Math.max(...stairArray)
+        return `Your all-time best climb was ${bestStairDay} flights of stairs.`
+    }
+
+    calculateActivityAverages(date) {
+        const dayArray = this.allUserActivityData.filter(datum =>  date === datum.date)
+        let totalSteps = 0
+        let totalStairs = 0
+        let totalMins = 0
+        const averageAllUserData = dayArray.reduce((acc, user) => {
+            acc["allUsersNumSteps"] = Math.round((totalSteps += user.numSteps) / dayArray.length)
+            acc["allUsersFlightsStairs"] = Math.round((totalStairs += user.flightsOfStairs) / dayArray.length)
+            acc["allUsersMinsActive"] = Math.round((totalMins += user.minutesActive) / dayArray.length)
+            return acc 
+        }, {})
+        return averageAllUserData
     }
 
 }
