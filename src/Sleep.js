@@ -22,13 +22,21 @@ class Sleep {
     const nightlyHours = this.sleepData.find((datum) => {
       return datum.date === date;
     });
-    return `${nightlyHours.hoursSlept} hours`;
+    if (nightlyHours.hoursSlept > 0) {
+      return `${nightlyHours.hoursSlept} hours`;
+    } else {
+      return "You have not entered your amount of sleep for last night.";
+    };
   };
   returnNightlySleepQuality(date) {
     const nightlyQuality = this.sleepData.find((datum) => {
       return datum.date === date;
     });
-    return nightlyQuality.sleepQuality;
+    if (nightlyQuality.sleepQuality > 0) {
+      return nightlyQuality.sleepQuality;
+    } else {
+      return "You have not entered your sleep quality for last night.";
+    };
   };
   getPastWeekNightlyHours(date) {
     const startDate = this.sleepData.findIndex((night) => night.date === date);
@@ -48,7 +56,7 @@ class Sleep {
       return sum;
     }, 0);
     const averageQuality = totalQuality / this.allUserSleepData.length;
-    return Math.round(averageQuality *10) / 10 ;
+    return Math.round(averageQuality * 10) / 10 ;
   };
 };
 

@@ -103,6 +103,12 @@ describe("Sleep", () => {
         hoursSlept: 7.6,
         sleepQuality: 4.9,
       },
+      {
+        userID: 31,
+        date: "2019/06/19",
+        hoursSlept: 0,
+        sleepQuality: 0,
+      }
     ];
 
     singleUserData31 = {
@@ -199,10 +205,18 @@ describe("Sleep", () => {
     expect(sleep32.returnNightlyHoursSlept("2019/06/18")).to.equal("7.7 hours");
   });
 
+  it("should be able to return a message if the hours slept is 0", () => {
+    expect(sleep31.returnNightlyHoursSlept("2019/06/19")).to.equal("You have not entered your amount of sleep for last night.");
+  });
+
   it("should be able to return the sleep quality for a specific night", () => {
     expect(sleep33.returnNightlySleepQuality("2019/06/16")).to.equal(3.8);
     expect(sleep33.returnNightlySleepQuality("2019/06/15")).to.equal(4.2);
     expect(sleep32.returnNightlySleepQuality("2019/06/18")).to.equal(2.7);
+  });
+
+  it("should be able to return a message if the sleep quality is 0", () => {
+    expect(sleep31.returnNightlySleepQuality("2019/06/19")).to.equal("You have not entered your sleep quality for last night.");
   });
 
   it("should be able to return the hours slept each night over the course of any given week", () => {
@@ -230,6 +244,6 @@ describe("Sleep", () => {
   });
 
   it("should return average sleep quality amongst all users", () => {
-    expect(sleep31.calculateAverageSleepQualityAll()).to.equal(3.2);
+    expect(sleep31.calculateAverageSleepQualityAll()).to.equal(3);
   });
 });
