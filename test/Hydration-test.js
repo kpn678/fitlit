@@ -4,7 +4,7 @@ import Hydration from "../src/Hydration";
 
 describe("Hydration", () => {
   let hydrationData, singleUserData31, singleUserData32, singleUserData33, user31, user32, user33, hydration31, hydration32, hydration33;
-  
+
   beforeEach(() => {
     hydrationData = [
       {
