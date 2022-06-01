@@ -1,5 +1,5 @@
 class User {
-  constructor(singleUserData, hydrationData, sleepData) {
+  constructor(singleUserData, hydrationData, sleepData, activityData) {
     this.id = singleUserData.id;
     this.name = singleUserData.name;
     this.address = singleUserData.address;
@@ -9,6 +9,7 @@ class User {
     this.friends = singleUserData.friends;
     this.hydrationData = hydrationData;
     this.sleepData = sleepData;
+    this.activityData = activityData;
   };
   returnUserFirstName() {
     if (this.name === undefined) {

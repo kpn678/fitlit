@@ -172,7 +172,7 @@ describe("Activity", () => {
             {
                 userID: 33,
                 date: "2019/06/23",
-                numSteps: 11418,
+                numSteps: 0,
                 minutesActive: 29,
                 flightsOfStairs: 10,
             }
@@ -207,13 +207,14 @@ describe("Activity", () => {
             dailyStepGoal: 8000,
             friends: [4, 18, 36, 30],
         };
-        user31 = new User(singleUserData31);
-        user32 = new User(singleUserData32);
-        user33 = new User(singleUserData33);
-
+        
         activity31 = new Activity(activityData, 31)
         activity32 = new Activity(activityData, 32);
         activity33 = new Activity(activityData, 33);
+
+        user31 = new User(singleUserData31, activityData);
+        user32 = new User(singleUserData32, activityData);
+        user33 = new User(singleUserData33, activityData);
     });
 
         it("should be a function", () => {
@@ -228,5 +229,72 @@ describe("Activity", () => {
         expect(activity31.userID).to.equal(31);
         });
 
-        //it("should ")
+        it("should only store this specific user's information based on the user's id", () => {
+        expect(activity32.activityData).to.deep.equal([
+            {
+                userID: 32,
+                date: "2019/06/16",
+                numSteps: 14283,
+                minutesActive: 264,
+                flightsOfStairs: 22,
+            },
+            {
+                userID: 32,
+                date: "2019/06/17",
+                numSteps: 8183,
+                minutesActive: 85,
+                flightsOfStairs: 3,
+            },
+            {
+                userID: 32,
+                date: "2019/06/18",
+                numSteps: 14745,
+                minutesActive: 227,
+                flightsOfStairs: 5,
+            },
+            {
+                userID: 32,
+                date: "2019/06/19",
+                numSteps: 2426,
+                minutesActive: 137,
+                flightsOfStairs: 47,
+            },
+            {
+                userID: 32,
+                date: "2019/06/20",
+                numSteps: 8071,
+                minutesActive: 203,
+                flightsOfStairs: 42,
+            },
+            {
+                userID: 32,
+                date: "2019/06/21",
+                numSteps: 8913,
+                minutesActive: 105,
+                flightsOfStairs: 39,
+            },
+            {
+                userID: 32,
+                date: "2019/06/22",
+                numSteps: 14410,
+                minutesActive: 276,
+                flightsOfStairs: 28,
+            },
+            {
+                userID: 32,
+                date: "2019/06/23",
+                numSteps: 9104,
+                minutesActive: 300,
+                flightsOfStairs: 30,
+            }
+         ])
+        })
+
+        it ("should be able to return how much a user has walked in miles", () => {
+            expect(activity32.returnDailyMilesWalked("2019/06/23", user32)).to.equal("7.41 miles")
+        })
+
+        it("should be able to return a message to the user if they have walked 0 steps", () => {
+            expect(activity33.returnDailyMilesWalked("2019/06/23", user33)).to.equal("You have not logged any steps today.")
+    })
 })
