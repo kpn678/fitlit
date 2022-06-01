@@ -309,4 +309,13 @@ describe("Activity", () => {
         it("should be able to calculate a user's weekly active time in minutes", () => {
             expect(activity32.calculateWeeklyActiveMins("2019/06/16")).to.equal(185)
         })
+
+        it("should be able to determine if a user has reached their step goal for a given day", () => {
+            expect(activity31.determineIfStepGoalMet("2019/06/23", user31)).to.equal(true)
+            expect(activity33.determineIfStepGoalMet("2019/06/23", user33)).to.equal(false)
+        })
+
+        it("should return a list of days where the user has met their step goal", () => {
+            expect(activity32.returnAllDaysStepGoalMet(user32)).to.deep.equal(["2019/06/16", "2019/06/17", "2019/06/18", "2019/06/20", "2019/06/21", "2019/06/22", "2019/06/23"])
+        })
 })

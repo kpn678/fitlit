@@ -6,6 +6,11 @@ class Activity {
         this.userID = userID;
     }
 
+    // findDay(){
+    //     const day = this.activityData.find((datum) => {
+    //         return datum.date === date;
+    //     })
+    
     returnDailyMilesWalked(date, user) {
         const day = this.activityData.find((datum) => {
             return datum.date === date;
@@ -37,7 +42,26 @@ class Activity {
     }, 0);
         const weeklyAverageActiveMins = weeklyTotalActiveMins / 7
         return Math.round(weeklyAverageActiveMins)
-  };
+   }
+    determineIfStepGoalMet(date, user) {
+        const day = this.activityData.find((datum) => {
+            return datum.date === date;
+        })
+        if(day.numSteps >= user.dailyStepGoal){
+            return true
+        } else {
+            return false
+        }
+    }
+    returnAllDaysStepGoalMet(user){
+        let allDaysStepsMet = []
+        this.activityData.forEach(datum => {
+            if(datum.numSteps >= user.dailyStepGoal){
+                allDaysStepsMet.push(datum.date)
+            }
+        })
+        return allDaysStepsMet
+    }
 
 }
 export default Activity;
