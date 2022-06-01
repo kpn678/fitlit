@@ -28,7 +28,16 @@ class Activity {
             return `${day.minutesActive} mins.`
         }
     }
-
+    calculateWeeklyActiveMins(date) {
+    const startDate = this.activityData.findIndex((day) => day.date === date);
+    const weeklyRange = this.activityData.slice(startDate, startDate + 7);
+    const weeklyTotalActiveMins = weeklyRange.reduce((sum, date) => {
+        sum += date.minutesActive
+        return sum
+    }, 0);
+        const weeklyAverageActiveMins = weeklyTotalActiveMins / 7
+        return Math.round(weeklyAverageActiveMins)
+  };
 
 }
 export default Activity;

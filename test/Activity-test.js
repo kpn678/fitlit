@@ -301,8 +301,12 @@ describe("Activity", () => {
         it("should be able to return a user's active minutes in a day", () => {
             expect(activity32.returnDailyActiveMins("2019/06/23")).to.equal("300 mins.")
         })
+
         it("should return a message if there are no active minutes logged for that day", () => {
             expect(activity33.returnDailyActiveMins("2019/06/23")).to.equal("You have not logged any active minutes for today.")
         })
-        it("")
+
+        it("should be able to calculate a user's weekly active time in minutes", () => {
+            expect(activity32.calculateWeeklyActiveMins("2019/06/16")).to.equal(185)
+        })
 })
