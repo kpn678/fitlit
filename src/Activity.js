@@ -18,5 +18,17 @@ class Activity {
         }
     };
 
+    returnDailyActiveMins(date) { 
+        const day = this.activityData.find((datum) => {
+            return datum.date === date;
+        })
+        if(day.minutesActive === 0){
+            return "You have not logged any active minutes for today."
+        } else {
+            return `${day.minutesActive} mins.`
+        }
+    }
+
+
 }
 export default Activity;

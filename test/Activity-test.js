@@ -173,8 +173,8 @@ describe("Activity", () => {
                 userID: 33,
                 date: "2019/06/23",
                 numSteps: 0,
-                minutesActive: 29,
-                flightsOfStairs: 10,
+                minutesActive: 0,
+                flightsOfStairs: 0,
             }
         ];
 
@@ -296,5 +296,13 @@ describe("Activity", () => {
 
         it("should be able to return a message to the user if they have walked 0 steps", () => {
             expect(activity33.returnDailyMilesWalked("2019/06/23", user33)).to.equal("You have not logged any steps today.")
-    })
+        })
+
+        it("should be able to return a user's active minutes in a day", () => {
+            expect(activity32.returnDailyActiveMins("2019/06/23")).to.equal("300 mins.")
+        })
+        it("should return a message if there are no active minutes logged for that day", () => {
+            expect(activity33.returnDailyActiveMins("2019/06/23")).to.equal("You have not logged any active minutes for today.")
+        })
+        it("")
 })
