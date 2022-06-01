@@ -4,7 +4,7 @@ import Hydration from "../src/Hydration";
 
 describe("Hydration", () => {
   let hydrationData, singleUserData31, singleUserData32, singleUserData33, user31, user32, user33, hydration31, hydration32, hydration33;
-  
+
   beforeEach(() => {
     hydrationData = [
       {
@@ -139,6 +139,10 @@ describe("Hydration", () => {
     expect(hydration33.returnDailyOunces("2019/06/15")).to.equal("51 oz.");
     expect(hydration33.returnDailyOunces("2019/06/17")).to.equal("23 oz.");
     expect(hydration32.returnDailyOunces("2019/06/16")).to.equal("36 oz.");
+  });
+
+  it("should be able to return a message if fluid ounces they consumed is zero", () => {
+    expect(hydration31.returnDailyOunces("2019/06/16")).to.equal("You have no hydration data. Go drink some water!");
   });
 
   it("should be able to return the fluid ounces of water for a user consumed each day over the course of the last 7 days", () => {

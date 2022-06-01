@@ -11,19 +11,27 @@ class User {
     this.sleepData = sleepData;
   };
   returnUserFirstName() {
-    const splitName = this.name.split(" ");
-    return splitName[0];
+    if (this.name === undefined) {
+      return "Oops it looks like your name is missing from our database";
+    } else {
+      const splitName = this.name.split(" ");
+      return splitName[0];
+    };
   };
   returnFriendName(userRepository) {
-    let friendNames = [];
-    this.friends.forEach((friend) => {
-      userRepository.forEach((user) => {
-        if (user.id === friend) {
-          friendNames.push(user.name);
-        };
+    if (this.friends.length === 0) {
+      return "You haven't added any friends yet!";
+    } else {
+      let friendNames = [];
+      this.friends.forEach((friend) => {
+        userRepository.forEach((user) => {
+          if (user.id === friend) {
+            friendNames.push(user.name);
+          };
+        });
       });
-    });
-    return friendNames;
+      return friendNames;
+    };
   };
 };
 
