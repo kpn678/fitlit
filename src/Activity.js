@@ -6,15 +6,12 @@ class Activity {
         this.userID = userID;
     }
 
-    // findDay(){
-    //     const day = this.activityData.find((datum) => {
-    //         return datum.date === date;
-    //     })
+    findDay(date){
+      return this.activityData.find(datum => datum.date === date)
+    }
     
     returnDailyMilesWalked(date, user) {
-        const day = this.activityData.find((datum) => {
-            return datum.date === date;
-        });
+       const day = this.findDay(date);
         if(day.numSteps === 0){
             return "You have not logged any steps today."
         } else {
@@ -24,29 +21,27 @@ class Activity {
     };
 
     returnDailyActiveMins(date) { 
-        const day = this.activityData.find((datum) => {
-            return datum.date === date;
-        })
+        const day = this.findDay(date);
         if(day.minutesActive === 0){
             return "You have not logged any active minutes for today."
         } else {
             return `${day.minutesActive} mins.`
         }
     }
+
     calculateWeeklyActiveMins(date) {
-    const startDate = this.activityData.findIndex((day) => day.date === date);
-    const weeklyRange = this.activityData.slice(startDate, startDate + 7);
-    const weeklyTotalActiveMins = weeklyRange.reduce((sum, date) => {
+        const startDate = this.activityData.findIndex((day) => day.date === date);
+        const weeklyRange = this.activityData.slice(startDate, startDate + 7);
+        const weeklyTotalActiveMins = weeklyRange.reduce((sum, date) => {
         sum += date.minutesActive
         return sum
-    }, 0);
+        }, 0);
         const weeklyAverageActiveMins = weeklyTotalActiveMins / 7
         return Math.round(weeklyAverageActiveMins)
    }
+
     determineIfStepGoalMet(date, user) {
-        const day = this.activityData.find((datum) => {
-            return datum.date === date;
-        })
+        const day = this.findDay(date);
         if(day.numSteps >= user.dailyStepGoal){
             return true
         } else {

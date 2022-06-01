@@ -11,6 +11,7 @@ class User {
     this.sleepData = sleepData;
     this.activityData = activityData;
   };
+
   returnUserFirstName() {
     if (this.name === undefined) {
       return "Oops it looks like your name is missing from our database";
@@ -19,6 +20,7 @@ class User {
       return splitName[0];
     };
   };
+
   returnFriendName(userRepository) {
     if (this.friends.length === 0) {
       return "You haven't added any friends yet!";
@@ -34,6 +36,7 @@ class User {
       return friendNames;
     };
   };
+  
 };
 
 export default User;
