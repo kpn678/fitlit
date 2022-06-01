@@ -179,6 +179,9 @@ describe("User", () => {
 
   it("should be able to return a user's first name", () => {
     expect(user33.returnUserFirstName()).to.equal("Lani");
+  });
+
+  it("should be able to return a message if a user has no first name", () => {
     expect(user32.returnUserFirstName()).to.equal("Oops it looks like your name is missing from our database");
   });
 
@@ -187,5 +190,10 @@ describe("User", () => {
       undefined,
       "Lani Quitt",
     ]);
+  });
+
+  it("should be able to return a message if a user has no friends", () => {
+    expect(user33.friends).to.deep.equal([]);
+    expect(user33.returnFriendName(userData)).to.equal("You haven't added any friends yet!");
   });
 });

@@ -19,15 +19,19 @@ class User {
     };
   };
   returnFriendName(userRepository) {
-    let friendNames = [];
-    this.friends.forEach((friend) => {
-      userRepository.forEach((user) => {
-        if (user.id === friend) {
-          friendNames.push(user.name);
-        };
+    if (this.friends.length === 0) {
+      return "You haven't added any friends yet!";
+    } else {
+      let friendNames = [];
+      this.friends.forEach((friend) => {
+        userRepository.forEach((user) => {
+          if (user.id === friend) {
+            friendNames.push(user.name);
+          };
+        });
       });
-    });
-    return friendNames;
+      return friendNames;
+    };
   };
 };
 
