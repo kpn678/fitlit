@@ -17,6 +17,7 @@ import UserRepository from "./UserRepository";
 import User from "./User";
 import Hydration from "./Hydration";
 import Sleep from "./Sleep";
+import Activity from "./Activity"
 
 //Global variables//
 let userData, sleepData, activityData, hydrationData;
@@ -33,9 +34,15 @@ const weeklyHydrationDisplay = document.querySelector(".weekly-hydration-display
 const weeklySleepDisplay = document.querySelector(".weekly-sleep-display");
 const allTimeSleepHoursDisplay = document.querySelector(".all-time-hours")
 const allTimeSleepQualityDisplay = document.querySelector(".all-time-quality")
+const activityDisplay = document.querySelector(".activity-display")
+const dailyNumStepsDisplay = document.querySelector(".daily-num-steps")
+const dailyNumMinsDisplay = document.querySelector(".daily-num-mins")
+const dailyDistanceDisplay = document.querySelector(".daily-distance")
 const dailyHydrationDisplay = document.querySelector(".daily-hydration-text");
 const dailySleepDisplay = document.querySelector(".daily-sleep-text");
-const stepGoalDisplay = document.querySelector("#stepGoals");
+const stepGoalDisplay = document.querySelector(".compare-steps");
+const minsFlightsDisplay = document.querySelector(".compare-mins-and-flights")
+const stride = document.querySelector(".stride-length")
 
 //Event listeners//
 window.addEventListener("load", (event) => {
