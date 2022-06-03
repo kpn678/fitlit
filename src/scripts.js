@@ -69,7 +69,8 @@ const loadData = () => {
     const randomUserData = userRepository.userData[Math.floor(Math.random() * userRepository.userData.length)];
     const singleHydration = new Hydration(hydrationData.hydrationData,randomUserData.id);
     const singleSleep = new Sleep(sleepData.sleepData, randomUserData.id);
-    const randomUser = new User(randomUserData, singleHydration, singleSleep);
+    const singleActivity = new Activity(activityData.activityData, randomUserData.id);
+    const randomUser = new User(randomUserData, singleHydration, singleSleep, singleActivity);
     beginApplication(randomUser, userRepository);
   }).catch((error) => console.log(`There has been an error! ${error}`));
 };
