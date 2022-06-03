@@ -40,7 +40,7 @@ const dailyNumMinsDisplay = document.querySelector(".daily-num-mins")
 const dailyDistanceDisplay = document.querySelector(".daily-distance")
 const dailyHydrationDisplay = document.querySelector(".daily-hydration-text");
 const dailySleepDisplay = document.querySelector(".daily-sleep-text");
-const stepGoalDisplay = document.querySelector(".compare-steps");
+const compareSteps = document.querySelector(".compare-steps");
 const minsFlightsDisplay = document.querySelector(".compare-mins-and-flights")
 const stride = document.querySelector(".stride-length")
 
@@ -90,7 +90,7 @@ const beginApplication = (user, repository) => {
   displayWeeklySleep(user);
   displayDailyHydration(user);
   displayDailySleep(user);
-  displayStepGoal(user, repository);
+  displayComparisons(user, repository);
   displayAllTimeSleepData(user);
 };
 
@@ -224,8 +224,11 @@ const showWeeklySleepDataPanel = () => {
   weeklySleepDisplay.classList.remove("hidden");
 };
 
-const displayStepGoal = (user, repository) => {
-  stepGoalDisplay.innerHTML = `The average of all our users' daily step goals is: <b>${repository.calculateAverageStepGoals()} steps</b>. <br>
-  Your daily step goal is: <b>${user.dailyStepGoal} steps</b>. <br>
-  Your stride length is: <b>${user.strideLength} feet.</b>`;
+const displayComparisons = (user, repository) => {
+  const recentDate = user.hydrationData.hydrationData.at(-1);
+  const activityObj = user.activityData.calculateActivityAverages(recentDate.date)
+  compareSteps.innerHTML = `The average of all our users' daily step goals is: <b>${repository.calculateAverageStepGoals()} steps</b>. <br>
+  Your daily step goal is: <b>${user.dailyStepGoal} steps</b>. <br><br>The average of all user's step counts today were: <b>${activityObj.allUsersNumSteps} steps</b>.<br>Your step count today was: <b>x</b>.`;
+  minsFlightsDisplay.innerHTML = `The average active minutes for all users today was:<b>${activityObj.allUsersMinsActive}</b>.<br>Your active minutes today were: <b>${user.activityData.returnDailyActiveMins(recentDate.date)}</b>.<br><br>The average flights of stairs climbed today by all users was:<b>${activityObj.allUsersFlightsStairs} flights</b>.<br>Your number of flights climbed today was: <b>x</b> flights.`
+  stride.innerHTML = `Your stride length is: <b>${user.strideLength} feet.</b>`
 };
