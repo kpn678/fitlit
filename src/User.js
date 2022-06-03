@@ -1,5 +1,5 @@
 class User {
-  constructor(singleUserData, hydrationData, sleepData) {
+  constructor(singleUserData, hydrationData, sleepData, activityData) {
     this.id = singleUserData.id;
     this.name = singleUserData.name;
     this.address = singleUserData.address;
@@ -9,7 +9,9 @@ class User {
     this.friends = singleUserData.friends;
     this.hydrationData = hydrationData;
     this.sleepData = sleepData;
+    this.activityData = activityData;
   };
+
   returnUserFirstName() {
     if (this.name === undefined) {
       return "Oops it looks like your name is missing from our database";
@@ -18,6 +20,7 @@ class User {
       return splitName[0];
     };
   };
+
   returnFriendName(userRepository) {
     if (this.friends.length === 0) {
       return "You haven't added any friends yet!";
@@ -33,6 +36,7 @@ class User {
       return friendNames;
     };
   };
+  
 };
 
 export default User;
