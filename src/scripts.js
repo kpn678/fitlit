@@ -30,6 +30,11 @@ const openProfileButton = document.querySelector(".profile-button");
 const closeProfileButton = document.querySelector(".close-profile-button");
 const waterButton = document.querySelector(".water-button");
 const bedButton = document.querySelector(".bed-button");
+const activityButton = document.querySelector(".walk-button");
+const postButton = document.querySelector(".post-button");
+const pModal = document.getElementById("myModal")
+const span = document.getElementsByClassName("close")[0]
+// const closePostButton = document.querySelector(".close-post-button")
 const weeklyHydrationDisplay = document.querySelector(".weekly-hydration-display");
 const weeklySleepDisplay = document.querySelector(".weekly-sleep-display");
 const allTimeSleepHoursDisplay = document.querySelector(".all-time-hours")
@@ -64,6 +69,22 @@ waterButton.addEventListener("click", (event) => {
 bedButton.addEventListener("click", (event) => {
   showWeeklySleepDataPanel();
 });
+
+postButton.addEventListener("click", (event) => {
+  // overlay.style.display = "block";
+  pModal.style.display = 'block';
+})
+
+span.addEventListener("click", (event) => {
+  pModal.style.display = "none";
+});
+
+window.onclick = function(event) {
+  if (event.target == pModal) {
+    pModal.style.display = "none";
+  }
+}
+
 
 //Functions//
 const loadData = () => {
