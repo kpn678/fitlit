@@ -32,9 +32,8 @@ const waterButton = document.querySelector(".water-button");
 const bedButton = document.querySelector(".bed-button");
 const activityButton = document.querySelector(".walk-button");
 const postButton = document.querySelector(".post-button");
-const pModal = document.getElementById("myModal")
+const postModal = document.getElementById("postModal")
 const span = document.getElementsByClassName("close")[0]
-// const closePostButton = document.querySelector(".close-post-button")
 const weeklyHydrationDisplay = document.querySelector(".weekly-hydration-display");
 const weeklySleepDisplay = document.querySelector(".weekly-sleep-display");
 const allTimeSleepHoursDisplay = document.querySelector(".all-time-hours")
@@ -48,6 +47,8 @@ const dailySleepDisplay = document.querySelector(".daily-sleep-text");
 const compareSteps = document.querySelector(".compare-steps");
 const minsFlightsDisplay = document.querySelector(".compare-mins-and-flights")
 const stride = document.querySelector(".stride-length")
+const postSubmit = document.querySelector(".submit")
+const postError = document.querySelector(".error")
 
 //Event listeners//
 window.addEventListener("load", (event) => {
@@ -71,19 +72,22 @@ bedButton.addEventListener("click", (event) => {
 });
 
 postButton.addEventListener("click", (event) => {
-  // overlay.style.display = "block";
-  pModal.style.display = 'block';
+  postModal.style.display = 'block';
 })
 
 span.addEventListener("click", (event) => {
-  pModal.style.display = "none";
+  postModal.style.display = "none";
 });
 
 window.onclick = function(event) {
-  if (event.target == pModal) {
-    pModal.style.display = "none";
+  if (event.target == postModal) {
+    postModal.style.display = "none";
   }
 }
+
+postSubmit.addEventListener("click", (event) => {
+  createFormDataObj()
+})
 
 
 //Functions//
@@ -114,6 +118,33 @@ const beginApplication = (user, repository) => {
   displayComparisons(user, repository);
   displayAllTimeSleepData(user);
 };
+// run when submit button is clicked
+// >>
+// needs info from all inputs
+const createFormDataObj = () => {
+  event.preventDefault();
+  const id = document.querySelector(".id")
+  const date = document.querySelector(".calendar")
+  const numberOunces = document.querySelector(".number-ounces")
+  const hoursSlept = document.querySelector(".hours-slept")
+  const sleepQuality = document.querySelector(".sleep-quality")
+  const flights = document.querySelector(".flights")
+  const mins = document.querySelector(".mins")
+  const steps = document.querySelector(".steps")
+
+  let formDataObj = {
+    id: id.value,
+    date: date.value,
+    numberOunces: numberOunces.value,
+    hoursSlept: hoursSlept.value,
+    sleepQuality: sleepQuality.value,
+    flights: flights.value,
+    mins: mins.value,
+    steps: steps.value
+  }
+  console.log(formDataObj)
+
+}
 
 const displayTodaysDate = (user) => {
   const recentDate = user.hydrationData.hydrationData.at(-1);

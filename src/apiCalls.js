@@ -18,11 +18,24 @@ const fetchAll = () => {
   ]);
 };
 
-const postHydration = (id, date, numOunce) => {
+
+
+//  formData = {
+// id:
+// date:
+// numOunce:
+// hoursSlept:
+// sleepQuality:
+// flights:
+// mins:
+// steps:
+// }
+
+const postHydration = (formData) => {
   fetch("http://localhost:3001/api/v1/hydration", {
     method: "POST",
     body: JSON.stringify({
-      userID: id, date: date, numOunces: numOunce
+      userID: formData.id, date: formData.date, numOunces: formData.numberOunces
     }),
     headers: { "Content-type": "application/json" },
   })
@@ -41,11 +54,12 @@ const postHydration = (id, date, numOunce) => {
     })
 }
 
-const postSleep = (id, date, hoursSlept, sleepQual) => {
+const postSleep = (formData) => {
+  // take in an object of all the form data and pull out only what we need for each function.
   fetch("http://localhost:3001/api/v1/sleep", {
     method: "POST",
     body: JSON.stringify({
-      userID: id, date: date, hoursSlept: hoursSlept, sleepQuality: sleepQual
+      userID: formData.id, date: formData.date, hoursSlept: formData.hoursSlept, sleepQuality: formData.sleepQuality
     }),
     headers: { "Content-type": "application/json" },
   })
@@ -64,11 +78,11 @@ const postSleep = (id, date, hoursSlept, sleepQual) => {
     })
 }
 
-const postActivity = (id, date, flights, mins, steps) => {
+const postActivity = (formData) => {
   fetch("http://localhost:3001/api/v1/activity", {
     method: "POST",
     body: JSON.stringify({
-      userID: id, date: date, flightsOfStairs: flights, minutesActive: mins, numSteps: steps
+      userID: formData.id, date: formData.date, flightsOfStairs: formData.flights, minutesActive: formData.mins, numSteps: formData.steps
     }),
     headers: { "Content-type": "application/json" },
   })

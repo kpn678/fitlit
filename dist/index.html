@@ -33,24 +33,27 @@
 
       <img class="post-button" src="./images/post.png" alt="post icon" role="button" height="50px" width="50px"/>
 
-      <div id="myModal" class="pModal">
+      <div id="postModal" class="post-modal">
 
         <div class="modal-content">
           <span class="close">&times;</span>
           <form class="add-data">
-            <input placeholder="id" name="id" required/>
+            <input class ="id" placeholder="id" name="id" required>
             <label for="calendar"></label>
-            <input type="date" id="calendar" name="calendar" min="" value="">
+            <input class="calendar" type="date" id="calendar" name="calendar" min="" value="" required>
             <p>Enter hydration data here</p>
-            <input placeholder="ounces drank" name="numberOunces" required/>
+            <input class="number-ounces" placeholder="ounces drank" name="numberOunces" required>
             <p>Enter sleep data here</p>
-            <input placeholder="hours slept" name="hoursSlept" required/>
-            <input placeholder="sleep quality" name="sleepQuality" required/>
+            <input class="hours-slept" placeholder="hours slept" name="hoursSlept" required>
+            <label for="sleep-quality">Sleep quality: 0</label>
+            <input class="sleep-quality" type="range" name="sleepQuality"
+            min="0" max="5" required>
+            <label for="sleep-quality">5</label>
             <p>Enter activity data here</p>
-            <input placeholder="flights of stairs" name="flights" required/>
-            <input placeholder="minutes active" name="mins" required/>
-            <input placeholder="step count" name="steps" /><br><br>
-            <input class="submit" type="submit" value="Submit Data!" />
+            <input class="flights" placeholder="flights of stairs" name="flights" required>
+            <input class="mins" placeholder="minutes active" name="mins" required>
+            <input class="steps" placeholder="step count" name="steps" required><br><br>
+            <input class="submit" type="submit" value="Submit Data!">
             <p class="error-box"></p>
           </form>
         </div>
