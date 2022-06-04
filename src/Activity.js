@@ -9,7 +9,7 @@ class Activity {
     findDay(date){
       return this.activityData.find(datum => datum.date === date)
     }
-    
+
     returnDailyMilesWalked(date, user) {
        const day = this.findDay(date);
         if(day.numSteps === 0){
@@ -20,7 +20,16 @@ class Activity {
         }
     };
 
-    returnDailyActiveMins(date) { 
+    returnDailySteps(date){
+      const day = this.findDay(date);
+       if(day.numSteps === 0){
+           return "You have not logged any steps today."
+       } else {
+           return day.numSteps
+       }
+    }
+
+    returnDailyActiveMins(date) {
         const day = this.findDay(date);
         if(day.minutesActive === 0){
             return "You have not logged any active minutes for today."
@@ -74,7 +83,7 @@ class Activity {
             acc["allUsersNumSteps"] = Math.round((totalSteps += user.numSteps) / dayArray.length)
             acc["allUsersFlightsStairs"] = Math.round((totalStairs += user.flightsOfStairs) / dayArray.length)
             acc["allUsersMinsActive"] = Math.round((totalMins += user.minutesActive) / dayArray.length)
-            return acc 
+            return acc
         }, {})
         return averageAllUserData
     }

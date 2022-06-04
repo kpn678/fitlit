@@ -227,8 +227,8 @@ const showWeeklySleepDataPanel = () => {
 const displayComparisons = (user, repository) => {
   const recentDate = user.hydrationData.hydrationData.at(-1);
   const activityObj = user.activityData.calculateActivityAverages(recentDate.date)
-  compareSteps.innerHTML = `The average of all our users' daily step goals is: <b>${repository.calculateAverageStepGoals()} steps</b>. <br>
-  Your daily step goal is: <b>${user.dailyStepGoal} steps</b>. <br><br>The average of all user's step counts today were: <b>${activityObj.allUsersNumSteps} steps</b>.<br>Your step count today was: <b>x</b>.`;
-  minsFlightsDisplay.innerHTML = `The average active minutes for all users today was:<b>${activityObj.allUsersMinsActive}</b>.<br>Your active minutes today were: <b>${user.activityData.returnDailyActiveMins(recentDate.date)}</b>.<br><br>The average flights of stairs climbed today by all users was:<b>${activityObj.allUsersFlightsStairs} flights</b>.<br>Your number of flights climbed today was: <b>x</b> flights.`
+  compareSteps.innerHTML = `All users’ daily step goals average:  <b>${repository.calculateAverageStepGoals()} steps</b>. <br>
+  Your daily step goal: <b>${user.dailyStepGoal} steps</b>. <br><br>All users’ step counts average today: <b>${activityObj.allUsersNumSteps} steps</b>.<br>Your step count today: <b>${user.activityData.returnDailySteps(recentDate.date)} steps</b>.`;
+  minsFlightsDisplay.innerHTML = `All users’ active minutes average today:<b>${activityObj.allUsersMinsActive}</b>.<br>Your active minutes today: <b>${user.activityData.returnDailyActiveMins(recentDate.date)}</b>.<br><br>All users’ flights of stairs climbed average today:<b>${activityObj.allUsersFlightsStairs} flights</b>.<br>Your flights of stairs climbed today: <b>x</b> flights.`
   stride.innerHTML = `Your stride length is: <b>${user.strideLength} feet.</b>`
 };
