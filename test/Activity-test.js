@@ -128,6 +128,14 @@ describe("Activity", () => {
             expect(activity32.returnAllDaysStepGoalMet(user32)).to.deep.equal(["2019/06/16", "2019/06/17", "2019/06/18", "2019/06/20", "2019/06/21", "2019/06/22", "2019/06/23"])
         })
 
+        it("should be able to return how many flights of stairs a user has climbed in a day", () => {
+            expect(activity32.returnDailyFlights("2019/06/23")).to. equal(30)
+        })
+
+        it("should be able to return a message to the user if they climbed 0 flights", () => {
+            expect(activity33.returnDailyFlights("2019/06/23")).to.equal("You have not logged any flights of stairs climbed today.")
+        })
+
         it("should be able to find a user's all-time stair climbing record", () => {
             expect(activity31.findAllTimeStairRecord()).to.deep.equal("Your all-time best climb was 48 flights of stairs.")
         })

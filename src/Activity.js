@@ -67,6 +67,15 @@ class Activity {
         return allDaysStepsMet
     }
 
+    returnDailyFlights(date){
+      const day = this.findDay(date);
+       if(day.flightsOfStairs === 0){
+           return "You have not logged any flights of stairs climbed today."
+       } else {
+           return day.flightsOfStairs
+       }
+    }
+
     findAllTimeStairRecord(){
         let stairArray = []
         this.activityData.forEach(datum => stairArray.push(datum.flightsOfStairs))
