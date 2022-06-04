@@ -1,11 +1,15 @@
+import { reloadData } from "./scripts.js"
+
+const postError = document.querySelector(".error")
+
 let apiUserData, apiSleepData, apiActivityData, apiHydrationData;
 
 const fetchData = (dataSet) => {
-  return fetch(`https://fitlit-api.herokuapp.com/api/v1/${dataSet}`)
+  return fetch(`http://localhost:3001/api/v1/${dataSet}`)
     .then((response) => response.json());
 };
 
-const fetchAll = () => {
+export const fetchAll = () => {
   apiUserData = fetchData("users");
   apiSleepData = fetchData("sleep");
   apiActivityData = fetchData("activity");
@@ -17,6 +21,12 @@ const fetchAll = () => {
     apiHydrationData,
   ]);
 };
+
+export const postAll = (formData => {
+  postHydration(formData);
+  postSleep(formData);
+  postActivity(formData);
+})
 
 
 
@@ -47,9 +57,10 @@ const postHydration = (formData) => {
       return res.json()
     }
     })
-    .then(json => data)
+    .then(json => reloadData())
     .catch(error => {
-      console.warn(error.message);
+      console.log("THIS", error)
+      console.warn("WARN", error.message);
       displayErrorMessage(error)
     })
 }
@@ -71,7 +82,7 @@ const postSleep = (formData) => {
     return res.json()
   }
   })
-    .then(json => data)
+    .then(json => reloadData())
     .catch(error => {
       console.warn(error.message);
       displayErrorMessage(error)
@@ -82,7 +93,8 @@ const postActivity = (formData) => {
   fetch("http://localhost:3001/api/v1/activity", {
     method: "POST",
     body: JSON.stringify({
-      userID: formData.id, date: formData.date, flightsOfStairs: formData.flights, minutesActive: formData.mins, numSteps: formData.steps
+      userID: formData.id, date: formData.date, flightsOfStairs: formData.flights, minutesActive: formData.mins,
+      numSteps: formData.steps
     }),
     headers: { "Content-type": "application/json" },
   })
@@ -94,11 +106,39 @@ const postActivity = (formData) => {
     return res.json()
   }
   })
-    .then(json => data)
+    .then(json => reloadData())
     .catch(error => {
       console.warn(error.message);
       displayErrorMessage(error)
     })
 }
 
-export { fetchAll };
+// const submitDataForm = (e) => {
+//   e.preventDefault();
+//   const formData = new FormData(e.target);
+//   const pantryStock = {
+//     userID: parseInt(formData.get("user-id")),
+//     ingredientID: parseInt(formData.get("ingredient-id")),
+//     ingredientModification: parseInt(formData.get("ingredient-modification")),
+//   };
+//   postPantryStock(pantryStock);
+//   e.target.reset();
+// };
+// const updateUserPantryStock = (userID) => {
+//   return fetchData("users")
+//   .then(response => response.find(user => user.id === userID));
+// };
+//
+const displayErrorMessage = (error) => {
+  if (error.message === "Failed to fetch") {
+    return postError.innerText = "OOPS something went wrong";
+  } else {
+    return postError.innerText = error.message;
+  };
+};
+
+// Thanks for submitting >
+// .get data >
+// refresh display keeping the same user >
+// Update page function(fetch data) >
+// see posted data in api >

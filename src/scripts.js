@@ -9,9 +9,9 @@ import "./images/user.png";
 import "./images/post.png";
 import "./images/water-drop.png";
 import "./images/moon.png";
-import "./images/parade.png"
+import "./images/parade.png";
 
-import { fetchAll } from "./apiCalls.js";
+import { fetchAll, postAll } from "./apiCalls.js";
 
 import UserRepository from "./UserRepository";
 import User from "./User";
@@ -20,7 +20,7 @@ import Sleep from "./Sleep";
 import Activity from "./Activity"
 
 //Global variables//
-let userData, sleepData, activityData, hydrationData;
+let userData, sleepData, activityData, hydrationData, id;
 
 //Query selectors//
 const welcomeMessage = document.querySelector("h2");
@@ -48,7 +48,6 @@ const compareSteps = document.querySelector(".compare-steps");
 const minsFlightsDisplay = document.querySelector(".compare-mins-and-flights")
 const stride = document.querySelector(".stride-length")
 const postSubmit = document.querySelector(".submit")
-const postError = document.querySelector(".error")
 
 //Event listeners//
 window.addEventListener("load", (event) => {
@@ -103,27 +102,50 @@ const loadData = () => {
     const singleSleep = new Sleep(sleepData.sleepData, randomUserData.id);
     const singleActivity = new Activity(activityData.activityData, randomUserData.id);
     const randomUser = new User(randomUserData, singleHydration, singleSleep, singleActivity);
+    // setTimeout(beginApplication(randomUser, userRepository);)
     beginApplication(randomUser, userRepository);
   }).catch((error) => console.log(`There has been an error! ${error}`));
 };
+
+export const reloadData = () => {
+  fetchAll().then((data) => {
+    userData = data[0];
+    sleepData = data[1];
+    activityData = data[2];
+    hydrationData = data[3];
+    const userRepository = new UserRepository(userData.userData);
+    const currentUserData = userRepository.getUserData(id);
+    const singleHydration = new Hydration(hydrationData.hydrationData, id);
+    const singleSleep = new Sleep(sleepData.sleepData, id);
+    const singleActivity = new Activity(activityData.activityData, id);
+    const currentUser = new User(currentUserData, singleHydration, singleSleep, singleActivity);
+    beginApplication(currentUser, userRepository);
+  }).catch((error) => console.log(`There has been an error! ${error}`));
+};
+
 
 const beginApplication = (user, repository) => {
   displayTodaysDate(user);
   generateWelcomeMessage(user);
   displayAccountInfo(user, repository);
-  displayWeeklyHydration(user);
-  displayWeeklySleep(user);
   displayDailyHydration(user);
   displayDailySleep(user);
+  displayWeeklyHydration(user);
+  displayWeeklySleep(user);
   displayComparisons(user, repository);
   displayAllTimeSleepData(user);
+  assignUserId(user);
 };
+
+const assignUserId = (user) => {
+  id = user.id
+  console.log(user)
+}
 // run when submit button is clicked
 // >>
 // needs info from all inputs
 const createFormDataObj = () => {
   event.preventDefault();
-  const id = document.querySelector(".id")
   const date = document.querySelector(".calendar")
   const numberOunces = document.querySelector(".number-ounces")
   const hoursSlept = document.querySelector(".hours-slept")
@@ -133,16 +155,17 @@ const createFormDataObj = () => {
   const steps = document.querySelector(".steps")
 
   let formDataObj = {
-    id: id.value,
+    id: id,
     date: date.value,
-    numberOunces: numberOunces.value,
-    hoursSlept: hoursSlept.value,
-    sleepQuality: sleepQuality.value,
-    flights: flights.value,
-    mins: mins.value,
-    steps: steps.value
+    numberOunces: parseInt(numberOunces.value),
+    hoursSlept: parseInt(hoursSlept.value),
+    sleepQuality: parseInt(sleepQuality.value),
+    flights: parseInt(flights.value),
+    mins: parseInt(mins.value),
+    steps: parseInt(steps.value)
   }
   console.log(formDataObj)
+  postAll(formDataObj)
 
 }
 
@@ -283,12 +306,4 @@ const displayComparisons = (user, repository) => {
   Your daily step goal: <b>${user.dailyStepGoal} steps</b>. <br><br>All users’ step counts average today: <b>${activityObj.allUsersNumSteps} steps</b>.<br>Your step count today: <b>${user.activityData.returnDailySteps(recentDate.date)} steps</b>.`;
   minsFlightsDisplay.innerHTML = `All users’ active minutes average today:<b>${activityObj.allUsersMinsActive} mins</b>.<br>Your active minutes today: <b>${user.activityData.returnDailyActiveMins(recentDate.date)}</b><br><br>All users’ flights of stairs climbed average today: <b>${activityObj.allUsersFlightsStairs} flights</b>.<br>Your flights of stairs climbed today: <b>${user.activityData.returnDailyFlights(recentDate.date)} flights</b>.`
   stride.innerHTML = `Your distance walked today: <b>${user.activityData.returnDailyMilesWalked(recentDate.date, user)}</b><br>Your stride length is: <b>${user.strideLength} feet.</b>`
-};
-
-const displayErrorMessage = (error) => {
-  if (error.message === "Failed to fetch") {
-    return errorMessage.innerText = "OOPS something went wrong";
-  } else {
-    return errorMessage.innerText = error.message;
-  };
 };
