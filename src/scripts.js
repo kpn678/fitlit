@@ -230,5 +230,5 @@ const displayComparisons = (user, repository) => {
   compareSteps.innerHTML = `All users’ daily step goals average:  <b>${repository.calculateAverageStepGoals()} steps</b>. <br>
   Your daily step goal: <b>${user.dailyStepGoal} steps</b>. <br><br>All users’ step counts average today: <b>${activityObj.allUsersNumSteps} steps</b>.<br>Your step count today: <b>${user.activityData.returnDailySteps(recentDate.date)} steps</b>.`;
   minsFlightsDisplay.innerHTML = `All users’ active minutes average today:<b>${activityObj.allUsersMinsActive} mins</b>.<br>Your active minutes today: <b>${user.activityData.returnDailyActiveMins(recentDate.date)}</b><br><br>All users’ flights of stairs climbed average today: <b>${activityObj.allUsersFlightsStairs} flights</b>.<br>Your flights of stairs climbed today: <b>${user.activityData.returnDailyFlights(recentDate.date)} flights</b>.`
-  stride.innerHTML = `Your stride length is: <b>${user.strideLength} feet.</b>`
+  stride.innerHTML = `Your distance walked today: <b>${user.activityData.returnDailyMilesWalked(recentDate.date, user)}</b><br>Your stride length is: <b>${user.strideLength} feet.</b>`
 };
