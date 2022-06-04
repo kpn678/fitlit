@@ -232,3 +232,11 @@ const displayComparisons = (user, repository) => {
   minsFlightsDisplay.innerHTML = `All users’ active minutes average today:<b>${activityObj.allUsersMinsActive} mins</b>.<br>Your active minutes today: <b>${user.activityData.returnDailyActiveMins(recentDate.date)}</b><br><br>All users’ flights of stairs climbed average today: <b>${activityObj.allUsersFlightsStairs} flights</b>.<br>Your flights of stairs climbed today: <b>${user.activityData.returnDailyFlights(recentDate.date)} flights</b>.`
   stride.innerHTML = `Your distance walked today: <b>${user.activityData.returnDailyMilesWalked(recentDate.date, user)}</b><br>Your stride length is: <b>${user.strideLength} feet.</b>`
 };
+
+const displayErrorMessage = (error) => {
+  if (error.message === "Failed to fetch") {
+    return errorMessage.innerText = "OOPS something went wrong";
+  } else {
+    return errorMessage.innerText = error.message;
+  };
+};
