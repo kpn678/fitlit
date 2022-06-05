@@ -1,3 +1,7 @@
+import { reloadData } from "./scripts.js"
+
+const postError = document.querySelector(".error")
+
 let apiUserData, apiSleepData, apiActivityData, apiHydrationData;
 
 const fetchData = (dataSet) => {
@@ -5,7 +9,7 @@ const fetchData = (dataSet) => {
     .then((response) => response.json());
 };
 
-const fetchAll = () => {
+export const fetchAll = () => {
   apiUserData = fetchData("users");
   apiSleepData = fetchData("sleep");
   apiActivityData = fetchData("activity");
@@ -18,4 +22,123 @@ const fetchAll = () => {
   ]);
 };
 
-export { fetchAll };
+export const postAll = (formData => {
+  postHydration(formData);
+  postSleep(formData);
+  postActivity(formData);
+})
+
+
+
+//  formData = {
+// id:
+// date:
+// numOunce:
+// hoursSlept:
+// sleepQuality:
+// flights:
+// mins:
+// steps:
+// }
+
+const postHydration = (formData) => {
+  fetch("http://localhost:3001/api/v1/hydration", {
+    method: "POST",
+    body: JSON.stringify({
+      userID: formData.id, date: formData.date, numOunces: formData.numberOunces
+    }),
+    headers: { "Content-type": "application/json" },
+  })
+    .then(res => {
+      console.log("hydration response", res)
+      if (!res.ok) {
+      throw new Error("Please make sure all fields are filled out.")
+    } else {
+      return res.json()
+    }
+    })
+    .then(json => reloadData())
+    .catch(error => {
+      console.log("THIS", error)
+      console.warn("WARN", error.message);
+      displayErrorMessage(error)
+    })
+}
+
+const postSleep = (formData) => {
+  // take in an object of all the form data and pull out only what we need for each function.
+  fetch("http://localhost:3001/api/v1/sleep", {
+    method: "POST",
+    body: JSON.stringify({
+      userID: formData.id, date: formData.date, hoursSlept: formData.hoursSlept, sleepQuality: formData.sleepQuality
+    }),
+    headers: { "Content-type": "application/json" },
+  })
+  .then(res => {
+    console.log("sleep response", res)
+    if (!res.ok) {
+    throw new Error("Please make sure all fields are filled out.")
+  } else {
+    return res.json()
+  }
+  })
+    .then(json => reloadData())
+    .catch(error => {
+      console.warn(error.message);
+      displayErrorMessage(error)
+    })
+}
+
+const postActivity = (formData) => {
+  fetch("http://localhost:3001/api/v1/activity", {
+    method: "POST",
+    body: JSON.stringify({
+      userID: formData.id, date: formData.date, flightsOfStairs: formData.flights, minutesActive: formData.mins,
+      numSteps: formData.steps
+    }),
+    headers: { "Content-type": "application/json" },
+  })
+  .then(res => {
+    console.log("activity response", res)
+    if (!res.ok) {
+    throw new Error("Please make sure all fields are filled out.")
+  } else {
+    return res.json()
+  }
+  })
+    .then(json => reloadData())
+    .catch(error => {
+      console.warn(error.message);
+      displayErrorMessage(error)
+    })
+}
+
+// const submitDataForm = (e) => {
+//   e.preventDefault();
+//   const formData = new FormData(e.target);
+//   const pantryStock = {
+//     userID: parseInt(formData.get("user-id")),
+//     ingredientID: parseInt(formData.get("ingredient-id")),
+//     ingredientModification: parseInt(formData.get("ingredient-modification")),
+//   };
+//   postPantryStock(pantryStock);
+//   e.target.reset();
+// };
+// const updateUserPantryStock = (userID) => {
+//   return fetchData("users")
+//   .then(response => response.find(user => user.id === userID));
+// };
+//
+const displayErrorMessage = (error) => {
+  if (error.message === "Failed to fetch") {
+    return postError.innerText = "OOPS something went wrong";
+  } else {
+    return postError.innerText = error.message;
+  };
+};
+
+// Thanks for submitting >
+// .get data >
+// refresh display keeping the same user >
+// Update page function(fetch data) >
+// see posted data in api >

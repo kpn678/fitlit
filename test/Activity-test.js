@@ -8,7 +8,7 @@ describe("Activity", () => {
     let user31, user32, user33, activity31, activity32, activity33;
 
     beforeEach(() => {
-      
+
         activity31 = new Activity(activityData, 31)
         activity32 = new Activity(activityData, 32);
         activity33 = new Activity(activityData, 33);
@@ -25,7 +25,7 @@ describe("Activity", () => {
         it("should be an instance of Activity", () => {
             expect(activity31).to.be.an.instanceof(Activity);
         });
-        
+
         it("should gather information based on the user's id", () => {
         expect(activity31.userID).to.equal(31);
         });
@@ -95,8 +95,16 @@ describe("Activity", () => {
             expect(activity32.returnDailyMilesWalked("2019/06/23", user32)).to.equal("7.41 miles")
         })
 
-        it("should be able to return a message to the user if they have walked 0 steps", () => {
+        it("should be able to return a message to the user if they have walked 0 miles", () => {
             expect(activity33.returnDailyMilesWalked("2019/06/23", user33)).to.equal("You have not logged any steps today.")
+        })
+
+        it("should be able to return how many steps a user has taken in a day", () => {
+            expect(activity32.returnDailySteps("2019/06/23")).to. equal(9104)
+        })
+
+        it("should be able to return a message to the user if they have walked 0 steps", () => {
+            expect(activity33.returnDailySteps("2019/06/23")).to.equal("You have not logged any steps today.")
         })
 
         it("should be able to return a user's active minutes in a day", () => {
@@ -118,6 +126,14 @@ describe("Activity", () => {
 
         it("should return a list of days where the user has met their step goal", () => {
             expect(activity32.returnAllDaysStepGoalMet(user32)).to.deep.equal(["2019/06/16", "2019/06/17", "2019/06/18", "2019/06/20", "2019/06/21", "2019/06/22", "2019/06/23"])
+        })
+
+        it("should be able to return how many flights of stairs a user has climbed in a day", () => {
+            expect(activity32.returnDailyFlights("2019/06/23")).to. equal(30)
+        })
+
+        it("should be able to return a message to the user if they climbed 0 flights", () => {
+            expect(activity33.returnDailyFlights("2019/06/23")).to.equal("You have not logged any flights of stairs climbed today.")
         })
 
         it("should be able to find a user's all-time stair climbing record", () => {
