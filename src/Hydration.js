@@ -11,11 +11,11 @@ class Hydration {
   };
 
   returnDailyOunces(date) {
-    const dailyOz = this.hydrationData.find(datum => datum.date === date);
-    if (!dailyOz) {
+    const dayData = this.hydrationData.find(datum => datum.date === date);
+    if (!dayData) {
       return 0;
     };
-    return `${dailyOz.numOunces} oz.`;
+    return `${dayData.numOunces} oz.`;
   };
 
   getPastWeekDailyOunces(date) {
