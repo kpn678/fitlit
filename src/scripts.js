@@ -10,6 +10,9 @@ import "./images/post.png";
 import "./images/water-drop.png";
 import "./images/moon.png";
 import "./images/parade.png";
+import "./images/mins.png";
+import "./images/distance.png";
+import "./images/stairs.png";
 
 import { fetchAll, postAll } from "./apiCalls.js";
 
@@ -292,12 +295,8 @@ const displayWeeklySleep = (user) => {
   mySChart = new Chart(sChart, config)
 };
 
-const displayActivityData = (user, date) => {
-  const firstDate = user.sleepData.sleepData.at(-7);
-  //stepData.innerHTML = `Your weekly step count looks like this:<br><br> <b>${user.activityData.needAFunction()}</b>`
-  minuteData.innerHTML = `You were active for<b>${user.activityData.calculateWeeklyActiveMins(firstDate)}minutes this week!</b>`;
-  //distanceData.innerHTML = `You climbed<b>${user.activityData.needAFunction()}</b>flights of stairs this week!<br><br>`;
-
+const displayActivityData = (user) => {
+  //need to interpolate and create methods for weekly data to pull in here
 }
 
 const displayAllTimeSleepData = (user) => {
