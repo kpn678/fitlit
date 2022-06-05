@@ -6,7 +6,8 @@ let apiUserData, apiSleepData, apiActivityData, apiHydrationData;
 
 const fetchData = (dataSet) => {
   return fetch(`http://localhost:3001/api/v1/${dataSet}`)
-    .then((response) => response.json());
+    .then((response) => response.json())
+    .catch((error) => console.log(dataSet))
 };
 
 export const fetchAll = () => {
@@ -27,19 +28,6 @@ export const postAll = (formData => {
   postSleep(formData);
   postActivity(formData);
 })
-
-
-
-//  formData = {
-// id:
-// date:
-// numOunce:
-// hoursSlept:
-// sleepQuality:
-// flights:
-// mins:
-// steps:
-// }
 
 const postHydration = (formData) => {
   fetch("http://localhost:3001/api/v1/hydration", {
@@ -66,7 +54,6 @@ const postHydration = (formData) => {
 }
 
 const postSleep = (formData) => {
-  // take in an object of all the form data and pull out only what we need for each function.
   fetch("http://localhost:3001/api/v1/sleep", {
     method: "POST",
     body: JSON.stringify({
@@ -113,22 +100,6 @@ const postActivity = (formData) => {
     })
 }
 
-// const submitDataForm = (e) => {
-//   e.preventDefault();
-//   const formData = new FormData(e.target);
-//   const pantryStock = {
-//     userID: parseInt(formData.get("user-id")),
-//     ingredientID: parseInt(formData.get("ingredient-id")),
-//     ingredientModification: parseInt(formData.get("ingredient-modification")),
-//   };
-//   postPantryStock(pantryStock);
-//   e.target.reset();
-// };
-// const updateUserPantryStock = (userID) => {
-//   return fetchData("users")
-//   .then(response => response.find(user => user.id === userID));
-// };
-//
 const displayErrorMessage = (error) => {
   if (error.message === "Failed to fetch") {
     return postError.innerText = "OOPS something went wrong";
@@ -136,9 +107,3 @@ const displayErrorMessage = (error) => {
     return postError.innerText = error.message;
   };
 };
-
-// Thanks for submitting >
-// .get data >
-// refresh display keeping the same user >
-// Update page function(fetch data) >
-// see posted data in api >

@@ -22,11 +22,10 @@ class Activity {
 
     returnDailySteps(date){
       const day = this.findDay(date);
-       if(day.numSteps === 0){
-           return "You have not logged any steps today."
-       } else {
-           return day.numSteps
-       }
+      if (!day) {
+        return 0
+      }
+      return day.numSteps
     }
 
     returnDailyActiveMins(date) {
