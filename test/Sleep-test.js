@@ -7,7 +7,6 @@ describe("Sleep", () => {
   let user31, user32, user33, sleep31, sleep32, sleep33;
 
   beforeEach(() => {
-
     user31 = new User(singleUserData31);
     user32 = new User(singleUserData32);
     user33 = new User(singleUserData33);

@@ -3,18 +3,20 @@ import UserRepository from "../src/UserRepository";
 import User from "../src/User";
 import Hydration from "../src/Hydration";
 import Sleep from "../src/Sleep";
-import {userData, hydrationData, sleepData} from "../src/sampleData/user-sample-data";
-import { activityData } from "../src/sampleData/activity-sample-data";
 import Activity from "../src/Activity";
+import { userData } from "../src/sampleData/user-sample-data";
+import { hydrationData } from "../src/sampleData/hydration-sample-data";
+import { sleepData } from "../src/sampleData/sleep-sample-data";
+import { activityData } from "../src/sampleData/activity-sample-data";
 
 describe("User", () => {
   let  user31, user32, user33, userRepository, hydration, sleep, activity;
 
   beforeEach(() => {
-
     user31 = new User(userData[0]);
     user32 = new User(userData[1]);
     user33 = new User(userData[2], hydration, sleep, activity);
+
     userRepository = new UserRepository(userData);
     hydration = new Hydration(hydrationData, 33);
     sleep = new Sleep(sleepData, 33);

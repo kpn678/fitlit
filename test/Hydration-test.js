@@ -3,12 +3,10 @@ import User from "../src/User";
 import Hydration from "../src/Hydration";
 import { hydrationData, singleUserData31, singleUserData32, singleUserData33 } from "../src/sampleData/hydration-sample-data";
 
-
 describe("Hydration", () => {
   let user31, user32, user33, hydration31, hydration32, hydration33;
 
   beforeEach(() => {
-
     user31 = new User(singleUserData31);
     user32 = new User(singleUserData32);
     user33 = new User(singleUserData33);
