@@ -19,8 +19,8 @@
         <img class="profile-button" src="./images/user.png" alt="user icon" role="button" height="50px" width="50px"/>
         <div class="overlay" id="overlay">
           <div class="modal" id="modal">
-            <button class="close-profile-button">&times;</button>
-            <p id="accountInfo">Your Account Info</p>
+            <span role="button" class="close-profile-button">&times;</span>
+            <p id="accountInfo">Your Account Info:</p>
           </div>
         </div>
       </section>
@@ -37,15 +37,15 @@
           <form class="add-data">
             <label for="calendar"></label>
             <input class="calendar" type="date" id="calendar" name="calendar" min="" value="" required>
-            <p>Enter hydration data here</p>
+            <p>Enter hydration data here:</p>
             <input class="number-ounces" placeholder="ounces drank" name="numberOunces" required>
-            <p>Enter sleep data here</p>
+            <p>Enter sleep data here:</p>
             <input class="hours-slept" placeholder="hours slept" name="hoursSlept" required>
             <label for="sleep-quality">Sleep quality: 0</label>
             <input class="sleep-quality" type="range" name="sleepQuality"
             min="0" max="5" required>
             <label for="sleep-quality">5</label>
-            <p>Enter activity data here</p>
+            <p>Enter activity data here:</p>
             <input class="flights" placeholder="flights of stairs" name="flights" required>
             <input class="mins" placeholder="minutes active" name="mins" required>
             <input class="steps" placeholder="step count" name="steps" required><br><br>
