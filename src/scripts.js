@@ -20,7 +20,8 @@ import Sleep from "./Sleep";
 import Activity from "./Activity"
 
 //Global variables//
-let userData, sleepData, activityData, hydrationData, id, mySChart = null, myHChart = null;
+let userData, sleepData, activityData, hydrationData, id;
+let mySChart = null, myHChart = null, myStepChart = null, myMinChart = null, myStairsChart = null;
 
 //Query selectors//
 const welcomeMessage = document.querySelector("h2");
@@ -48,6 +49,9 @@ const compareSteps = document.querySelector(".compare-steps");
 const minsFlightsDisplay = document.querySelector(".compare-mins-and-flights")
 const stride = document.querySelector(".stride-length")
 const postSubmit = document.querySelector(".submit")
+const stepData = document.querySelector(".step-data")
+const minuteData = document.querySelector(".minute-data")
+const distanceData = document.querySelector(".distance-data")
 
 
 
@@ -72,6 +76,10 @@ bedButton.addEventListener("click", (event) => {
   showWeeklySleepDataPanel();
 });
 
+activityButton.addEventListener("click", (event) => {
+  showActivityDataPanel();
+});
+
 postButton.addEventListener("click", (event) => {
   postModal.style.display = 'block';
 })
@@ -87,6 +95,7 @@ window.onclick = function(event) {
 }
 
 postSubmit.addEventListener("click", (event) => {
+  postModal.style.display = "none";
   createFormDataObj()
 })
 
@@ -139,6 +148,7 @@ const beginApplication = (user, repository) => {
   assignUserId(user);
   displayWeeklyHydration(user);
   displayWeeklySleep(user);
+  displayActivityData(user);
 };
 
 const assignUserId = (user) => {
@@ -282,6 +292,14 @@ const displayWeeklySleep = (user) => {
   mySChart = new Chart(sChart, config)
 };
 
+const displayActivityData = (user, date) => {
+  const firstDate = user.sleepData.sleepData.at(-7);
+  //stepData.innerHTML = `Your weekly step count looks like this:<br><br> <b>${user.activityData.needAFunction()}</b>`
+  minuteData.innerHTML = `You were active for<b>${user.activityData.calculateWeeklyActiveMins(firstDate)}minutes this week!</b>`;
+  //distanceData.innerHTML = `You climbed<b>${user.activityData.needAFunction()}</b>flights of stairs this week!<br><br>`;
+
+}
+
 const displayAllTimeSleepData = (user) => {
   allTimeSleepHoursDisplay.innerHTML = `Your all-time average number of hours slept is<br><br> <b>${user.sleepData.calculateAverageHoursSlept()}</b>`
   allTimeSleepQualityDisplay.innerHTML = `Your all-time average sleep quality is<br><br> <b>${user.sleepData.calculateAverageSleepQuality()}/5</b>`;
@@ -300,12 +318,20 @@ const displayDailySleep = (user) => {
 const showWeeklyHydrationDataPanel = () => {
   weeklyHydrationDisplay.classList.remove("hidden");
   weeklySleepDisplay.classList.add("hidden");
+  activityDisplay.classList.add("hidden")
 };
 
 const showWeeklySleepDataPanel = () => {
   weeklyHydrationDisplay.classList.add("hidden");
   weeklySleepDisplay.classList.remove("hidden");
+  activityDisplay.classList.add("hidden")
 };
+
+const showActivityDataPanel = () => {
+  weeklyHydrationDisplay.classList.add("hidden");
+  weeklySleepDisplay.classList.add("hidden");
+  activityDisplay.classList.remove("hidden");
+}
 
 const displayComparisons = (user, repository) => {
   const recentDate = user.hydrationData.hydrationData.at(-1);
