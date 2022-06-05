@@ -20,7 +20,7 @@ import Sleep from "./Sleep";
 import Activity from "./Activity"
 
 //Global variables//
-let userData, sleepData, activityData, hydrationData, id;
+let userData, sleepData, activityData, hydrationData, id, mySChart = null, myHChart = null;
 
 //Query selectors//
 const welcomeMessage = document.querySelector("h2");
@@ -48,6 +48,8 @@ const compareSteps = document.querySelector(".compare-steps");
 const minsFlightsDisplay = document.querySelector(".compare-mins-and-flights")
 const stride = document.querySelector(".stride-length")
 const postSubmit = document.querySelector(".submit")
+
+
 
 //Event listeners//
 window.addEventListener("load", (event) => {
@@ -102,7 +104,6 @@ const loadData = () => {
     const singleSleep = new Sleep(sleepData.sleepData, randomUserData.id);
     const singleActivity = new Activity(activityData.activityData, randomUserData.id);
     const randomUser = new User(randomUserData, singleHydration, singleSleep, singleActivity);
-    // setTimeout(beginApplication(randomUser, userRepository);)
     beginApplication(randomUser, userRepository);
   }).catch((error) => console.log(`There has been an error! ${error}`));
 };
@@ -130,20 +131,18 @@ const beginApplication = (user, repository) => {
   displayAccountInfo(user, repository);
   displayDailyHydration(user);
   displayDailySleep(user);
-  displayWeeklyHydration(user);
-  displayWeeklySleep(user);
   displayComparisons(user, repository);
   displayAllTimeSleepData(user);
   assignUserId(user);
+  displayWeeklyHydration(user);
+  displayWeeklySleep(user);
 };
 
 const assignUserId = (user) => {
   id = user.id
   console.log(user)
 }
-// run when submit button is clicked
-// >>
-// needs info from all inputs
+
 const createFormDataObj = () => {
   event.preventDefault();
   const date = document.querySelector(".calendar")
@@ -193,8 +192,8 @@ const displayAccountInfo = (user, repository) => {
 const displayWeeklyHydration = (user) => {
   const firstDate = user.hydrationData.hydrationData.at(-7);
   const weeklyData = user.hydrationData.getPastWeekDailyOunces(firstDate.date);
-  const chart = document.querySelector("#myHChart").getContext("2d");
-  let gradient = chart.createLinearGradient(0, 0, 0, 400);
+  const hChart = document.querySelector("#myHChart").getContext("2d");
+  let gradient = hChart.createLinearGradient(0, 0, 0, 400);
   gradient.addColorStop(0, "rgba(58,123,213,1");
   gradient.addColorStop(1, "rgba(0,210,255,0.3");
   const labels = ['Day 1','Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', "Day 7",];
@@ -224,8 +223,11 @@ const displayWeeklyHydration = (user) => {
         },
       },
     },
-  };
-  const myHChart = new Chart(chart, config);
+  }
+  if (myHChart != null){
+    myHChart.destroy()
+  }
+  myHChart = new Chart(hChart, config)
 };
 
 const displayWeeklySleep = (user) => {
@@ -234,7 +236,7 @@ const displayWeeklySleep = (user) => {
   const weeklyHourlyData = user.sleepData.getPastWeekNightlyHours(firstDate.date);
   const allTimeSleepHours = user.sleepData.calculateAverageHoursSlept();
   const allTimeSleepQuality = user.sleepData.calculateAverageSleepQuality();
-  const chart = document.querySelector("#mySChart").getContext("2d");
+  const sChart = document.querySelector("#mySChart").getContext("2d");
   const labels = ['Day 1','Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', "Day 7",];
   const data = {
     labels: labels,
@@ -271,7 +273,10 @@ const displayWeeklySleep = (user) => {
       },
     },
   };
-  const mySChart = new Chart(chart, config)
+  if (mySChart != null){
+    mySChart.destroy()
+  }
+  mySChart = new Chart(sChart, config)
 };
 
 const displayAllTimeSleepData = (user) => {
