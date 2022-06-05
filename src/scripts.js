@@ -94,18 +94,21 @@ postSubmit.addEventListener("click", (event) => {
 //Functions//
 const loadData = () => {
   fetchAll().then((data) => {
-    userData = data[0];
-    sleepData = data[1];
-    activityData = data[2];
-    hydrationData = data[3];
+    // userData = data[0];
+    // sleepData = data[1];
+    // activityData = data[2];
+    // hydrationData = data[3];
+    const [userData, sleepData, activityData, hydrationData] = data
     const userRepository = new UserRepository(userData.userData);
-    const randomUserData = userRepository.userData[Math.floor(Math.random() * userRepository.userData.length)];
+    const randomUserData = userRepository.userData[Math.floor(Math.random() * userRepository.userData.length - 1)];
     const singleHydration = new Hydration(hydrationData.hydrationData,randomUserData.id);
     const singleSleep = new Sleep(sleepData.sleepData, randomUserData.id);
     const singleActivity = new Activity(activityData.activityData, randomUserData.id);
     const randomUser = new User(randomUserData, singleHydration, singleSleep, singleActivity);
-    beginApplication(randomUser, userRepository);
-  }).catch((error) => console.log(`There has been an error! ${error}`));
+    console.log(randomUser, userRepository)
+    return {randomUser, userRepository}
+  }).then(({randomUser, userRepository}) => {beginApplication(randomUser, userRepository)})
+  // .catch((error) => console.log(`There has been an error! ${error}`));
 };
 
 export const reloadData = () => {
