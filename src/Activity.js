@@ -12,12 +12,12 @@ class Activity {
 
     returnDailyMilesWalked(date, user) {
        const day = this.findDay(date);
-        if(day.numSteps === 0){
-            return "You have not logged any steps today."
-        } else {
-            const dailyMiles = day.numSteps * user.strideLength / 5280
-            return `${dailyMiles.toFixed(2)} miles`
-        }
+       if (!day) {
+         return 0
+       }
+      const dailyMiles = day.numSteps * user.strideLength / 5280
+      return `${dailyMiles.toFixed(2)} miles`
+
     };
 
     returnDailySteps(date){
@@ -30,11 +30,10 @@ class Activity {
 
     returnDailyActiveMins(date) {
         const day = this.findDay(date);
-        if(day.minutesActive === 0){
-            return "You have not logged any active minutes for today."
-        } else {
-            return `${day.minutesActive} mins.`
+        if (!day) {
+          return 0
         }
+        return `${day.minutesActive} mins.`
     }
 
     calculateWeeklyActiveMins(date) {
@@ -68,11 +67,10 @@ class Activity {
 
     returnDailyFlights(date){
       const day = this.findDay(date);
-       if(day.flightsOfStairs === 0){
-           return "You have not logged any flights of stairs climbed today."
-       } else {
-           return day.flightsOfStairs
-       }
+      if (!day) {
+        return 0
+      }
+      return day.flightsOfStairs
     }
 
     findAllTimeStairRecord(){

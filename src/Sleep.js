@@ -26,7 +26,7 @@ class Sleep {
     if (night.hoursSlept > 0) {
       return `${night.hoursSlept} hours`;
     } else {
-      return "You have not entered your amount of sleep for last night.";
+      return 0;
     };
   };
 
@@ -35,7 +35,7 @@ class Sleep {
     if (night.sleepQuality > 0) {
       return night.sleepQuality;
     } else {
-      return "You have not entered your sleep quality for last night.";
+      return 0;
     };
   };
 
@@ -61,7 +61,7 @@ class Sleep {
     const averageQuality = totalQuality / this.allUserSleepData.length;
     return Math.round(averageQuality * 10) / 10 ;
   };
-  
+
 };
 
 export default Sleep;

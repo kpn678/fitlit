@@ -72,8 +72,8 @@ describe("Sleep", () => {
     expect(sleep32.returnNightlyHoursSlept("2019/06/18")).to.equal("7.7 hours");
   });
 
-  it("should be able to return a message if the hours slept is 0", () => {
-    expect(sleep31.returnNightlyHoursSlept("2019/06/19")).to.equal("You have not entered your amount of sleep for last night.");
+  it("should be able to return 0 if there is no sleep hours data for that night", () => {
+    expect(sleep31.returnNightlyHoursSlept("2019/06/19")).to.equal(0);
   });
 
   it("should be able to return the sleep quality for a specific night", () => {
@@ -82,8 +82,8 @@ describe("Sleep", () => {
     expect(sleep32.returnNightlySleepQuality("2019/06/18")).to.equal(2.7);
   });
 
-  it("should be able to return a message if the sleep quality is 0", () => {
-    expect(sleep31.returnNightlySleepQuality("2019/06/19")).to.equal("You have not entered your sleep quality for last night.");
+  it("should be able to return 0 if there is no sleep quality data for that night", () => {
+    expect(sleep31.returnNightlySleepQuality("2019/06/19")).to.equal(0);
   });
 
   it("should be able to return the hours slept each night over the course of any given week", () => {
