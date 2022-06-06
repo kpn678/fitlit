@@ -97,26 +97,23 @@ main {
   justify-content: space-between;
 }
 
-.weekly-hydration-display, .weekly-sleep-display, .activity-display {
+.weekly-hydration-display, .weekly-sleep-display, .weekly-activity-display {
   background-color: #f2f3f4;
   border-radius: 25px;
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
-  height: 95%;
+  height: 90%;
   margin: 20px;
   padding: 10px;
   width: 65%;
 }
-.activity-display{
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-}
-.step-data, .minute-data, .distance-data {
-  height:85%;
-  width:50%;
 
+.step-data, .minute-data, .distance-data {
+  align-items: center;
+  display: flex;
+  margin-left: 160px;
+  width: 40%;
 }
+
 .all-time-sleep-display {
   display: flex;
   justify-content: space-around;
@@ -126,7 +123,7 @@ main {
   border-radius: 25px;
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
   margin: 20px;
-  padding: 5px;
+  padding: 3px;
   text-align: center;
   width: 50%;
 }
@@ -156,42 +153,30 @@ main {
   border-radius: 7%;
   box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
   display: flex;
-  height: 50%;
+  height: 45%;
   justify-content: space-evenly;
   margin: 10px;
   width: 85%;
 }
 
-.bottom {
-  align-items: center;
-  background-color: #41a9f4;
-  border-radius: 25px;
-  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
-  display: flex;
-  height: 22%;
-  justify-content: space-evenly;
-  margin: 20px;
-  width: 96%;
-}
-
 .post-modal {
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.6);
   display: none;
-  position: fixed;
-  z-index: 1;
+  height: 100%;
   left: 0;
+  overflow: auto;
+  position: fixed;
   top: 0;
   width: 100%;
-  height: 100%;
-  overflow: auto; 
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.6); 
+  z-index: 1;
 }
 
 .modal-content {
   background-color: #72d8ff;
+  border: 1px solid #888;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
   width: 40%;
 }
 
@@ -202,13 +187,33 @@ main {
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus, 
-.close-profile-button:hover, 
-.close-profile-button:focus {
+.close:hover, .close:focus, .close-profile-button:hover, .close-profile-button:focus {
   color: black;
-  text-decoration: none;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.bottom {
+  align-items: center;
+  background-color: #41a9f4;
+  border-radius: 25px;
+  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
+  display: flex;
+  height: 20%;
+  justify-content: space-evenly;
+  margin: 20px;
+  width: 95.5%;
+}
+
+.compare {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.compare-steps, .compare-mins-and-flights, .stride-length {
+  font-size: 0.9em;
 }
 
 .hidden {

@@ -24,7 +24,8 @@ import Sleep from "./Sleep";
 import Activity from "./Activity"
 
 //Global variables//
-let userData, sleepData, activityData, hydrationData, id, mySChart = null, myHChart = null;
+let userData, sleepData, activityData, hydrationData, id;
+let mySChart = null, myHChart = null, myStepChart = null, myMinChart = null, myStairsChart = null;
 
 //Query selectors//
 const welcomeMessage = document.querySelector("h2");
@@ -42,7 +43,7 @@ const weeklyHydrationDisplay = document.querySelector(".weekly-hydration-display
 const weeklySleepDisplay = document.querySelector(".weekly-sleep-display");
 const allTimeSleepHoursDisplay = document.querySelector(".all-time-hours");
 const allTimeSleepQualityDisplay = document.querySelector(".all-time-quality");
-const weeklyActivityDisplay = document.querySelector(".activity-display");
+const weeklyActivityDisplay = document.querySelector(".weekly-activity-display");
 const weeklyStepsData = document.querySelector(".step-data");
 const weeklyFlightsData = document.querySelector(".distance-data");
 const weeklyMinutesData = document.querySelector(".minute-data");
@@ -108,7 +109,6 @@ const loadData = () => {
     const singleSleep = new Sleep(sleepData.sleepData, randomUserData.id);
     const singleActivity = new Activity(activityData.activityData, randomUserData.id);
     const randomUser = new User(randomUserData, singleHydration, singleSleep, singleActivity);
-    console.log(randomUser);
     return {randomUser, userRepository}
   }).then(({randomUser, userRepository}) => {beginApplication(randomUser, userRepository)})
   .catch((error) => console.log(`There has been an error! ${error}`));
@@ -257,7 +257,91 @@ const displayAllTimeSleepData = (user) => {
 };
 
 const displayWeeklyActivity = (user) => {
+  const firstDate = user.sleepData.sleepData.at(-7);
+  const weeklyStepData = user.activityData.getPastWeekStepCount(firstDate.date);
+  const weeklyMinsData = user.activityData.getPastWeekFlightsOfStairs(firstDate.date);
+  const weeklyFlightsData = user.activityData.getPastWeekMinutesActive(firstDate.date);
+  const stepChart = document.querySelector("#myStepChart").getContext("2d");
+  const minChart = document.querySelector("#myMinChart").getContext("2d");
+  const stairsChart = document.querySelector("#myStairsChart").getContext("2d");
+  const labels = ['Day 1','Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', "Day 7",];
+  const dataSteps = {
+    labels: labels,
+    datasets: [{
+      label: 'Number of Steps Walked',
+      data: weeklyStepData,
+      fill: true,
+      backgroundColor: "#FADA5E",
+      borderColor: "#fff",
+      pointBackgroundColor: "rgb(189, 195, 199)",
+    }]
+  };
+  const config = {
+    type: 'bar',
+    data: dataSteps,
+    options: {
+      radius: 5,
+      hitRadius: 30,
+      hoverRadius: 12,
+      responsive: true,
+    },
+  };
+  if (myStepChart != null) {
+    myStepChart.destroy();
+  };
+  myStepChart = new Chart(stepChart, config);
 
+  const dataMins = {
+    labels: labels,
+    datasets: [{
+      label: 'Number of Minutes Active',
+      data: weeklyMinsData,
+      fill: true,
+      backgroundColor: "#97EBF4",
+      borderColor: "#fff",
+      pointBackgroundColor: "rgb(189, 195, 199)",
+    }]
+  };
+  const config2 = {
+    type: 'bar',
+    data: dataMins,
+    options: {
+      radius: 5,
+      hitRadius: 30,
+      hoverRadius: 12,
+      responsive: true,
+    },
+  };
+  if (myMinChart != null) {
+    myMinChart.destroy();
+  };
+  myMinChart = new Chart(minChart, config2);
+
+  const dataFlights = {
+    labels: labels,
+    datasets: [{
+      label: 'Number of Flights of Stairs Climbed',
+      data: weeklyFlightsData,
+      fill: true,
+      backgroundColor: "#ABE098",
+      borderColor: "#fff",
+      pointBackgroundColor: "rgb(189, 195, 199)",
+    }]
+  };
+  const config3 = {
+    type: 'bar',
+    data: dataFlights,
+    options: {
+      radius: 5,
+      hitRadius: 30,
+      hoverRadius: 12,
+      responsive: true,
+    },
+  };
+  if (myStairsChart != null) {
+    myStairsChart.destroy();
+  };
+  myStairsChart = new Chart(stairsChart, config3);
 }
 
 const displayDailyHydration = (user) => {
@@ -293,7 +377,7 @@ const displayComparisons = (user, repository) => {
   const activityObj = user.activityData.calculateActivityAverages(recentDate.date);
   compareStepsDisplay.innerHTML = `All users’ daily step goals average:  <b>${repository.calculateAverageStepGoals()} steps</b><br> Your daily step goal: <b>${user.dailyStepGoal} steps</b><br><br>
   All users’ step counts average today: <b>${activityObj.allUsersNumSteps} steps</b><br>Your step count today: <b>${user.activityData.returnDailySteps(recentDate.date)} steps</b>`;
-  compareMinsFlightsDisplay.innerHTML = `All users’ active minutes average today: <b>${activityObj.allUsersMinsActive} mins</b><br>Your active minutes today: <b>${user.activityData.returnDailyActiveMins(recentDate.date)}</b><br><br>
+  compareMinsFlightsDisplay.innerHTML = `All users’ active minutes average today: <b>${activityObj.allUsersMinsActive} mins.</b><br>Your active minutes today: <b>${user.activityData.returnDailyActiveMins(recentDate.date)}</b><br><br>
   All users’ flights of stairs climbed average today: <b>${activityObj.allUsersFlightsStairs} flights</b><br>Your flights of stairs climbed today: <b>${user.activityData.returnDailyFlights(recentDate.date)} flights</b>`
   strideDisplay.innerHTML = `Your distance walked today: <b>${user.activityData.returnDailyMilesWalked(recentDate.date, user)}</b><br>Your stride length is: <b>${user.strideLength} feet</b>`
 };
