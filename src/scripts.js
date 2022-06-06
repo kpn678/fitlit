@@ -52,7 +52,7 @@ const dailySleepDisplay = document.querySelector(".daily-sleep-text");
 const compareStepsDisplay = document.querySelector(".compare-steps");
 const compareMinsFlightsDisplay = document.querySelector(".compare-mins-and-flights");
 const strideDisplay = document.querySelector(".stride-length");
-const postSubmit = document.querySelector(".submit");
+const postSubmit = document.querySelector(".apple");
 
 //Event listeners//
 window.addEventListener("load", (event) => {
@@ -67,7 +67,8 @@ closeProfileButton.addEventListener("click", (event) => {
   overlay.style.display = "none";
 });
 
-waterButton.addEventListener("click", (event) => {
+waterButton.addEventListener("enter", (event) => {
+  console.log("click");
   showWeeklyHydrationDataPanel();
 });
 
