@@ -57,9 +57,11 @@ npm test
 ## Illustrations
 
 ![FitLit gif](https://media.giphy.com/media/kiAPxM21iJUPXojx50/giphy.gif)
+
 Users can toggle between data to view their weekly stats as well as check their account info. 
 
 ![FitLit gif](https://media.giphy.com/media/WCv4SlfVogA0rQQXEG/giphy.gif)
+
 Users can post their sleep, hydration, and activity stats. 
 
 
