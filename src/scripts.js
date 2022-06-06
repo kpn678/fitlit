@@ -109,7 +109,6 @@ const loadData = () => {
     const singleSleep = new Sleep(sleepData.sleepData, randomUserData.id);
     const singleActivity = new Activity(activityData.activityData, randomUserData.id);
     const randomUser = new User(randomUserData, singleHydration, singleSleep, singleActivity);
-    console.log(randomUser);
     return {randomUser, userRepository}
   }).then(({randomUser, userRepository}) => {beginApplication(randomUser, userRepository)})
   .catch((error) => console.log(`There has been an error! ${error}`));
@@ -269,7 +268,7 @@ const displayWeeklyActivity = (user) => {
   const dataSteps = {
     labels: labels,
     datasets: [{
-      label: 'Number of Steps',
+      label: 'Number of Steps Walked',
       data: weeklyStepData,
       fill: true,
       backgroundColor: "#FADA5E",
@@ -285,12 +284,6 @@ const displayWeeklyActivity = (user) => {
       hitRadius: 30,
       hoverRadius: 12,
       responsive: true,
-      // plugins: {
-      //   title: {
-      //     display: true,
-      //     text: "Step Count for Past 7 Days",
-      //   },
-      // },
     },
   };
   if (myStepChart != null) {
@@ -301,7 +294,7 @@ const displayWeeklyActivity = (user) => {
   const dataMins = {
     labels: labels,
     datasets: [{
-      label: 'Number of Minutes',
+      label: 'Number of Minutes Active',
       data: weeklyMinsData,
       fill: true,
       backgroundColor: "#97EBF4",
@@ -317,12 +310,6 @@ const displayWeeklyActivity = (user) => {
       hitRadius: 30,
       hoverRadius: 12,
       responsive: true,
-      // plugins: {
-      //   title: {
-      //     display: true,
-      //     text: "Minutes Active for Past 7 Days",
-      //   },
-      // },
     },
   };
   if (myMinChart != null) {
@@ -333,10 +320,10 @@ const displayWeeklyActivity = (user) => {
   const dataFlights = {
     labels: labels,
     datasets: [{
-      label: 'Number of Flights of Stairs',
+      label: 'Number of Flights of Stairs Climbed',
       data: weeklyFlightsData,
       fill: true,
-      backgroundColor: "#97EBF4",
+      backgroundColor: "#ABE098",
       borderColor: "#fff",
       pointBackgroundColor: "rgb(189, 195, 199)",
     }]
@@ -349,12 +336,6 @@ const displayWeeklyActivity = (user) => {
       hitRadius: 30,
       hoverRadius: 12,
       responsive: true,
-      // plugins: {
-      //   title: {
-      //     display: true,
-      //     text: "Flight of Stairs Climbed for Past 7 Days",
-      //   },
-      // },
     },
   };
   if (myStairsChart != null) {
