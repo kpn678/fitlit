@@ -71,15 +71,18 @@
             <section class="all-time-quality"></section>
           </section>
         </section>
-        <section class="activity-display hidden">
+        <section class="weekly-activity-display hidden">
           <section class="step-data">
-            <img class="stairs-icon" src="./images/stairs.png" alt="a person walking up stairs icon" height="125px" width="150px" />
+            <canvas class="my-step-chart" id="myStepChart"></canvas>
+            <!-- <img class="distance-icon" src="./images/distance.png" alt="path leading to sun icon" height="125px" width="125px"/> -->
           </section>
           <section class="minute-data">
-            <img class="minutes-icon" src="./images/mins.png" alt="stopwatch icon" height="125px" width="150px" />
+            <canvas class="my-min-chart" id="myMinChart"></canvas>
+            <!-- <img class="minutes-icon" src="./images/mins.png" alt="stopwatch icon" height="125px" width="125px"/> -->
           </section>
           <section class="distance-data">
-            <img class="distance-icon" src="./images/distance.png" alt="path leading to sun icon" height="125px" width="150px" />
+            <canvas class="my-stairs-chart" id="myStairsChart"></canvas>
+            <!-- <img class="stairs-icon" src="./images/stairs.png" alt="a person walking up stairs icon" height="125px" width="125px"/> -->
           </section>
         </section>
         <section class="widgets">
@@ -95,7 +98,7 @@
       </section>
       <section class="bottom">
         <section class="compare">
-          <img class="walking" src="./images/parade.png" alt="walking icon" height="125px" width="150px"/>
+          <img class="walking" src="./images/parade.png" alt="walking icon" height="75px" width="100px"/>
           <h3>How Do You Compare?</h3>
         </section>
         <p class="compare-steps"></p>
