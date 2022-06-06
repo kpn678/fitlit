@@ -16,40 +16,44 @@
       </section>
       <section class="welcome">
         <h2>Welcome back, Lina!</h2>
-        <img class="profile-button" src="./images/user.png" alt="user icon" role="button" height="50px" width="50px"/>
+        <img class="profile-button" src="./images/user.png" alt="user icon" role="button" tabindex="0" height="50px" width="50px"/>
         <div class="overlay" id="overlay">
           <div class="modal" id="modal">
-            <span role="button" class="close-profile-button">&times;</span>
+            <span role="button" tabindex="0" class="close-profile-button">&times;</span>
             <p id="accountInfo">Your Account Info:</p>
           </div>
         </div>
       </section>
     </header>
     <nav>
-      <img class="water-button" src="./images/water-bottle.png" alt="water bottle icon" role="button" height="50px" width="50px"/>
-      <img class="bed-button" src="./images/sleep.png" alt="bed icon" role="button" height="50px" width="50px"/>
-      <img class="walk-button" src="./images/walk.png" alt="walking icon" role="button" height="50px" width="50px"/>
+      <img class="water-button" src="./images/water-bottle.png" alt="water bottle icon" role="button" aria-expanded="true" tabindex="0" height="50px" width="50px"/>
+      <img class="bed-button" src="./images/sleep.png" alt="bed icon" role="button" tabindex="0" height="50px" width="50px"/>
+      <img class="walk-button" src="./images/walk.png" alt="walking icon" role="button" tabindex="0" height="50px" width="50px"/>
       <img class="friends-button" src="./images/friends.png" alt="friends icon" role="button" height="50px" width="50px"/>
-      <img class="post-button" src="./images/post.png" alt="post icon" role="button" height="50px" width="50px"/>
+      <img class="post-button" src="./images/post.png" alt="post icon" role="button" tabindex="0" height="50px" width="50px"/>
       <div id="postModal" class="post-modal">
         <div class="modal-content">
           <span class="close">&times;</span>
           <form class="add-data">
             <p>Select date here:</p>
             <label for="calendar"></label>
-            <input class="calendar" type="date" id="calendar" name="calendar" min="" value="" required>
+            <input class="calendar" id="calendar" type="date" name="calendar" min="" value="" required>
             <p>Enter hydration data here:</p>
-            <input class="number-ounces" placeholder="ounces drank" name="numberOunces" required>
+            <label for="numberOunces"></label>
+            <input class="number-ounces" id="numberOunces" type="number" placeholder="ounces drank" name="numberOunces" required>
             <p>Enter sleep data here:</p>
-            <input class="hours-slept" placeholder="hours slept" name="hoursSlept" required>
-            <label for="sleep-quality">Sleep quality: 0</label>
-            <input class="sleep-quality" type="range" name="sleepQuality"
-            min="0" max="5" required>
-            <label for="sleep-quality">5</label>
+            <label for="hoursSlept"></label>
+            <input class="hours-slept" id="hoursSlept" type="number" placeholder="hours slept" name="hoursSlept" required>
+            <label for="sleepQuality">Sleep quality: 0</label>
+            <input class="sleep-quality" id="sleepQuality" type="range" name="sleepQuality" min="0" max="5" required>
+            <label for="sleepQuality">5</label>
             <p>Enter activity data here:</p>
-            <input class="flights" placeholder="flights of stairs" name="flights" required>
-            <input class="mins" placeholder="minutes active" name="mins" required>
-            <input class="steps" placeholder="step count" name="steps" required><br><br>
+            <label for="flights"></label>
+            <input class="flights" id="flights" type="number" placeholder="flights of stairs" name="flights" required>
+            <label for="mins"></label>
+            <input class="mins" id="mins" type="number" placeholder="minutes active" name="mins" required>
+            <label for="steps"></label>
+            <input class="steps" id="steps" type="number" placeholder="step count" name="steps" required><br><br>
             <input role="button" class="submit" type="submit" value="Submit Data!">
             <p class="error-box"></p>
           </form>

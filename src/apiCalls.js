@@ -37,13 +37,7 @@ const postHydration = (formData) => {
     }),
     headers: { "Content-type": "application/json" },
   })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error("Please make sure all fields are filled out.")
-      } else {
-        return res.json()
-      }
-    })
+    .then(res => throwError(res))
     .then(json => reloadData())
     .catch(error => {
       console.warn(error.message)
@@ -59,13 +53,7 @@ const postSleep = (formData) => {
     }),
     headers: { "Content-type": "application/json" },
   })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error("Please make sure all fields are filled out.")
-      } else {
-        return res.json()
-      }
-    })
+    .then(res => throwError(res))
     .then(json => reloadData())
     .catch(error => {
       console.warn(error.message)
@@ -82,18 +70,20 @@ const postActivity = (formData) => {
     }),
     headers: { "Content-type": "application/json" },
   })
-    .then(res => {
-      if (!res.ok) {
-        throw new Error("Please make sure all fields are filled out.")
-      } else {
-        return res.json()
-      }
-    })
+    .then(res => throwError(res))
     .then(json => reloadData())
     .catch(error => {
       console.warn(error.message)
       displayErrorMessage(error)
     })
+};
+
+const throwError = (res) => {
+  if (!res.ok) {
+    throw new Error("Please make sure all fields are filled out.");
+  } else {
+    return res.json();
+  };
 };
 
 const displayErrorMessage = (error) => {

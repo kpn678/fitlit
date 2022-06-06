@@ -52,7 +52,7 @@ const dailySleepDisplay = document.querySelector(".daily-sleep-text");
 const compareStepsDisplay = document.querySelector(".compare-steps");
 const compareMinsFlightsDisplay = document.querySelector(".compare-mins-and-flights");
 const strideDisplay = document.querySelector(".stride-length");
-const postSubmit = document.querySelector(".submit");
+const addDataForm = document.querySelector(".add-data");
 
 //Event listeners//
 window.addEventListener("load", (event) => {
@@ -67,7 +67,8 @@ closeProfileButton.addEventListener("click", (event) => {
   overlay.style.display = "none";
 });
 
-waterButton.addEventListener("click", (event) => {
+waterButton.addEventListener("enter", (event) => {
+  console.log("click");
   showWeeklyHydrationDataPanel();
 });
 
@@ -93,7 +94,7 @@ window.onclick = function(event) {
   };
 };
 
-postSubmit.addEventListener("click", (event) => {
+addDataForm.addEventListener("submit", (event) => {
   postModal.style.display = "none";
   createFormDataObj();
   event.preventDefault();
@@ -143,7 +144,7 @@ const beginApplication = (user, repository) => {
 
 const displayTodaysDate = (user) => {
   const recentDate = user.hydrationData.hydrationData.at(-1);
-  todaysDateDisplay.innerText = `Today Is: ${dayjs(new Date(recentDate.date)).format("dddd, MMMM D, YYYY")}`;
+  todaysDateDisplay.innerText = `Today Is: ${dayjs(recentDate.date).format("dddd, MMMM D, YYYY")}`;
 };
 
 const generateWelcomeMessage = (user) => {
