@@ -93,6 +93,27 @@ class Activity {
     return averageAllUserData;
   };
 
+  getPastWeekStepCount(date) {
+    const startDate = this.activityData.findIndex((day) => day.date === date);
+    const weeklyRange = this.activityData.slice(startDate, startDate + 7);
+    const weeklyStepCount = weeklyRange.map((date) => date.numSteps);
+    return weeklyStepCount;
+  };
+
+  getPastWeekFlightsOfStairs(date) {
+    const startDate = this.activityData.findIndex((day) => day.date === date);
+    const weeklyRange = this.activityData.slice(startDate, startDate + 7);
+    const weeklyFlights = weeklyRange.map((date) => date.flightsOfStairs);
+    return weeklyFlights;
+  };
+
+  getPastWeekMinutesActive(date) {
+    const startDate = this.activityData.findIndex((day) => day.date === date);
+    const weeklyRange = this.activityData.slice(startDate, startDate + 7);
+    const weeklyMinutes = weeklyRange.map((date) => date.minutesActive);
+    return weeklyMinutes;
+  };
+
 };
 
 export default Activity;

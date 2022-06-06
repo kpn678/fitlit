@@ -143,4 +143,40 @@ describe("Activity", () => {
   it("should be able to calculate the average number of: stairs climbed, steps taken, and minutes active for a specified date for ALL users", () => {
     expect(activity31.calculateActivityAverages("2019/06/19")).to.deep.equal({ allUsersNumSteps: 5890, allUsersMinsActive: 143, allUsersFlightsStairs: 41});
   });
+
+  it("should be able to return the step count each day over the course of any given week", () => {
+    expect(activity33.getPastWeekStepCount("2019/06/16")).to.deep.equal([
+      11246,
+      11435,
+      6650,
+      10293,
+      4060,
+      6195,
+      3157,
+    ]);
+  });
+
+  it("should be able to return the flights of stairs climbed each day over the course of any given week", () => {
+    expect(activity33.getPastWeekFlightsOfStairs("2019/06/16")).to.deep.equal([
+      11,
+      16,
+      6,
+      29,
+      24,
+      45,
+      35,
+    ]);
+  });
+
+  it("should be able to return the minutes active each day over the course of any given week", () => {
+    expect(activity33.getPastWeekMinutesActive("2019/06/16")).to.deep.equal([
+      216,
+      115,
+      220,
+      63,
+      275,
+      195,
+      120,
+    ]);
+  });
 });
