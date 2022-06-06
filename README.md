@@ -59,14 +59,9 @@ npm test
 ![FitLit gif](https://media.giphy.com/media/kiAPxM21iJUPXojx50/giphy.gif)
 Users can toggle between data to view their weekly stats as well as check their account info. 
 
-![FitLit gif](NEW GIF HERE OF SOMETHING COOL)
+![FitLit gif](https://media.giphy.com/media/WCv4SlfVogA0rQQXEG/giphy.gif)
 Users can post their sleep, hydration, and activity stats. 
 
-![FitLit gif](OTHER GIF HERE OF SOMETHING REALLY COOL TOO MAYBE)
-The application is specific for each user and will display their own info in comparison to all users of the app. 
-
-![LightHouse Score of 100%](https://i.ibb.co/3chcGQn/Screen-Shot-2021-06-08-at-10-25-42-PM.png "Accessibility rating")
-This application has a Lighthouse score of 100 and a WAVE score of 90.  
 
 **[Back to top](#table-of-contents)**
 
@@ -101,7 +96,7 @@ This application has a Lighthouse score of 100 and a WAVE score of 90.
 ## Image Credit
 
 - specialty icons created by [Freepik-Flaticon](https://www.flaticon.com/authors/freepik)
-- water-bottle / sleep / walk / friends / post / user / water-drop
+- water-bottle / sleep / walk / friends / post / user / water-drop /stairs / stopwatch / path
 - FitLit logo from [Fitlit](https://www.fitlitters.com/)
 
 **[Back to top](#table-of-contents)**
