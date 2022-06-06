@@ -144,7 +144,7 @@ const beginApplication = (user, repository) => {
 
 const displayTodaysDate = (user) => {
   const recentDate = user.hydrationData.hydrationData.at(-1);
-  todaysDateDisplay.innerText = `Today Is: ${dayjs(new Date(recentDate.date)).format("dddd, MMMM D, YYYY")}`;
+  todaysDateDisplay.innerText = `Today Is: ${dayjs(recentDate.date).format("dddd, MMMM D, YYYY")}`;
 };
 
 const generateWelcomeMessage = (user) => {
