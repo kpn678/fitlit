@@ -1,3 +1,4 @@
+//Imports
 import "./css/styles.css";
 import "./images/turing-logo.png";
 import "./images/water-bottle.png";
@@ -23,8 +24,7 @@ import Sleep from "./Sleep";
 import Activity from "./Activity"
 
 //Global variables//
-let userData, sleepData, activityData, hydrationData, id;
-let mySChart = null, myHChart = null, myStepChart = null, myMinChart = null, myStairsChart = null;
+let userData, sleepData, activityData, hydrationData, id, mySChart = null, myHChart = null;
 
 //Query selectors//
 const welcomeMessage = document.querySelector("h2");
@@ -36,27 +36,22 @@ const waterButton = document.querySelector(".water-button");
 const bedButton = document.querySelector(".bed-button");
 const activityButton = document.querySelector(".walk-button");
 const postButton = document.querySelector(".post-button");
-const postModal = document.getElementById("postModal")
-const span = document.getElementsByClassName("close")[0]
+const postModal = document.getElementById("postModal");
+const span = document.getElementsByClassName("close")[0];
 const weeklyHydrationDisplay = document.querySelector(".weekly-hydration-display");
 const weeklySleepDisplay = document.querySelector(".weekly-sleep-display");
-const allTimeSleepHoursDisplay = document.querySelector(".all-time-hours")
-const allTimeSleepQualityDisplay = document.querySelector(".all-time-quality")
-const activityDisplay = document.querySelector(".activity-display")
-const dailyNumStepsDisplay = document.querySelector(".daily-num-steps")
-const dailyNumMinsDisplay = document.querySelector(".daily-num-mins")
-const dailyDistanceDisplay = document.querySelector(".daily-distance")
+const allTimeSleepHoursDisplay = document.querySelector(".all-time-hours");
+const allTimeSleepQualityDisplay = document.querySelector(".all-time-quality");
+const weeklyActivityDisplay = document.querySelector(".activity-display");
+const weeklyStepsData = document.querySelector(".step-data");
+const weeklyFlightsData = document.querySelector(".distance-data");
+const weeklyMinutesData = document.querySelector(".minute-data");
 const dailyHydrationDisplay = document.querySelector(".daily-hydration-text");
 const dailySleepDisplay = document.querySelector(".daily-sleep-text");
-const compareSteps = document.querySelector(".compare-steps");
-const minsFlightsDisplay = document.querySelector(".compare-mins-and-flights")
-const stride = document.querySelector(".stride-length")
-const postSubmit = document.querySelector(".submit")
-const stepData = document.querySelector(".step-data")
-const minuteData = document.querySelector(".minute-data")
-const distanceData = document.querySelector(".distance-data")
-
-
+const compareStepsDisplay = document.querySelector(".compare-steps");
+const compareMinsFlightsDisplay = document.querySelector(".compare-mins-and-flights");
+const strideDisplay = document.querySelector(".stride-length");
+const postSubmit = document.querySelector(".submit");
 
 //Event listeners//
 window.addEventListener("load", (event) => {
@@ -85,7 +80,7 @@ activityButton.addEventListener("click", (event) => {
 
 postButton.addEventListener("click", (event) => {
   postModal.style.display = 'block';
-})
+});
 
 span.addEventListener("click", (event) => {
   postModal.style.display = "none";
@@ -94,41 +89,34 @@ span.addEventListener("click", (event) => {
 window.onclick = function(event) {
   if (event.target == postModal) {
     postModal.style.display = "none";
-  }
-}
+  };
+};
 
 postSubmit.addEventListener("click", (event) => {
   postModal.style.display = "none";
-  createFormDataObj()
-})
-
+  createFormDataObj();
+  event.preventDefault();
+});
 
 //Functions//
 const loadData = () => {
   fetchAll().then((data) => {
-    // userData = data[0];
-    // sleepData = data[1];
-    // activityData = data[2];
-    // hydrationData = data[3];
-    const [userData, sleepData, activityData, hydrationData] = data
+    const [userData, sleepData, activityData, hydrationData] = data;
     const userRepository = new UserRepository(userData.userData);
     const randomUserData = userRepository.userData[Math.floor(Math.random() * userRepository.userData.length - 1)];
     const singleHydration = new Hydration(hydrationData.hydrationData,randomUserData.id);
     const singleSleep = new Sleep(sleepData.sleepData, randomUserData.id);
     const singleActivity = new Activity(activityData.activityData, randomUserData.id);
     const randomUser = new User(randomUserData, singleHydration, singleSleep, singleActivity);
-    console.log(randomUser, userRepository)
+    console.log(randomUser);
     return {randomUser, userRepository}
   }).then(({randomUser, userRepository}) => {beginApplication(randomUser, userRepository)})
-  // .catch((error) => console.log(`There has been an error! ${error}`));
+  .catch((error) => console.log(`There has been an error! ${error}`));
 };
 
 export const reloadData = () => {
   fetchAll().then((data) => {
-    userData = data[0];
-    sleepData = data[1];
-    activityData = data[2];
-    hydrationData = data[3];
+    const [userData, sleepData, activityData, hydrationData] = data;
     const userRepository = new UserRepository(userData.userData);
     const currentUserData = userRepository.getUserData(id);
     const singleHydration = new Hydration(hydrationData.hydrationData, id);
@@ -139,55 +127,23 @@ export const reloadData = () => {
   }).catch((error) => console.log(`There has been an error! ${error}`));
 };
 
-
 const beginApplication = (user, repository) => {
   displayTodaysDate(user);
   generateWelcomeMessage(user);
   displayAccountInfo(user, repository);
+  displayWeeklyHydration(user);
+  displayWeeklySleep(user);
+  displayAllTimeSleepData(user);
+  displayWeeklyActivity(user);
   displayDailyHydration(user);
   displayDailySleep(user);
   displayComparisons(user, repository);
-  displayAllTimeSleepData(user);
   assignUserId(user);
-  displayWeeklyHydration(user);
-  displayWeeklySleep(user);
-  displayActivityData(user);
 };
-
-const assignUserId = (user) => {
-  id = user.id
-  console.log(user)
-}
-
-const createFormDataObj = () => {
-  event.preventDefault();
-  const date = document.querySelector(".calendar")
-  const numberOunces = document.querySelector(".number-ounces")
-  const hoursSlept = document.querySelector(".hours-slept")
-  const sleepQuality = document.querySelector(".sleep-quality")
-  const flights = document.querySelector(".flights")
-  const mins = document.querySelector(".mins")
-  const steps = document.querySelector(".steps")
-
-  let formDataObj = {
-    id: id,
-    date: date.value,
-    numberOunces: parseInt(numberOunces.value),
-    hoursSlept: parseInt(hoursSlept.value),
-    sleepQuality: parseInt(sleepQuality.value),
-    flights: parseInt(flights.value),
-    mins: parseInt(mins.value),
-    steps: parseInt(steps.value)
-  }
-  console.log(formDataObj)
-  postAll(formDataObj)
-
-}
 
 const displayTodaysDate = (user) => {
   const recentDate = user.hydrationData.hydrationData.at(-1);
-  todaysDateDisplay.innerText = `Today Is: ${dayjs(
-    new Date(recentDate.date)).format("dddd, MMMM D, YYYY")}`;
+  todaysDateDisplay.innerText = `Today Is: ${dayjs(new Date(recentDate.date)).format("dddd, MMMM D, YYYY")}`;
 };
 
 const generateWelcomeMessage = (user) => {
@@ -223,7 +179,7 @@ const displayWeeklyHydration = (user) => {
       borderColor: "#fff",
       pointBackgroundColor: "rgb(189, 195, 199)",
    }]
-};
+  };
   const config = {
     type: 'line',
     data: data,
@@ -239,11 +195,11 @@ const displayWeeklyHydration = (user) => {
         },
       },
     },
-  }
-  if (myHChart != null){
-    myHChart.destroy()
-  }
-  myHChart = new Chart(hChart, config)
+  };
+  if (myHChart != null) {
+    myHChart.destroy();
+  };
+  myHChart = new Chart(hChart, config);
 };
 
 const displayWeeklySleep = (user) => {
@@ -289,20 +245,20 @@ const displayWeeklySleep = (user) => {
       },
     },
   };
-  if (mySChart != null){
-    mySChart.destroy()
-  }
-  mySChart = new Chart(sChart, config)
+  if (mySChart != null) {
+    mySChart.destroy();
+  };
+  mySChart = new Chart(sChart, config);
 };
-
-const displayActivityData = (user) => {
-  //need to interpolate and create methods for weekly data to pull in here
-}
 
 const displayAllTimeSleepData = (user) => {
   allTimeSleepHoursDisplay.innerHTML = `Your all-time average number of hours slept is<br><br> <b>${user.sleepData.calculateAverageHoursSlept()}</b>`
   allTimeSleepQualityDisplay.innerHTML = `Your all-time average sleep quality is<br><br> <b>${user.sleepData.calculateAverageSleepQuality()}/5</b>`;
 };
+
+const displayWeeklyActivity = (user) => {
+
+}
 
 const displayDailyHydration = (user) => {
   const recentDate = user.hydrationData.hydrationData.at(-1);
@@ -317,26 +273,52 @@ const displayDailySleep = (user) => {
 const showWeeklyHydrationDataPanel = () => {
   weeklyHydrationDisplay.classList.remove("hidden");
   weeklySleepDisplay.classList.add("hidden");
-  activityDisplay.classList.add("hidden")
+  weeklyActivityDisplay.classList.add("hidden")
 };
 
 const showWeeklySleepDataPanel = () => {
   weeklyHydrationDisplay.classList.add("hidden");
   weeklySleepDisplay.classList.remove("hidden");
-  activityDisplay.classList.add("hidden")
+  weeklyActivityDisplay.classList.add("hidden")
 };
 
 const showActivityDataPanel = () => {
   weeklyHydrationDisplay.classList.add("hidden");
   weeklySleepDisplay.classList.add("hidden");
-  activityDisplay.classList.remove("hidden");
-}
+  weeklyActivityDisplay.classList.remove("hidden");
+};
 
 const displayComparisons = (user, repository) => {
-  const recentDate = user.hydrationData.hydrationData.at(-1);
-  const activityObj = user.activityData.calculateActivityAverages(recentDate.date)
-  compareSteps.innerHTML = `All users’ daily step goals average:  <b>${repository.calculateAverageStepGoals()} steps</b>. <br>
-  Your daily step goal: <b>${user.dailyStepGoal} steps</b>. <br><br>All users’ step counts average today: <b>${activityObj.allUsersNumSteps} steps</b>.<br>Your step count today: <b>${user.activityData.returnDailySteps(recentDate.date)} steps</b>.`;
-  minsFlightsDisplay.innerHTML = `All users’ active minutes average today:<b>${activityObj.allUsersMinsActive} mins</b>.<br>Your active minutes today: <b>${user.activityData.returnDailyActiveMins(recentDate.date)}</b><br><br>All users’ flights of stairs climbed average today: <b>${activityObj.allUsersFlightsStairs} flights</b>.<br>Your flights of stairs climbed today: <b>${user.activityData.returnDailyFlights(recentDate.date)} flights</b>.`
-  stride.innerHTML = `Your distance walked today: <b>${user.activityData.returnDailyMilesWalked(recentDate.date, user)}</b><br>Your stride length is: <b>${user.strideLength} feet.</b>`
+  const recentDate = user.activityData.activityData.at(-1);
+  const activityObj = user.activityData.calculateActivityAverages(recentDate.date);
+  compareStepsDisplay.innerHTML = `All users’ daily step goals average:  <b>${repository.calculateAverageStepGoals()} steps</b><br> Your daily step goal: <b>${user.dailyStepGoal} steps</b><br><br>
+  All users’ step counts average today: <b>${activityObj.allUsersNumSteps} steps</b><br>Your step count today: <b>${user.activityData.returnDailySteps(recentDate.date)} steps</b>`;
+  compareMinsFlightsDisplay.innerHTML = `All users’ active minutes average today: <b>${activityObj.allUsersMinsActive} mins</b><br>Your active minutes today: <b>${user.activityData.returnDailyActiveMins(recentDate.date)}</b><br><br>
+  All users’ flights of stairs climbed average today: <b>${activityObj.allUsersFlightsStairs} flights</b><br>Your flights of stairs climbed today: <b>${user.activityData.returnDailyFlights(recentDate.date)} flights</b>`
+  strideDisplay.innerHTML = `Your distance walked today: <b>${user.activityData.returnDailyMilesWalked(recentDate.date, user)}</b><br>Your stride length is: <b>${user.strideLength} feet</b>`
+};
+
+const assignUserId = (user) => {
+  id = user.id;
+};
+
+const createFormDataObj = () => {
+  const date = document.querySelector(".calendar")
+  const numberOunces = document.querySelector(".number-ounces")
+  const hoursSlept = document.querySelector(".hours-slept")
+  const sleepQuality = document.querySelector(".sleep-quality")
+  const flights = document.querySelector(".flights")
+  const mins = document.querySelector(".mins")
+  const steps = document.querySelector(".steps")
+  let formDataObj = {
+    id: id,
+    date: date.value,
+    numberOunces: parseInt(numberOunces.value),
+    hoursSlept: parseInt(hoursSlept.value),
+    sleepQuality: parseInt(sleepQuality.value),
+    flights: parseInt(flights.value),
+    mins: parseInt(mins.value),
+    steps: parseInt(steps.value)
+  };
+  postAll(formDataObj);
 };

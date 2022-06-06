@@ -11,12 +11,11 @@ class Hydration {
   };
 
   returnDailyOunces(date) {
-    const dailyOz = this.hydrationData.find(datum => datum.date === date);
-    if (dailyOz.numOunces === 0) {
-      return "You have no hydration data. Go drink some water!";
-    } else {
-      return `${dailyOz.numOunces} oz.`;
+    const dayData = this.hydrationData.find(datum => datum.date === date);
+    if (!dayData) {
+      return 0;
     };
+    return `${dayData.numOunces} oz.`;
   };
 
   getPastWeekDailyOunces(date) {
@@ -25,7 +24,7 @@ class Hydration {
     const weeklyIntake = weeklyRange.map((date) => date.numOunces);
     return weeklyIntake;
   };
-  
+
 };
 
 export default Hydration;

@@ -1,8 +1,8 @@
-import { reloadData } from "./scripts.js"
-
-const postError = document.querySelector(".error")
+import { reloadData } from "./scripts.js";
 
 let apiUserData, apiSleepData, apiActivityData, apiHydrationData;
+
+const postError = document.querySelector(".error");
 
 const fetchData = (dataSet) => {
   return fetch(`http://localhost:3001/api/v1/${dataSet}`)
@@ -27,7 +27,7 @@ export const postAll = (formData => {
   postHydration(formData);
   postSleep(formData);
   postActivity(formData);
-})
+});
 
 const postHydration = (formData) => {
   fetch("http://localhost:3001/api/v1/hydration", {
@@ -38,20 +38,18 @@ const postHydration = (formData) => {
     headers: { "Content-type": "application/json" },
   })
     .then(res => {
-      console.log("hydration response", res)
       if (!res.ok) {
-      throw new Error("Please make sure all fields are filled out.")
-    } else {
-      return res.json()
-    }
+        throw new Error("Please make sure all fields are filled out.")
+      } else {
+        return res.json()
+      }
     })
     .then(json => reloadData())
     .catch(error => {
-      console.log("THIS", error)
-      console.warn("WARN", error.message);
+      console.warn(error.message)
       displayErrorMessage(error)
     })
-}
+};
 
 const postSleep = (formData) => {
   fetch("http://localhost:3001/api/v1/sleep", {
@@ -61,20 +59,19 @@ const postSleep = (formData) => {
     }),
     headers: { "Content-type": "application/json" },
   })
-  .then(res => {
-    console.log("sleep response", res)
-    if (!res.ok) {
-    throw new Error("Please make sure all fields are filled out.")
-  } else {
-    return res.json()
-  }
-  })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Please make sure all fields are filled out.")
+      } else {
+        return res.json()
+      }
+    })
     .then(json => reloadData())
     .catch(error => {
-      console.warn(error.message);
+      console.warn(error.message)
       displayErrorMessage(error)
     })
-}
+};
 
 const postActivity = (formData) => {
   fetch("http://localhost:3001/api/v1/activity", {
@@ -85,20 +82,19 @@ const postActivity = (formData) => {
     }),
     headers: { "Content-type": "application/json" },
   })
-  .then(res => {
-    console.log("activity response", res)
-    if (!res.ok) {
-    throw new Error("Please make sure all fields are filled out.")
-  } else {
-    return res.json()
-  }
-  })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Please make sure all fields are filled out.")
+      } else {
+        return res.json()
+      }
+    })
     .then(json => reloadData())
     .catch(error => {
-      console.warn(error.message);
+      console.warn(error.message)
       displayErrorMessage(error)
     })
-}
+};
 
 const displayErrorMessage = (error) => {
   if (error.message === "Failed to fetch") {

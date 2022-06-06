@@ -1,100 +1,119 @@
-
 class Activity {
-    constructor(activityData, userID) {
-        this.allUserActivityData = activityData;
-        this.activityData = activityData.filter((data) => data.userID === userID);
-        this.userID = userID;
-    }
+  constructor(activityData, userID) {
+    this.allUserActivityData = activityData;
+    this.activityData = activityData.filter((data) => data.userID === userID);
+    this.userID = userID;
+  };
 
-    findDay(date){
-      return this.activityData.find(datum => datum.date === date)
-    }
+  findData(date) {
+    return this.activityData.find(datum => datum.date === date);
+  };
 
-    returnDailyMilesWalked(date, user) {
-       const day = this.findDay(date);
-        if(day.numSteps === 0){
-            return "You have not logged any steps today."
-        } else {
-            const dailyMiles = day.numSteps * user.strideLength / 5280
-            return `${dailyMiles.toFixed(2)} miles`
-        }
+  returnDailyMilesWalked(date, user) {
+    const dayData = this.findData(date);
+    if (!dayData) {
+      return 0;
     };
+    const dailyMiles = dayData.numSteps * user.strideLength / 5280;
+    return `${dailyMiles.toFixed(2)} miles`;
+  };
 
-    returnDailySteps(date){
-      const day = this.findDay(date);
-      if (!day) {
-        return 0
-      }
-      return day.numSteps
-    }
+  returnDailySteps(date){
+    const dayData = this.findData(date);
+    if (!dayData) {
+      return 0;
+    };
+    return dayData.numSteps;
+  };
 
-    returnDailyActiveMins(date) {
-        const day = this.findDay(date);
-        if(day.minutesActive === 0){
-            return "You have not logged any active minutes for today."
-        } else {
-            return `${day.minutesActive} mins.`
-        }
-    }
+  returnDailyActiveMins(date) {
+    const dayData = this.findData(date);
+    if (!dayData) {
+      return 0;
+    };
+    return `${dayData.minutesActive} mins.`;
+  };
 
-    calculateWeeklyActiveMins(date) {
-        const startDate = this.activityData.findIndex(day => day.date === date);
-        const weeklyRange = this.activityData.slice(startDate, startDate + 7);
-        const weeklyTotalActiveMins = weeklyRange.reduce((sum, date) => {
-        sum += date.minutesActive
-        return sum
-        }, 0);
-        const weeklyAverageActiveMins = weeklyTotalActiveMins / 7
-        return Math.round(weeklyAverageActiveMins)
-   }
+  calculateWeeklyActiveMins(date) {
+    const startDate = this.activityData.findIndex(day => day.date === date);
+    const weeklyRange = this.activityData.slice(startDate, startDate + 7);
+    const weeklyTotalActiveMins = weeklyRange.reduce((sum, date) => {
+      sum += date.minutesActive;
+      return sum;
+    }, 0);
+    const weeklyAverageActiveMins = weeklyTotalActiveMins / 7;
+    return Math.round(weeklyAverageActiveMins);
+  };
 
-    determineIfStepGoalMet(date, user) {
-        const day = this.findDay(date);
-        if(day.numSteps >= user.dailyStepGoal){
-            return true
-        } else {
-            return false
-        }
-    }
-    returnAllDaysStepGoalMet(user){
-        let allDaysStepsMet = []
-        this.activityData.forEach(datum => {
-            if(datum.numSteps >= user.dailyStepGoal){
-                allDaysStepsMet.push(datum.date)
-            }
-        })
-        return allDaysStepsMet
-    }
+  determineIfStepGoalMet(date, user) {
+    const dayData = this.findData(date);
+    if (dayData.numSteps >= user.dailyStepGoal) {
+      return true;
+    } else {
+      return false;
+    };
+  };
 
-    returnDailyFlights(date){
-      const day = this.findDay(date);
-       if(day.flightsOfStairs === 0){
-           return "You have not logged any flights of stairs climbed today."
-       } else {
-           return day.flightsOfStairs
-       }
-    }
+  returnAllDaysStepGoalMet(user) {
+    let allDaysStepsMet = [];
+    this.activityData.forEach(datum => {
+      if(datum.numSteps >= user.dailyStepGoal) {
+        allDaysStepsMet.push(datum.date);
+      };
+    });
+    return allDaysStepsMet;
+  };
 
-    findAllTimeStairRecord(){
-        let stairArray = []
-        this.activityData.forEach(datum => stairArray.push(datum.flightsOfStairs))
-        const bestStairDay = Math.max(...stairArray)
-        return `Your all-time best climb was ${bestStairDay} flights of stairs.`
-    }
+  returnDailyFlights(date) {
+    const dayData = this.findData(date);
+    if (!dayData) {
+      return 0;
+    };
+    return dayData.flightsOfStairs;
+  };
 
-    calculateActivityAverages(date) {
-        const dayArray = this.allUserActivityData.filter(datum =>  date === datum.date)
-        let totalSteps = 0
-        let totalStairs = 0
-        let totalMins = 0
-        const averageAllUserData = dayArray.reduce((acc, user) => {
-            acc["allUsersNumSteps"] = Math.round((totalSteps += user.numSteps) / dayArray.length)
-            acc["allUsersFlightsStairs"] = Math.round((totalStairs += user.flightsOfStairs) / dayArray.length)
-            acc["allUsersMinsActive"] = Math.round((totalMins += user.minutesActive) / dayArray.length)
-            return acc
-        }, {})
-        return averageAllUserData
-    }
+  findAllTimeStairRecord() {
+    let stairArray = [];
+    this.activityData.forEach(datum => stairArray.push(datum.flightsOfStairs));
+    const bestStairDay = Math.max(...stairArray);
+    return `Your all-time best climb was ${bestStairDay} flights of stairs.`;
+  };
 
-}
+  calculateActivityAverages(date) {
+    const days = this.allUserActivityData.filter(datum =>  date === datum.date);
+    let totalSteps = 0;
+    let totalStairs = 0;
+    let totalMins = 0;
+    const averageAllUserData = days.reduce((acc, user) => {
+      acc["allUsersNumSteps"] = Math.round((totalSteps += user.numSteps) / days.length);
+      acc["allUsersFlightsStairs"] = Math.round((totalStairs += user.flightsOfStairs) / days.length);
+      acc["allUsersMinsActive"] = Math.round((totalMins += user.minutesActive) / days.length);
+      return acc;
+    }, {});
+    return averageAllUserData;
+  };
+
+  getPastWeekStepCount(date) {
+    const startDate = this.activityData.findIndex((day) => day.date === date);
+    const weeklyRange = this.activityData.slice(startDate, startDate + 7);
+    const weeklyStepCount = weeklyRange.map((date) => date.numSteps);
+    return weeklyStepCount;
+  };
+
+  getPastWeekFlightsOfStairs(date) {
+    const startDate = this.activityData.findIndex((day) => day.date === date);
+    const weeklyRange = this.activityData.slice(startDate, startDate + 7);
+    const weeklyFlights = weeklyRange.map((date) => date.flightsOfStairs);
+    return weeklyFlights;
+  };
+
+  getPastWeekMinutesActive(date) {
+    const startDate = this.activityData.findIndex((day) => day.date === date);
+    const weeklyRange = this.activityData.slice(startDate, startDate + 7);
+    const weeklyMinutes = weeklyRange.map((date) => date.minutesActive);
+    return weeklyMinutes;
+  };
+
+};
+
 export default Activity;

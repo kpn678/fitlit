@@ -5,7 +5,7 @@ class Sleep {
     this.userID = userID;
   };
 
-  findDay(date) {
+  findData(date) {
     return this.sleepData.find(datum => datum.date === date)
   };
 
@@ -22,20 +22,20 @@ class Sleep {
   };
 
   returnNightlyHoursSlept(date) {
-    const night = this.findDay(date);
-    if (night.hoursSlept > 0) {
-      return `${night.hoursSlept} hours`;
+    const nightData = this.findData(date);
+    if (nightData.hoursSlept > 0) {
+      return `${nightData.hoursSlept} hours`;
     } else {
-      return "You have not entered your amount of sleep for last night.";
+      return 0;
     };
   };
 
   returnNightlySleepQuality(date) {
-    const night = this.findDay(date);
-    if (night.sleepQuality > 0) {
-      return night.sleepQuality;
+    const nightData = this.findData(date);
+    if (nightData.sleepQuality > 0) {
+      return nightData.sleepQuality;
     } else {
-      return "You have not entered your sleep quality for last night.";
+      return 0;
     };
   };
 
@@ -61,7 +61,7 @@ class Sleep {
     const averageQuality = totalQuality / this.allUserSleepData.length;
     return Math.round(averageQuality * 10) / 10 ;
   };
-  
+
 };
 
 export default Sleep;
