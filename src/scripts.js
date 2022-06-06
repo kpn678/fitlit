@@ -52,7 +52,7 @@ const dailySleepDisplay = document.querySelector(".daily-sleep-text");
 const compareStepsDisplay = document.querySelector(".compare-steps");
 const compareMinsFlightsDisplay = document.querySelector(".compare-mins-and-flights");
 const strideDisplay = document.querySelector(".stride-length");
-const postSubmit = document.querySelector(".apple");
+const addDataForm = document.querySelector(".add-data");
 
 //Event listeners//
 window.addEventListener("load", (event) => {
@@ -94,7 +94,7 @@ window.onclick = function(event) {
   };
 };
 
-postSubmit.addEventListener("click", (event) => {
+addDataForm.addEventListener("submit", (event) => {
   postModal.style.display = "none";
   createFormDataObj();
   event.preventDefault();
