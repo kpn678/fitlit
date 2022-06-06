@@ -18,7 +18,7 @@ Reach your fitness and health goals with this wellness tracker designed with chi
 
 ## Project Specs
 
-FitLit is an application built in week 10 of [Turing School of Software and Design](https://turing.io/). The goal of this group[project](http://frontend.turing.io/projects/fitlit.html) was to solidify and demonstrate the understanding of:
+FitLit is an application built in week 10 of [Turing School of Software and Design](https://turing.io/). The goal of this group [project](http://frontend.turing.io/projects/fitlit.html) was to solidify and demonstrate the understanding of:
 
 - Creating a robust testing suite using TDD
 - Utilizing Lighthouse and Wave for Accessibility
