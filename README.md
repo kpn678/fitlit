@@ -5,7 +5,6 @@ Reach your fitness and health goals using this wellness tracker designed with ch
 ### Table of Contents
 - [Project Specs](#project-specs)
 - [Setup](#setup)
-- [Testing](#testing)
 - [Illustrations](#illustrations)
 - [Project Management](#project-management)
 - [Future Features](#future-features)
@@ -21,6 +20,8 @@ FitLit is an application built in week 10 of the [Turing School of Software and 
 - Make network requests to API endpoints to retrieve and manipulate data
 - Implement third party packages
 
+**[Back to top](#table-of-contents)**
+
 ## Setup
 1. Fork this [repository](https://github.com/kpn678/fitlit.git), and clone it into your local machine.
 2. Navigate into the repository.
@@ -32,6 +33,8 @@ FitLit is an application built in week 10 of the [Turing School of Software and 
 8. Each time you use the application, you will need to run `npm start` so that the local server data is being referenced in the Fitlit app.
 9. To run the testing suite, ensure that `npm install` was run when the project was cloned. Then, run `npm test` in the command line tab where `npm start` is not being run.
 
+**[Back to top](#table-of-contents)**
+
 ## Illustrations
 - User can view their daily data as well as toggle between their weekly data and view account info 
 ![Dashboard View](src/images/Dashboard.gif)
@@ -39,17 +42,25 @@ FitLit is an application built in week 10 of the [Turing School of Software and 
 - User can post their daily sleep, hydration, and activity stats 
 ![Submit New Data](src/images/Submit.gif)
 
+**[Back to top](#table-of-contents)**
+
 ## Project Management
 - We used a [Github Project Board](https://github.com/kpn678/fitlit/projects/1) stay on task and meet the deadline
+
+**[Back to top](#table-of-contents)**
 
 ## Future Features
 - Refactor the existing CSS into Sass to create a modular design codebase
 - Implement a login or a way to select a specific user to view
 
+**[Back to top](#table-of-contents)**
+
 ## Contributors
 - [Kristy Nguyen](https://github.com/kpn678)
 - [Jordan Sullivan](https://github.com/jordan-sullivan)
 - [Grant Beard](https://github.com/GrantXBeard)
+
+**[Back to top](#table-of-contents)**
 
 ## Technologies
 - Javascript
@@ -60,6 +71,8 @@ FitLit is an application built in week 10 of the [Turing School of Software and 
 - Mocha/Chai
 - Chart.js
 - Day.js
+
+**[Back to top](#table-of-contents)**
 
 ## Image Credit
 - Specialty icons from [Freepik-Flaticon](https://www.flaticon.com/authors/freepik)
